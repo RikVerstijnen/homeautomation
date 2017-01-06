@@ -11,13 +11,14 @@ return {
 		Iemand = domoticz.devices['Iemand thuis'].state
 		Slapen = domoticz.devices['Slapen'].state
 		Verwarming = domoticz.devices['Stat Woonkamer'].state
+		Simulatie = domoticz.devices['Simulatie'].state
 		
 		print ("Iemand thuis: "..Iemand)
 		print ("Slapen: "..Slapen)
 		print ("Verwarming: "..Verwarming)
+		print ("Simulatie: "..Simulatie)
 		
-		--Verwarming
-		if Iemand == 'On' and Slapen == 'Off' then
+		if Iemand == 'On' and Slapen == 'Off' and Simulatie == 'Off' then
 			print ("Verwarming aan")
 			domoticz.notify('Verwarming aan#-2')
 			domoticz.devices['Stat Woonkamer'].updateTemperature(19)

@@ -8,10 +8,13 @@ return {
 	execute = function(domoticz)
 
 		local Slapen = domoticz.devices['Slapen']
-		local Thuis = domoticz.devices['Iemand thuis']
+		local Simulatie = domoticz.devices['Simulatie']
+		
+		print ("Slapen: "..Slapen)
+		print ("Simulatie: "..Simulatie)
 		
 		--Weg: Simuleer slapen rond 23u
-		if Thuis.state == 'Off' then 
+		if Simulatie.state == 'On' then 
 			domoticz.devices['Slapen'].switchOn().within_min(30)
 			print ("Niet thuis - Slapen simulatie")
 		end
