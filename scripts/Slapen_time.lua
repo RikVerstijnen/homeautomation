@@ -15,7 +15,7 @@ return {
 		
 		--Weg: Simuleer slapen rond 23u
 		if Simulatie.state == 'On' then 
-			domoticz.devices['Slapen'].switchOn().within_min(30)
+			domoticz.devices['Mode'].switchOn().within_min(30)
 			print ("Niet thuis - Slapen simulatie")
 		end
 		

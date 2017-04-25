@@ -3,26 +3,24 @@ return {
 
 	on = {
 		'Iemand thuis',
-		'Slapen'
+		'Mode'
 	},
 
 	execute = function(domoticz)
 		
 		Iemand = domoticz.devices['Iemand thuis'].state
-		Slapen = domoticz.devices['Slapen'].state
+		Mode = domoticz.devices['Mode'].state
 		Verwarming = domoticz.devices['Stat Woonkamer'].state
-		Simulatie = domoticz.devices['Simulatie'].state
 		
 		print ("Iemand thuis: "..Iemand)
-		print ("Slapen: "..Slapen)
+		print ("Mode: "..Mode)
 		print ("Verwarming: "..Verwarming)
-		print ("Simulatie: "..Simulatie)
 		
-		if Iemand == 'On' and Slapen == 'Off' and Simulatie == 'Off' then
+		if (Iemand == 'On' and Mode == 'Auto') or Mode == 'On' then
 			print ("Verwarming aan")
 			domoticz.notify('Verwarming aan#-2')
 			domoticz.devices['Stat Woonkamer'].updateTemperature(19)
-		elseif Iemand == 'Off' or Slapen == 'On' then
+		elseif (Iemand == 'Off' and Mode == 'Auto')  or Mode == 'Off' then
 			print ("Verwarming uit")
 			domoticz.notify('Verwarming uit#-2')
 			domoticz.devices['Stat Woonkamer'].updateTemperature(15)

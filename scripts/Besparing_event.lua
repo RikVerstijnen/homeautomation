@@ -2,12 +2,12 @@ return {
 	active = true,  
 
 	on = {
-		'Slapen',
+		'Mode',
 	},
 
 	execute = function(domoticz)
 						
-		if (devicechanged['Slapen'] == 'On') then
+		if (devicechanged['Mode'] == 'Off') then
 
 		-- Als slapen, dan apparaten uit
 		domoticz.devices['Mediaspeler'].SwitchOff()
@@ -18,7 +18,7 @@ return {
 		domoticz.devices['Droger'].SwitchOff()
 		domoticz.devices['Sproeier achter'].SwitchOff()
 		
-		elseif (devicechanged['Slapen'] == 'Off') then
+		elseif (devicechanged['Mode'] == 'On' or devicechanged['Mode'] == 'Auto') then
 		
 		-- Als wakker, dan apparaten aan
 		domoticz.devices['Mediaspeler'].SwitchOn()
