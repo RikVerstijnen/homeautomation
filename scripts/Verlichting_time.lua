@@ -22,7 +22,6 @@ return {
 			domoticz.devices['Lamp tussen'].switchOff()
 			domoticz.devices['Lamp keuken'].switchOff()
 			domoticz.devices['Lamp zithoek'].switchOff()
-			domoticz.notify('Donker - Verlichting aan#Slapen - Verlichting uit#-2')
 			print ("Slapen - Verlichting uit")	
 		
 		end

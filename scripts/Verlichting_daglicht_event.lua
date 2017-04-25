@@ -51,7 +51,6 @@ return {
 			domoticz.devices['Lamp zithoek'].switchOn()
 			domoticz.devices['Lamp zithoek'].dimTo(50-Lux)
 			domoticz.devices['Schemerlampen'].dimTo(60-Lux)
-			domoticz.notify('Donker - Verlichting aan#Donker - Verlichting aan#-2')
 			print ("Donker - Binnenverlichting aan")	
 		
 		--Verlichting uit als weg, uit of licht
@@ -64,7 +63,6 @@ return {
 			domoticz.devices['Lamp zithoek'].switchOff()
 			domoticz.devices['Lamp keuken'].switchOff()
 			domoticz.devices['Schemerlampen'].dimTo(0)
-			domoticz.notify('Slapen - Verlichting uit#Slapen - Verlichting uit#-2')
 			print ("Slapen - Verlichting uit")		
 
 		end
