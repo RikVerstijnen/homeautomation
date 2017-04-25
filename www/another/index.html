@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Ons huis</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    
+    <!-- Bootstrap 3.3.4 -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="plugins/bootstrap-slider/slider.css" rel="stylesheet" type="text/css">
+	    
+    <!-- Font Awesome Icons -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" /> -->
+    <link href="./vendors/font-awesome-4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Weather Icons -->
+    <!--  <link href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.3.2/css/weather-icons.min.css" rel="stylesheet" type="text/css" />  -->
+    <link href="./vendors/weather-icons/css/weather-icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Ionicons -->
+    <!-- <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" /> -->
+    <link href="./vendors/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+    
+    <!-- Theme style -->
+    <link href="dist/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect.
+    -->
+    <link href="dist/css/skins/skin-black-light.min.css" rel="stylesheet" type="text/css" />
+    
+    <!-- Custom css -->
+    <link href="./custom/css/domotica.css" rel="stylesheet" type="text/css" />
+    <link href="./custom/css/responsive.css" rel="stylesheet" type="text/css" />
+    
+    <!-- Android app manifest -->
+    <link rel="manifest" href="manifest.json">
+  </head>
+  <!--
+  BODY TAG OPTIONS:
+  =================
+  Apply one or more of the following classes to get the
+  desired effect
+  |---------------------------------------------------------|
+  | SKINS         | skin-blue                               |
+  |               | skin-black                              |
+  |               | skin-purple                             |
+  |               | skin-yellow                             |
+  |               | skin-red                                |
+  |               | skin-green                              |
+  |---------------------------------------------------------|
+  |LAYOUT OPTIONS | fixed                                   |
+  |               | layout-boxed                            |
+  |               | layout-top-nav                          |
+  |               | sidebar-collapse                        |
+  |               | sidebar-mini                            |
+  |---------------------------------------------------------|
+  -->
+  <body class="skin-blue-light sidebar-mini sidebar-collapse dashboard">
+    <div class="wrapper">
+
+      <!-- Main Header -->
+      <header class="main-header">
+
+        <!-- Logo -->
+        <a href="#" class="logo">
+          <!-- mini logo for sidebar mini 50x50 pixels -->
+          <span class="logo-mini">OH</span>
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg">Ons huis</span>
+        </a>
+
+        <!-- Header Navbar -->
+        <nav class="navbar navbar-static-top" role="navigation">
+          <!-- Sidebar toggle button-->
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+          </a>
+          <!-- Navbar Right Menu -->
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <!-- Weather: style can be found in dropdown.less-->
+              <li class="dropdown messages-menu">
+                <!-- Menu toggle button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="wi wi-day-cloudy"></i>
+                  <span class="label label-success">21</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">The weather is nice today</li>
+                  <li>
+                    <!-- inner menu: contains the messages -->
+                    <ul class="menu">
+                      <li><!-- start message -->
+                        <a href="#">
+                          <div class="pull-left">
+                            <!-- User Image -->
+                            <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
+                          </div>
+                          <!-- Message title and timestamp -->
+                          <h4>
+                            Support Team
+                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                          </h4>
+                          <!-- The message -->
+                          <p>Why not buy a new awesome theme?</p>
+                        </a>
+                      </li><!-- end message -->
+                    </ul><!-- /.menu -->
+                  </li>
+                  <li class="footer"><a href="#">See All Messages</a></li>
+                </ul>
+              </li><!-- /.weather-menu -->
+
+              <!-- Notifications Menu: including battery level notifications -->
+              <li class="dropdown notifications-menu">
+			  
+              <!-- Menu toggle button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-bell-o"></i>
+                  <span class="label label-warning">10</span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="header">You have 10 notifications</li>
+                  <li>
+                    <!-- Inner Menu: contains the notifications -->
+                    <ul class="menu">
+                      <li><!-- start notification -->
+                        <a href="#">
+                          <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                        </a>
+                      </li><!-- end notification -->
+                    </ul>
+                  </li>
+                  <li class="footer"><a href="#">View all</a></li>
+                </ul>
+              </li>
+              
+			  <!-- User Account Menu -->
+              <li class="dropdown user user-menu">
+                <!-- Menu Toggle Button -->
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <!-- The user image in the navbar-->
+                  <img src="custom/img/user.jpg" class="user-image" alt="User Image"/>
+                  <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                  <span class="hidden-xs">Ons huis</span>
+                </a>
+              </li>
+              <!-- Control Sidebar Toggle Button -->
+              <li>
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar Menu -->
+          <ul class="sidebar-menu">
+            <li class="active"><a href="index.html"><i class='fa fa-home'></i> <span>Home</span></a></li>
+            <li class="header">Details</li>
+            <!-- Optionally, you can add icons to the links -->
+            <li><a href="devices.html"><i class='fa fa-lightbulb-o'></i> <span>Domotica</span></a></li>
+            <li><a href="weather.html"><i class='wi wi-horizon'></i> <span>Weer</span></a></li>
+            <li><a href="music.html"><i class='fa fa-music'></i> <span>Muziek</span></a></li>
+            <li><a href="entertainment.html"><i class='fa fa-film'></i> <span>TV</span></a></li>
+            <li class="config header spacer">Opties</li>
+            <li class="config"><a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i> <span>Configuratie</span></a></li>
+
+          </ul><!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content">
+
+		<!-- Statuses -->
+		<div class="col col-md-4 col-sm-4 col-xs-1 energy all-energy">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+				  <h3 class="box-title">Energie</h3>
+				</div> <!--Box header-->
+				<div class="centered-body">
+					<div class="row">
+						<div class="col col-md-4 col-sm-4 col-xs-4 usage"  data-domoticz-id="97">
+							Elektriciteit: <span class="info-box-number"><span class="usage"></span></span>
+						</div> <!--Col-->
+						<div class="col col-md-4 col-sm-4 col-xs-4 datavalue"  data-domoticz-id="38" data-status="true">
+							Netspanning: <span class="info-box-number"><span class="datavalue">
+						</div> <!--Col-->
+					</div> <!--Row-->
+				</div> <!--Box body-->
+			</div> <!--Box-->
+		</div> <!--Col--> 
+		
+		<div class="col col-md-8 col-sm-8 col-xs-8 temperature all-temperatures">
+			<div class="box box-primary">
+				<div class="box-header with-border">
+				  <h3 class="box-title">Temperatuur</h3>
+				</div> <!--Box header-->
+				<div class="centered-body">
+					<div class="row">
+						<div class="col col-md-2 col-sm-4 col-xs-4 temperature"  data-domoticz-id="29">
+							Beneden: <span class="info-box-number"><span class="temperature"></span> &deg;C</span>
+						</div> <!--Col-->
+						<div class="col col-md-2 col-sm-4 col-xs-4 temperature"  data-domoticz-id="211">
+							Badkamer: <span class="info-box-number"><span class="temperature"></span> &deg;C</span>
+						</div> <!--Col-->
+						<div class="col col-md-2 col-sm-4 col-xs-4 temperature"  data-domoticz-id="226">
+							Babykamer: <span class="info-box-number"><span class="temperature"></span> &deg;C</span>
+						</div> <!--Col-->
+						<div class="col col-md-2 col-sm-4 col-xs-4 temperature"  data-domoticz-id="224">
+							Slaapkamer: <span class="info-box-number"><span class="temperature"></span> &deg;C</span>
+						</div> <!--Col-->
+						<div class="col col-md-2 col-sm-4 col-xs-4 temperature"  data-domoticz-id="209">
+							Buiten: <span class="info-box-number"><span class="temperature"></span> &deg;C</span>
+						</div> <!--Col-->
+					</div> <!--Row-->
+				</div> <!--Box body-->
+			</div> <!--Box-->
+		</div> <!--Temperatures col-->	
+		 
+		 <!-- Scenes -->
+	  	  <div class="row scenes">
+	  	  	<div class="col col-md-2 col-sm-2 col-xs-2">
+                <span class="scene bg-red" data-domoticz-id="3">
+                	<div class="icon"><i class="fa fa-power-off"></i></div>
+                	<span class="description">Weg</span>
+                </span>
+	  	  	</div>
+	  	  	
+	  	  	<div class="col col-md-2 col-sm-2 col-xs-2">
+                <span class="scene bg-blue" data-domoticz-id="6">
+                	<div class="icon"><i class="fa fa-thumbs-o-up"></i></div>
+                	<span class="description">Thuis</span>
+                </span>
+	  	  	</div>
+
+	  	  	<div class="col col-md-2 col-sm-2 col-xs-2">
+                <span class="scene bg-yellow" data-domoticz-id="">
+                	<div class="icon"><i class="ion ion-ios-film-outline"></i></div>
+                	<span class="description">Morris slapen</span>
+                </span>
+	  	  	</div>
+	  	  	
+	  	  	<div class="col col-md-2 col-sm-2 col-xs-2">
+                <span class="scene bg-green" data-domoticz-id="4">
+                	<div class="icon"><i class="ion ion-flame"></i></div>
+                	<span class="description">Avond</span>
+                </span>
+	  	  	</div>
+
+	  	  	<div class="col col-md-2 col-sm-2 col-xs-2">
+                <span class="scene bg-red" data-domoticz-id="5">
+                	<div class="icon"><i class="ion ion-flame"></i></div>
+                	<span class="description">Vakantie</span>
+                </span>
+	  	  	</div>
+	  	  		  	  	
+	  	  </div> <!--Scenes row-->
+
+		 <!-- Switches -->
+		  <div class="row">
+            <div class="col col-md-6 col-sm-12 col-xs-12 lights">
+			  <div class="row">
+	            <div class="col col-md-4 col-sm-4 col-xs-2">
+	              <div class="box info-box bg-blue switch default-ui" data-domoticz-id="106" data-status="false">
+	                <span class="title">buitenlamp<span class="generic-description"> </span></span>
+				  </div><!-- /.info-box -->
+	            </div><!-- /.col -->
+
+				<div class="col col-md-4 col-sm-6 col-xs-4">
+	              <div class="info-box sunscreen disabled" data-domoticz-id="142">
+	                <span class="info-box-icon bg-green"><i class="wi wi-day-sunny"></i></span>
+	                <div class="info-box-content">
+						<div class="btn-group-vertical pull-right updown-buttons hidden-xs">
+	                      <button type="button" class="btn btn-default up"><i class="fa fa-chevron-up"></i></button>
+						  <button type="button" class="btn btn-default stop"><i class="fa fa-stop"></i></button>
+	                      <button type="button" class="btn btn-default down"><i class="fa fa-chevron-down"></i></button>
+	                    </div>                  
+	                
+	                  <span class="info-box-text">Rolluiken babykamer</span>
+	                  
+	                  	<div class="btn-group updown-buttons visible-xs">
+	                      <button type="button" class="btn btn-default up"><i class="fa fa-chevron-up"></i></button>
+						  <button type="button" class="btn btn-default stop"><i class="fa fa-stop"></i></button>
+	                      <button type="button" class="btn btn-default down"><i class="fa fa-chevron-down"></i></button>
+	                    </div>
+	                  
+	                </div><!-- /.info-box-content -->
+	              </div><!-- /.info-box -->
+				</div>  
+				
+				<div class="col col-md-4 col-sm-6 col-xs-4">
+	              <div class="info-box sunscreen disabled" data-domoticz-id="110">
+	                <span class="info-box-icon bg-green"><i class="wi wi-day-sunny"></i></span>
+	                <div class="info-box-content">
+						<div class="btn-group-vertical pull-right updown-buttons hidden-xs">
+	                      <button type="button" class="btn btn-default up"><i class="fa fa-chevron-up"></i></button>
+						  <button type="button" class="btn btn-default stop"><i class="fa fa-stop"></i></button>
+	                      <button type="button" class="btn btn-default down"><i class="fa fa-chevron-down"></i></button>
+	                    </div>                  
+	                
+	                  <span class="info-box-text">Rolluiken slaapkamer</span>
+	                  
+	                  	<div class="btn-group updown-buttons visible-xs">
+	                      <button type="button" class="btn btn-default up"><i class="fa fa-chevron-up"></i></button>
+						  <button type="button" class="btn btn-default stop"><i class="fa fa-stop"></i></button>
+	                      <button type="button" class="btn btn-default down"><i class="fa fa-chevron-down"></i></button>
+	                    </div>
+	                  
+	                </div><!-- /.info-box-content -->
+	              </div><!-- /.info-box -->
+				</div> 
+				
+          	  </div>
+		  	</div>
+		  			  	
+		  </div> <!--Switches row-->
+
+			<!-- Graphs -->
+		  	<div class="col col-md-6 col-sm-6 col-xs-12">
+			  <div class="box box-primary">
+                <div class="box-header with-border hidden-xs">
+                  <h3 class="box-title">Verbruik E</h3>
+                  <div class="box-tools pull-right">
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+
+				<iframe style="width:580px; height:400px;" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://emoncms.org/vis/zoom?power=87781&kwhd=90007&currency=€&currency_after_val=0&pricekwh=0.22&delta=0&embed=1&apikey="></iframe>
+				
+                </div><!-- /.box-body -->
+                
+              </div>		  	
+		  	</div>
+			
+			<div class="row">
+		  	<div class="col col-md-6 col-sm-6 col-xs-12">
+			  <div class="box box-primary">
+                <div class="box-header with-border hidden-xs">
+                  <h3 class="box-title">Temperaturen</h3>
+                  <div class="box-tools pull-right">
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  
+				  <iframe style="width:580px; height:400px;" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://emoncms.org/vis/multigraph?mid=8278&embed=1&apikey="></iframe>
+                
+				</div><!-- /.box-body -->
+                
+              </div>		  	
+		  	</div>
+		  			  
+		  			  
+		  	<div class="col col-md-3 col-sm-12 hidden-xs  hidden-xs hidden-sm hidden-md hidden-lg">
+			  <div class="box box-secondary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Logs</h3>
+                  <div class="box-tools pull-right">
+                  </div>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <ul class="products-list product-list-in-box">
+                    <li class="item">
+                      <div class="product-img">
+                        <img src="dist/img/default-50x50.gif" alt="Product Image">
+                      </div>
+                      <div class="product-info">
+                        <a href="javascript:;" class="product-title">Lights switched off <span class="label label-info pull-right">21:10</span></a>
+                        <span class="product-description">
+                          Manually
+                        </span>
+                      </div>
+                    </li><!-- /.item -->
+                    <li class="item">
+                      <div class="product-img">
+                        <img src="dist/img/default-50x50.gif" alt="Product Image">
+                      </div>
+                      <div class="product-info">
+                        <a href="javascript:;" class="product-title">Intruder detection <span class="label label-danger pull-right">12:10</span></a>
+                        <span class="product-description">
+                          The fibaro sensor detected an intruder (or an earthquake)
+                        </span>
+                      </div>
+                    </li><!-- /.item -->
+                    <li class="item">
+                      <div class="product-img">
+                        <img src="dist/img/default-50x50.gif" alt="Product Image">
+                      </div>
+                      <div class="product-info">
+                        <a href="javascript:;" class="product-title">Domoticz updated <span class="label label-success pull-right">15:10</span></a>
+                        <span class="product-description">
+                          Domoticz updated to the latest version (2591)
+                        </span>
+                      </div>
+                    </li><!-- /.item -->
+                  </ul>
+                </div><!-- /.box-body -->
+                <div class="box-footer text-center">
+                  <a href="javascript:;" class="uppercase">View all logs</a>
+                </div><!-- /.box-footer -->
+				
+				<!-- Overlay is shown to disable element -->
+				<div class="overlay"></div>
+              </div>		  	
+		  	
+		  	</div>
+		  </div>
+        </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+      
+      <!-- Control Sidebar -->      
+      <aside class="control-sidebar control-sidebar-dark">                
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+          <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+          <li><a href="#control-sidebar-stats-tab" data-toggle="tab"><i class="fa fa-bar-chart"></i></a></li>
+          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!-- Home tab content -->
+          <div class="tab-pane active" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Domoticz</h3>
+            <ul class='control-sidebar-menu config-domoticz'>
+              <li>
+                <a href='javascript:;'>
+                  <i class="menu-icon fa fa-power-off bg-green"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Domoticz status</h4>
+                    <p><i class="fa fa-circle text-success"></i> online</p>
+                  </div>
+                </a>
+              </li>              
+              <li>
+                <a href='javascript:;'>
+                  <i class="menu-icon fa fa-refresh bg-red"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Laatste status</h4>
+                    <p>10 seconds ago</p>
+                  </div>
+                </a>
+              </li>              
+            </ul><!-- /.control-sidebar-menu -->
+
+            <h3 class="control-sidebar-heading">Weer</h3>
+            <ul class='control-sidebar-menu config-weather'>
+              <li>
+                <a href='javascript:;'>
+                  <i class="menu-icon fa fa-refresh bg-blue"></i>
+                  <div class="menu-info">
+                    <h4 class="control-sidebar-subheading">Laatste update</h4>
+                    <p class="lastUpdate">3 minutes ago</p>
+                  </div>
+                </a>
+              </li>              
+            </ul><!-- /.control-sidebar-menu -->
+            
+          </div><!-- /.tab-pane -->
+          <!-- Stats tab content -->
+          <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
+          <!-- Settings tab content -->
+          <div class="tab-pane" id="control-sidebar-settings-tab">            
+            <form method="post">
+              <h3 class="control-sidebar-heading">General Settings</h3>
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Report panel usage
+                  <input type="checkbox" class="pull-right" checked />
+                </label>
+                <p>
+                  Some information about this general settings option
+                </p>
+              </div><!-- /.form-group -->
+            </form>
+          </div><!-- /.tab-pane -->
+        </div>
+      </aside><!-- /.control-sidebar -->
+      <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+      <div class='control-sidebar-bg'></div>
+    </div><!-- ./wrapper -->
+
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/app.min.js" type="text/javascript"></script>
+
+    <!-- Morris.js charts -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="plugins/morris/morris.min.js" type="text/javascript"></script>
+    
+	<!-- ChartJS 1.0.1 -->
+    <script src="plugins/chartjs/Chart.min.js" type="text/javascript"></script>
+    
+    <!--  Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment-with-locales.min.js" type="text/javascript"></script>
+
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+          Both of these plugins are recommended to enhance the
+          user experience. Slimscroll is required when using the
+          fixed layout. -->
+	<script src="plugins/bootstrap-slider/bootstrap-slider.js" type="text/javascript"></script>
+	
+	<!-- Scripts to enable dashboard to be interactive -->
+	<script src="custom/js/dashboard.js" type="text/javascript"></script>
+	<script src="custom/js/settings.js" type="text/javascript"></script>
+	<script src="custom/js/domoticz.js" type="text/javascript"></script>
+	<script src="custom/js/weather.js" type="text/javascript"></script>
+	<script src="custom/js/moon.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function() { Domotica.dashboard.init(); });	
+	</script>
+  </body>
+</html>

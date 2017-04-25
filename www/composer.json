@@ -1,0 +1,15 @@
+{
+  "name": "roberthorlings/domoticz-frontpage",
+  "description": "Custom frontpage for Domoticz",
+  "homepage": "http://www.isdatsoftwareontwikkeling.nl/",
+  "keywords": [
+    "domoticz",
+    "frontpage",
+    "sonos",
+    "chromecast",
+    "dashboard",
+    "domotica"
+    "web",
+  ],
+  "license": "MIT",
+}
