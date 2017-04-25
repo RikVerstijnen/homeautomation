@@ -1,0 +1,91 @@
+/* Change color on active menu item */
+section.sidebar .sidebar-menu>li.active>a { color: #0073b7; }
+.sidebar-menu li.spacer { margin-top: 1.5em; }
+
+.wrapper .content div.col-outer { padding-left: 0; padding-right: 0; } 
+
+/* Enable weather icons in sidebar menu */
+.sidebar-menu > li > a > .wi { width: 20px; }
+
+
+.lightbulb-on {
+	color: yellow; 
+	font-size: 1.4em; line-height: 1.4em;
+}
+
+/* Make sure the horizontal slider only has a small bottom margin */
+.slider.slider-horizontal { margin-bottom: 0px; }
+
+/* Make sure all data is centered for the small boxes */
+.small-box-body { text-align: center; height: 188px;}
+.medium-box-body { text-align: center; height: 258px;}
+.centered-body { text-align: center; padding-top: 5px; padding-bottom: 5px; }
+
+/* Box of up-down buttons */
+.updown-buttons { margin-top: 5px; }
+.updown-buttons .btn { padding-top: 3px; padding-bottom: 3px; }
+
+/* List with weather information */
+.weather-list .btn-default { float: left; width: 48px; }
+.weather-list .weather-item { margin-left: 60px; }
+.weather-list .item { padding: 3px 0; }
+.weather-list .label { margin-left: 3px; padding-left: 0.4em; padding-right: 0.4em; }
+
+/* Weather forecast */
+.weather-forecast .template { display: none; }
+.weather-forecast .rain, .weather-forecast .wind { font-weight: bold; }
+
+/* Box headers */
+.box-header { padding: 6px 10px; }
+.info-box.box { border-top-width: 0; }
+.box { margin-bottom: 13px; }
+
+/* Info box number overflow */
+.info-box-number {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 26px;
+}
+.media .info-box-icon.with-image i { display: none; }
+.media .info-box-icon.with-image { background-size: 80% auto; background-repeat: no-repeat; background-position: center center; }
+
+/* Entertainment */
+.btn.npo { 
+	padding: 3px;
+	margin: 0;
+	width: 100%;
+	height: auto; 
+}
+.btn.npo img {
+	height: 70px;
+	width: auto;
+	margin: 10px auto;
+}
+
+.only-controls { 
+	padding: 5px 10px;
+	text-align: center;
+}
+
+.only-controls .controls { margin: 5px 0; }
+
+.scenes { }
+.scenes .icon { background: rgba(0,0,0,0.2); }
+
+.scene {
+    height: 90px;
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.scene i {
+	font-size: 40px;
+	line-height: 55px;
+	margin-top: 5px; 
+}
+.scene .description {
+	font-size: 18px;
+	display: block;
+}
