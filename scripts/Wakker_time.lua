@@ -1,5 +1,5 @@
 return {
-	active = false,
+	active = true,
 	on = {
 		['timer'] = {
 			'at 08:00'
@@ -14,7 +14,7 @@ return {
 		print ("Simulatie: "..Simulatie)
 				
 		if Simulatie.state == 'On' then 
-			domoticz.devices['Slapen'].switchOff().within_min(30)
+			domoticz.devices['Mode'].switchOff().within_min(30)
 			print ("Niet thuis - Wakker simulatie")
 		end
 				
