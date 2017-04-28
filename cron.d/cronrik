@@ -1,0 +1,17 @@
+####################
+#            CRONTAB                #
+####################
+
+MAILTO=""
+
+*/1 * * * * pi /usr/bin/php /home/pi/scripts/MainHousePower.php
+
+*/1 * * * * pi /usr/bin/php /home/pi/scripts/MainHouseGas.php
+
+*/1 * * * * pi /usr/bin/php /home/pi/scripts/PowerDevices.php
+
+*/1 * * * * pi /usr/bin/php /home/pi/scripts/Temps.php
+
+*/1 * * * * pi sudo /home/pi/scripts/check_device_online.py 192.168.1.246 187 10 2400
+
+*/1 * * * * pi sudo /home/pi/scripts/check_device_online.py 192.168.1.105 197 10 1200
