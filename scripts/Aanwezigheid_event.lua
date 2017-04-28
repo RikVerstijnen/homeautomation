@@ -21,11 +21,9 @@ return {
 		--Iemand thuis
 		if Iemand == 'Off' and (Rik == 'On' or Sabine == 'On' or Beweging == 'On' or Achterdeur.state == 'Open' or Buitensensor.state == 'On') then
 			print ("Iemand thuis")
-			domoticz.notify('Iemand thuis#-2')
 			domoticz.devices['Iemand thuis'].switchOn()
 		elseif Iemand == 'On' and (Rik == 'Off' and Sabine == 'Off' and Beweging == 'Off') then
 			print ("Niemand thuis")
-			domoticz.notify('Niemand thuis#-2')
 			domoticz.devices['Iemand thuis'].switchOff()
 		end
 		

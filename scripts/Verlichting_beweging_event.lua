@@ -37,7 +37,7 @@ return {
 				domoticz.devices['Lamp zithoek'].switchOn('FOR 2')
 				domoticz.devices['Lamp zithoek'].dimTo(10)
 				print ("Beweging nacht - Verlichting aan")
-		
+				domoticz.notify('Beweging nacht','Beweging nacht - Verlichting aan',domoticz.PRIORITY_HIGH)
 		end
 		
 	end

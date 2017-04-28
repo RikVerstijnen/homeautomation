@@ -19,11 +19,9 @@ return {
 		
 		if Temp < Setpoint and Ketel.state == 'Off' then
 			print ("Temperatuur te laag; stoken")
-			--domoticz.notify('Temperatuur te laag; stoken#-2')
 			Ketel.switchOn()
 		elseif Temp >= Setpoint and Ketel.state == 'On' then
 			print ("Temperatuur goed; stoppen met stoken")
-			--domoticz.notify('Temperatuur goed; stoppen met stoken#-2')
 			Ketel.switchOff()
 		end
 		
