@@ -135,7 +135,7 @@ $(document).ready(function() {
 
 	['323','Selector',   'cell6',   'Mode','0','5'],
 	['324','Status',		'cell7',	'Verlichting','2','0'],
-	['196','Status',	'cell8',	'Tuinsproeier achter','2','0'],
+	['347','Status',	'cell8',	'Tuinsproeier achter','2','0'],
 	['346','Status',	'cell9',	'Ketel loopt','2','4'],
 	['281','SetPoint',		'cell10',	'Thermostaat','1','1'],
 
