@@ -1,5 +1,5 @@
 return {
-    active = true, 
+    active = false, 
     on = {
     	['timer'] = {'Every minute'}
     },
@@ -10,12 +10,12 @@ return {
 		local Tussen = domoticz.devices['Lamp tussen']
 		local Keuken = domoticz.devices ['Lamp keuken']
 		local Zit = domoticz.devices ['Lamp zithoek']
-		local Slapen = domoticz.devices['Slapen']
 		local Thuis = domoticz.devices['Iemand thuis']
+		Mode = domoticz.devices['Mode']
 		
 		--Slapen of licht: Verlichting uit
 		
-		if (Slapen.state == 'On') and (Buitenlamp.state == 'On' or Achter.state == 'On' or Tussen.state == 'On' or Keuken.state == 'On' or Zit.state == 'On') then
+		if (Mode.state == 'Off') and (Buitenlamp.state == 'On' or Achter.state == 'On' or Tussen.state == 'On' or Keuken.state == 'On' or Zit.state == 'On') then
 		
 			domoticz.devices['Buitenlamp 1'].switchOff()
 			domoticz.devices['Lamp achter'].switchOff()
