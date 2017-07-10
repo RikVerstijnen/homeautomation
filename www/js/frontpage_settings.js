@@ -115,7 +115,7 @@ var doorbell_cmd = "lightbox_open('camera1', 15400);"
 
 $(document).ready(function() {
         $.roomplan=26	// define roomplan in Domoticz and create items below.
-        $.domoticzurl="http://user:Rickyboy22@192.168.1.196:8080";
+        $.domoticzurl="http://192.168.1.200:8080";
 		//format: idx, value, label, description, lastseen(1 when lastseen is wanted, 2 is only time), plusmin button or protected (0 for empty, 1 for buttons, 2 for volume of Sonos, 4 for protected, 5 for zwave dimmer, 6 for protected when on), [override css], [alarm value]
         $.PageArray = [
 
@@ -125,7 +125,7 @@ $(document).ready(function() {
 	['0','Desc',		'cell2',	'Babykamer','2','0'],
 	['210','Temp',		'cell2a',	'Babykamer','2','0'],
 	['210','Humidity',	'cell2b',	'Babykamer','2','0'],
-	['214','ForecastStr',	'cell3',	'Weersvoorspelling','0','0'],
+	//['214','ForecastStr',	'cell3',	'Weersvoorspelling','0','0'],
 	['0','Desc',		'cell4',	'Kamer','2','0'],
 	['303','Temp',		'cell4a',	'Kamer','2','0'],
 	['303','Humidity',	'cell4b',	'Kamer','2','0'],
