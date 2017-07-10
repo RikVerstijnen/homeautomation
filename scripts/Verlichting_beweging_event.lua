@@ -1,5 +1,5 @@
 return {
-	active = true,  
+	active = false,  
 
 	on = {
 		'Achterdeur',
