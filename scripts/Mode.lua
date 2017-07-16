@@ -12,6 +12,10 @@
 			--ToDo: Heating up
         elseif (switch.state == 'Auto') then
             domoticz.log('Mode Auto')
+			if (domoticz.devices('Iemand thuis').state == 'On') then
+				domoticz.devices('Lights').switchSelector(10) --Auto
+				--ToDo: Heating up
+			end
 		elseif (switch.state == 'Off') then
             domoticz.log('Mode Off')
 			domoticz.devices('Lights').switchSelector(0) --Off
