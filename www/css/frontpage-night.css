@@ -59,6 +59,33 @@ a:hover { text-decoration: none; color: #ADABAE; }
 	padding: 0px 2px 0px 2px;
 }
 
+#afval-div
+{
+    width    : 299px;
+    height   : 58px;
+   zoom     : 2.5;
+    overflow : hidden;
+    position : relative;
+   padding: 1
+   border:1px solid #;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+      margin-top: 0px;
+
+}
+
+#afval-iframe
+{
+    position : absolute;
+    top      : -76px;
+    left     : -190px;
+    width    : 500px;
+    height   : 500px;
+      border-radius: 5px;
+
+}
+
 #ls_cell1, #ls_cell1a, #ls_cell2, #ls_cell2a, #ls_cell3, #ls_cell4, #ls_cell4a,
 #ls_cell5, #ls_cell5a, #ls_cell6, #ls_cell7, #ls_cell8, #ls_cell9,
 #ls_cell10, #ls_cell11, #ls_cell12, #ls_cell13, #ls_cell14,

@@ -88,17 +88,11 @@ $(document).bind(
 	<div id="ls_cell1"></div><div id="ls_cell1a"></div><div id="cell1"><div id="cell1a">--</div><div id="cell1b">--</div></div><div id="bcell1"></div><div id="desc_cell1">cell1</div><div id="bottom_cell1"></div>
 	<div id="ls_cell2"></div><div id="ls_cell2a"></div><div id="cell2"><div id="cell2a">--</div><div id="cell2b">--</div></div><div id="bcell2"></div><div id="desc_cell2">cell2</div><div id="bottom_cell2"></div>
 </div>
-<!-- Cell 3 was forecast
+
 <div id="frame">
 	<div id="ls_cell3"></div><div id="cell3">--</div><div id="bcell3"></div><div id="desc_cell3">cell3</div><div id="bottom_cell3"></div>
 </div>
--->
-<div id="frame">
-	<div id="ls_cell3"></div><div id="cell3">
-	<iframe src="http://www.mijnafvalwijzer.nl/nl/5151bw/15/a/" id="afval-iframe" scrolling="no"></iframe></div>
-	<div id="bcell3"></div>
-	<div id="desc_cell3">Afvalwijzer</div>
-</div>
+
 <div id="frame">
 	<div id="ls_cell25"></div><div id="cell25">
 	<iframe src="https://gadgets.buienradar.nl/gadget/zoommap/?lat=51.68789&lng=5.13353&overname=2&zoom=8&naam=5151bw&size=2&voor=0" scrolling=no width=256 height=200 frameborder=no></iframe></div>
@@ -151,14 +145,21 @@ $(document).bind(
 <div id="frame">
 	<div id="ls_cell21"></div><div id="cell21">--</div><div id="bcell21"></div><div id="desc_cell21">cell21</div><div id="bottom_cell21"></div>
 </div>
+
+<!--
 <div id="frame">
 	<div id="ls_cell22"></div>
-	<a href="javascript:window.location.href=window.location.href"> <!-- URL to reload page -->
+	<a href="javascript:window.location.href=window.location.href"> 
 	<div id="cell22">--</div>
 	</a>
 	<div id="bcell22"></div>
 	<div id="desc_cell22">cell22</div>
 </div>
+-->
+
+<!-- Afval ipv cell22-->
+<div id="frame"><div id="afval-div">--<iframe src="http://www.mijnafvalwijzer.nl/nl/5151bw/15/a/" id="afval-iframe" scrolling="no"></iframe></div></div>
+
 <div id="frame">
 	<div id="ls_cell23"></div><a class="iframe" href="http://192.168.1.1:8080/secpanel/index.html"><div id="cell23">--</div></a><div id="bcell23"></div><div id="desc_cell23">cell23</div><div id="bottom_cell23"></div>
 </div>
