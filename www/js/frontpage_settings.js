@@ -50,7 +50,7 @@ var idx_HDDmem = '13';
 var idx_CPUusage = '17';
 var idx_CPUtemp = '1100';
 var idx_SunState = '198'; //Ingevuld
-var idx_IsDonker = '198'; <!-- for day night css -->
+var idx_IsDonker = '198'; <!-- for day night css --> //Ingevuld
 var idx_FibaroWP = '1100';
 var idx_Alarm = '109';
 var idx_Rainmeter = '39';
@@ -115,49 +115,49 @@ var doorbell_cmd = "lightbox_open('camera1', 15400);"
 
 $(document).ready(function() {
         $.roomplan=26	// define roomplan in Domoticz and create items below.
-        $.domoticzurl="http://user:Rickyboy22@192.168.1.196:8080";
+        $.domoticzurl="http://192.168.1.200:8080";
 		//format: idx, value, label, description, lastseen(1 when lastseen is wanted, 2 is only time), plusmin button or protected (0 for empty, 1 for buttons, 2 for volume of Sonos, 4 for protected, 5 for zwave dimmer, 6 for protected when on), [override css], [alarm value]
         $.PageArray = [
 
-	['0','Desc',		'cell1',	'Badkamer','2','0'], //Desc means show the sub cells
-	['211','Temp',		'cell1a',	'Badkamer','2','0'], //Lastseen only from cell_a possible
-	['211','Humidity',	'cell1b',	'Badkamer','2','0'],
-	['0','Desc',		'cell2',	'Babykamer','2','0'],
-	['210','Temp',		'cell2a',	'Babykamer','2','0'],
-	['210','Humidity',	'cell2b',	'Babykamer','2','0'],
+	['0','Desc',		'cell1',	'Badkamer','1','0'], //Desc means show the sub cells
+	['211','Temp',		'cell1a',	'Badkamer','1','0'], //Lastseen only from cell_a possible
+	['211','Humidity',	'cell1b',	'Badkamer','1','0'],
+	['0','Desc',		'cell2',	'Babykamer','1','0'],
+	['210','Temp',		'cell2a',	'Babykamer','1','0'],
+	['210','Humidity',	'cell2b',	'Babykamer','1','0'],
 	['214','ForecastStr',	'cell3',	'Weersvoorspelling','0','0'],
-	['0','Desc',		'cell4',	'Kamer','2','0'],
-	['303','Temp',		'cell4a',	'Kamer','2','0'],
-	['303','Humidity',	'cell4b',	'Kamer','2','0'],
-	['0','Desc',		'cell5',	'Buiten','2','0'],
-	['209','Temp',		'cell5a',	'Buiten','2','0'],
-	['209','Humidity',	'cell5b',	'Buiten','2','0'],
+	['0','Desc',		'cell4',	'Kamer','1','0'],
+	['303','Temp',		'cell4a',	'Kamer','1','0'],
+	['303','Humidity',	'cell4b',	'Kamer','1','0'],
+	['0','Desc',		'cell5',	'Buiten','1','0'],
+	['209','Temp',		'cell5a',	'Buiten','1','0'],
+	['209','Humidity',	'cell5b',	'Buiten','1','0'],
 
-	['323','Selector',   'cell6',   'Mode','0','5'],
-	['324','Status',		'cell7',	'Verlichting','2','0'],
-	['347','Status',	'cell8',	'Tuinsproeier achter','2','0'],
-	['346','Status',	'cell9',	'Ketel loopt','2','4'],
+	['323','Selector',   'cell6',   'Mode','1','5'],
+	['387','Selector',		'cell7',	'Verlichting','1','5'],
+	['347','Status',	'cell8',	'Tuinsproeier achter','1','0'],
+	['346','Status',	'cell9',	'Ketel loopt','1','4'],
 	['281','SetPoint',		'cell10',	'Thermostaat','1','1'],
 
-	['97','CounterToday',		'cell11',	'Verbruik vandaag','2','4'],
-	['142','Data',		'cell12',	'Babykamer','2','0'],
-	['110','Data',		'cell13',	'Slaapkamer','2','0'],
-	['98','CounterToday',		'cell14',	'Gas vandaag','2','4'],		
-	['237','CounterToday',	'cell15',	'Opwek vandaag','2','4'],
+	['97','CounterToday',		'cell11',	'Verbruik vandaag','1','4'],
+	['142','Data',		'cell12',	'Babykamer','1','0'],
+	['110','Data',		'cell13',	'Slaapkamer','1','0'],
+	['98','CounterToday',		'cell14',	'Gas vandaag','1','4'],		
+	['237','CounterToday',	'cell15',	'Opwek vandaag','1','4'],
 	
-	['97','Usage',	'cell21',	'Verbruik nu','2','4'],	
+	['97','Usage',	'cell21',	'Verbruik nu','1','4'],	
 	['0','Tijd',		'cell22',	'Tijd','0','0'],	
-	['237','Usage',		'cell23',	'Opwek nu','2','4'], 
+	['237','Usage',		'cell23',	'Opwek nu','1','4'], 
 	
 	['232','Level','cell2_6',	'Lampen zithoek','1','100'],
-	['230','Level',	'cell2_7',	'Lampen tussen','2','1'],
-	['233','Level','cell2_8',	'Lampen achter','2','1'],
-	['231','Level',	'cell2_9',	'Lampen keuken','2','1'],
-	['316','Level',	'cell2_10',	'Schemerlampen','2','5'],
+	['230','Level',	'cell2_7',	'Lampen tussen','1','1'],
+	['233','Level','cell2_8',	'Lampen achter','1','1'],
+	['231','Level',	'cell2_9',	'Lampen keuken','1','1'],
+	['316','Level',	'cell2_10',	'Schemerlampen','1','5'],
 	
-	['214','Barometer',	'cell2_11',	'Barometer','2','0'],
-	['198','Status',	'cell2_12',	'IsDonker','2','0'],
-	['311','Status',		'cell2_12',	'Buitenlamp','2','0']
+	['214','Barometer',	'cell2_11',	'Barometer','1','0'],
+	['198','Status',	'cell2_12',	'IsDonker','1','0'],
+	['311','Status',		'cell2_12',	'Buitenlamp','1','0']
 		
 	];
 	$.PageArray_Scenes = [

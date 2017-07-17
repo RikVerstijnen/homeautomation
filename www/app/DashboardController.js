@@ -111,7 +111,7 @@ define(['app'], function (app) {
 				}
 			}
 			$.ajax({
-				url: "json.htm?type=devices&filter=all&used=true&favorite=" + bFavorites + "&order=Name&plan=" + window.myglobals.LastPlanSelected + "&lastupdate=" + $scope.LastUpdateTime,
+				url: "json.htm?type=devices&filter=all&used=true&favorite=" + bFavorites + "&order=[Order]&plan=" + window.myglobals.LastPlanSelected + "&lastupdate=" + $scope.LastUpdateTime,
 				async: false,
 				dataType: 'json',
 				success: function (data) {
@@ -143,8 +143,8 @@ define(['app'], function (app) {
 												status += '<button class="btn btn-mini btn-info" type="button" onclick="SwitchScene(' + item.idx + ',\'On\',RefreshFavorites, ' + item.Protected + ');">' + $.t("On") + '</button> ' +
 													'<button class="btn btn-mini" type="button" onclick="SwitchScene(' + item.idx + ',\'Off\',RefreshFavorites, ' + item.Protected + ');">' + $.t("Off") + '</button>';
 											}
-											if ($(id + " #status > span").html() != status) {
-												$(id + " #status > span").html(status);
+											if ($(id + " #status").html() != status) {
+												$(id + " #status").html(status);
 											}
 										}
 									}
@@ -361,15 +361,15 @@ define(['app'], function (app) {
 										}
 										else if (item.SwitchType == "Blinds Percentage") {
 											isdimmer = true;
-											if (item.Status == 'Closed') {
-												status =
-													'<button class="btn btn-mini" type="button" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');">' + $.t("Open") + '</button> ' +
-													'<button class="btn btn-mini btn-info" type="button" onclick="SwitchLight(' + item.idx + ',\'On\',RefreshFavorites,' + item.Protected + ');">' + $.t("Closed") + '</button>';
-											}
-											else {
+											if (item.Status == 'Open') {
 												status =
 													'<button class="btn btn-mini btn-info" type="button" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');">' + $.t("Open") + '</button> ' +
 													'<button class="btn btn-mini" type="button" onclick="SwitchLight(' + item.idx + ',\'On\',RefreshFavorites,' + item.Protected + ');">' + $.t("Close") + '</button>';
+											}
+											else {
+												status =
+													'<button class="btn btn-mini" type="button" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');">' + $.t("Open") + '</button> ' +
+													'<button class="btn btn-mini btn-info" type="button" onclick="SwitchLight(' + item.idx + ',\'On\',RefreshFavorites,' + item.Protected + ');">' + $.t("Closed") + '</button>';
 											}
 										}
 										else if (item.SwitchType == "Blinds Percentage Inverted") {
@@ -558,8 +558,8 @@ define(['app'], function (app) {
 												dslider.slider("value", item.LevelInt + 1);
 											}
 										}
-										if ($(id + " #status > span").html() != status) {
-											$(id + " #status > span").html(status);
+										if ($(id + " #status").html() != status) {
+											$(id + " #status").html(status);
 										}
 									}
 									else {
@@ -703,13 +703,13 @@ define(['app'], function (app) {
 										}
 										else if (item.SwitchType == "Blinds Percentage") {
 											isdimmer = true;
-											if (item.Status == 'Closed') {
-												img = '<img src="images/blindsopen48.png" title="' + $.t("Open Blinds") + '" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40">';
-												img2 = '<img src="images/blinds48sel.png" title="' + $.t("Close Blinds") + '" onclick="SwitchLight(' + item.idx + ',\'On\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40">';
-											}
-											else {
+											if (item.Status == 'Open') {
 												img = '<img src="images/blindsopen48sel.png" title="' + $.t("Open Blinds") + '" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40">';
 												img2 = '<img src="images/blinds48.png" title="' + $.t("Close Blinds") + '" onclick="SwitchLight(' + item.idx + ',\'On\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40">';
+											}
+											else {
+												img = '<img src="images/blindsopen48.png" title="' + $.t("Open Blinds") + '" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40">';
+												img2 = '<img src="images/blinds48sel.png" title="' + $.t("Close Blinds") + '" onclick="SwitchLight(' + item.idx + ',\'On\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40">';
 											}
 										}
 										else if (item.SwitchType == "Blinds Percentage Inverted") {
@@ -969,8 +969,12 @@ define(['app'], function (app) {
 										if (typeof item.DewPoint != 'undefined') {
 											status += "<br>" + $.t("Dew Point") + ": " + item.DewPoint + '&deg; ' + $scope.config.TempSign;
 										}
+										if ($(id + " #status").html() != status) {
+											$(id + " #status").html(status);
+										}
 									}
 									else {
+										//Normal/Compact
 										var img = '<img src="images/';
 										if (typeof item.Temp != 'undefined') {
 											img += GetTemp48Item(item.Temp);
@@ -1029,7 +1033,6 @@ define(['app'], function (app) {
 												}
 											}
 										}
-
 										if ($(id + " #status > span").html() != status) {
 											$(id + " #status > span").html(status);
 										}
@@ -1107,11 +1110,12 @@ define(['app'], function (app) {
 												status += ', Altitude: ' + item.Altitude + ' meter';
 											}
 										}
-										if ($(id + " #status > span").html() != status) {
-											$(id + " #status > span").html(status);
+										if ($(id + " #status").html() != status) {
+											$(id + " #status").html(status);
 										}
 									}
 									else {
+										//normal/compact
 										var img = "";
 										var status = "";
 										var bigtext = "";
@@ -1238,14 +1242,12 @@ define(['app'], function (app) {
 											}
 										}
 
-										if ($(id + " #bigtext > span").html() != tmpStatus) {
-											$(id + " #bigtext > span").html(tmpStatus);
-										}
-										if ($scope.config.ShowUpdatedEffect == true) {
-											$(id + " #name").effect("highlight", { color: '#EEFFEE' }, 1000);
+										if ($(id + " #bigtext").html() != tmpStatus) {
+											$(id + " #bigtext").html(tmpStatus);
 										}
 									}
 									else {
+										//normal/compact
 										var img = "";
 										if (item.SubType == "Security Panel") {
 											img = '<a href="secpanel/"><img src="images/security48.png" class="lcursor" height="40" width="40"></a>';
@@ -1473,7 +1475,9 @@ define(['app'], function (app) {
 											}
 										}
 										else if (item.SubType == "Alert") {
-											status = item.Data + ' <img src="images/Alert48_' + item.Level + '.png" height="16" width="16">';
+											var aLevel = item.Level;
+											if (aLevel > 4) aLevel = 4;
+											status = item.Data + ' <img src="images/Alert48_' + aLevel + '.png" height="16" width="16">';
 										}
 										else if ((item.Type == "Thermostat") && (item.SubType == "SetPoint")) {
 											status += item.Data + '\u00B0 ' + $scope.config.TempSign;
@@ -1516,11 +1520,12 @@ define(['app'], function (app) {
 												}
 											}
 										}
-										if ($(id + " #status > span").html() != status) {
-											$(id + " #status > span").html(status);
+										if ($(id + " #status").html() != status) {
+											$(id + " #status").html(status);
 										}
 									}
 									else {
+										//normal/compact
 										var status = "";
 										var bigtext = "";
 										var img = "";
@@ -1574,7 +1579,9 @@ define(['app'], function (app) {
 										}
 										else if (item.SubType == "Alert") {
 											status = item.Data;
-											img = '<img src="images/Alert48_' + item.Level + '.png" height="40" width="40">';
+											var aLevel = item.Level;
+											if (aLevel > 4) aLevel = 4;
+											img = '<img src="images/Alert48_' + aLevel + '.png" height="40" width="40">';
 										}
 										else if (item.Type == "Lux") {
 											status = item.Data;
@@ -1725,7 +1732,7 @@ define(['app'], function (app) {
 			}
 
 			$.ajax({
-				url: "json.htm?type=devices&filter=all&used=true&favorite=" + bFavorites + "&order=Name&plan=" + window.myglobals.LastPlanSelected,
+				url: "json.htm?type=devices&filter=all&used=true&favorite=" + bFavorites + "&order=[Order]&plan=" + window.myglobals.LastPlanSelected,
 				async: false,
 				dataType: 'json',
 				success: function (data) {
@@ -2095,15 +2102,15 @@ define(['app'], function (app) {
 										}
 									}
 									else if (item.SwitchType == "Blinds Percentage") {
-										if (item.Status == 'Closed') {
-											status =
-												'<button class="btn btn-mini" type="button" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');">' + $.t("Open") + '</button> ' +
-												'<button class="btn btn-mini btn-info" type="button" onclick="SwitchLight(' + item.idx + ',\'On\',RefreshFavorites,' + item.Protected + ');">' + $.t("Closed") + '</button>';
-										}
-										else {
+										if ((item.Status == 'Open')) {
 											status =
 												'<button class="btn btn-mini btn-info" type="button" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');">' + $.t("Open") + '</button> ' +
 												'<button class="btn btn-mini" type="button" onclick="SwitchLight(' + item.idx + ',\'On\',RefreshFavorites,' + item.Protected + ');">' + $.t("Close") + '</button>';
+										}
+										else {
+											status =
+												'<button class="btn btn-mini" type="button" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');">' + $.t("Open") + '</button> ' +
+												'<button class="btn btn-mini btn-info" type="button" onclick="SwitchLight(' + item.idx + ',\'On\',RefreshFavorites,' + item.Protected + ');">' + $.t("Closed") + '</button>';
 										}
 									}
 									else if (item.SwitchType == "Blinds Percentage Inverted") {
@@ -2508,13 +2515,13 @@ define(['app'], function (app) {
 										}
 									}
 									else if (item.SwitchType == "Blinds Percentage") {
-										if (item.Status == 'Closed') {
-											xhtm += '\t      <td id="img" class="img img1"><img src="images/blindsopen48.png" title="' + $.t("Open Blinds") + '" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40"></td>\n';
-											xhtm += '\t      <td id="img2" class="img2"><img src="images/blinds48sel.png" title="' + $.t("Close Blinds") + '" onclick="SwitchLight(' + item.idx + ',\'On\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40"></td>\n';
-										}
-										else {
+										if (item.Status == 'Open') {
 											xhtm += '\t      <td id="img" class="img img1"><img src="images/blindsopen48sel.png" title="' + $.t("Open Blinds") + '" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40"></td>\n';
 											xhtm += '\t      <td id="img2" class="img2"><img src="images/blinds48.png" title="' + $.t("Close Blinds") + '" onclick="SwitchLight(' + item.idx + ',\'On\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40"></td>\n';
+										}
+										else {
+											xhtm += '\t      <td id="img" class="img img1"><img src="images/blindsopen48.png" title="' + $.t("Open Blinds") + '" onclick="SwitchLight(' + item.idx + ',\'Off\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40"></td>\n';
+											xhtm += '\t      <td id="img2" class="img2"><img src="images/blinds48sel.png" title="' + $.t("Close Blinds") + '" onclick="SwitchLight(' + item.idx + ',\'On\',RefreshFavorites,' + item.Protected + ');" class="lcursor" height="40" width="40"></td>\n';
 										}
 									}
 									else if (item.SwitchType == "Blinds Percentage Inverted") {
@@ -2858,7 +2865,7 @@ define(['app'], function (app) {
 								jj += 1;
 
 							}
-						}); //temp devices                    
+						}); //temp devices
 						if (bHaveAddedDivider == true) {
 							//close previous devider
 							htmlcontent += '</div>\n';
@@ -3090,7 +3097,7 @@ define(['app'], function (app) {
 								htmlcontent += xhtm;
 								jj += 1;
 							}
-						}); //weather devices    
+						}); //weather devices
 						if (bHaveAddedDivider == true) {
 							//close previous devider
 							htmlcontent += '</div>\n';
@@ -3255,7 +3262,7 @@ define(['app'], function (app) {
 								htmlcontent += xhtm;
 								jj += 1;
 							}
-						}); //security devices                    
+						}); //security devices
 						if (bHaveAddedDivider == true) {
 							//close previous divider
 							htmlcontent += '</div>\n';
@@ -3405,7 +3412,7 @@ define(['app'], function (app) {
 								if (jj == 0) {
 									//first time
 									htmlcontent += '<section class="dashCategory" id="dashUtility">';
-									// mobile util start                  
+									// mobile util start
 									if (($scope.config.DashboardType == 2) || (window.myglobals.ismobile == true)) {
 										if (htmlcontent != "") {
 											htmlcontent += '<br>';
@@ -3555,7 +3562,9 @@ define(['app'], function (app) {
 										}
 									}
 									else if (item.SubType == "Alert") {
-										status = item.Data + ' <img src="images/Alert48_' + item.Level + '.png" height="16" width="16">';
+										var aLevel = item.Level;
+										if (aLevel > 4) aLevel = 4;
+										status = item.Data + ' <img src="images/Alert48_' + aLevel + '.png" height="16" width="16">';
 									}
 									else if ((item.Type == "Thermostat") && (item.SubType == "SetPoint")) {
 										status = ' <button class="btn btn-mini btn-info" type="button" onclick="ShowSetpointPopup(event, ' + item.idx + ', ShowFavorites, ' + item.Protected + ', ' + item.Data + ',true);">' + item.Data + '\u00B0 ' + $scope.config.TempSign + '</button> ';
@@ -3610,7 +3619,7 @@ define(['app'], function (app) {
 										'\t      <td id="status" class="status"><span>' + status + '</span></td>\n' +
 										'\t    </tr>\n';
 								}
-								// end of mobile utilities                 
+								// end of mobile utilities
 								else {
 									if ($scope.config.DashboardType == 0) {
 										xhtm = '\t<div class="span4 movable" id="utility_' + item.idx + '">\n';
@@ -3661,7 +3670,7 @@ define(['app'], function (app) {
 									var bigtexthtml = "";
 									bigtexthtml += '<span class="value1">';
 									if ((typeof item.Usage != 'undefined') && (typeof item.UsageDeliv == 'undefined')) {
-										//bigtexthtml += item.Usage;
+										bigtexthtml += item.Usage;
 									}
 									else if ((typeof item.Usage != 'undefined') && (typeof item.UsageDeliv != 'undefined')) {
 										if (parseInt(item.Usage) > 0) {
@@ -3699,8 +3708,6 @@ define(['app'], function (app) {
 										(item.SubType == "RFXMeter counter") ||
 										(item.SubType == "Counter Incremental") ||
 										(item.SubType == "Custom Sensor")
-
-
 									) {
 										bigtexthtml += item.Data;
 									}
@@ -3796,7 +3803,7 @@ define(['app'], function (app) {
 										statushtml = item.Data;
 									}
 									else if (item.Type == "Weight") {
-										imagehtml += 'scale48.png" height="40" width="40"></td>\n';
+										imagehtml += 'scale48.png" class="lcursor" onclick="ShowGeneralGraph(\'#dashcontent\',\'ShowFavorites\',' + item.idx + ',\'' + escape(item.Name) + '\',\'' + item.Type + '\', \'' + item.SubType + '\');" height="40" width="40"></td>\n';
 										statushtml = item.Data;
 									}
 									else if (item.Type == "Usage") {
