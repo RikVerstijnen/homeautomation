@@ -8,3 +8,29 @@ body,html{
 #frame {
 	padding: 0px 2px 0px 2px;
 }
+
+#afval-div
+{
+    width    : 582px;
+    height   : 87px;
+   zoom     : 2.5;
+    overflow : hidden;
+    position : relative;
+   padding: 1
+   border:1px solid #;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+      margin-top: 0px;
+
+}
+
+#afval-iframe
+{
+    position : absolute;
+    top      : -140px;
+    left     : -30px;
+    width    : 700px;
+    height   : 500px;
+      border-radius: 5px;
+}

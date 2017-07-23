@@ -18,17 +18,19 @@
 <script type="text/javascript" src="js/date.js"></script>
 <script type="text/javascript" src="js/frontpage.js"></script>
 <script type="text/javascript" src="js/frontpage_settings.js"></script>
+<!--
 <link rel="stylesheet" href="css/frontpage-day.css?id=1234" id="light-styles">
 <link rel="stylesheet" href="css/frontpage-night.css?id=1234"  id="dark-styles">
+-->
 
 <!-- GZ check if browser is on Android, that will be my Nexus, then show different css to fit on the Nexus screen -->
 <script type="text/javascript">
 if (navigator.userAgent.match(/Android/)){
-	document.write('<link rel="stylesheet" href="css/frontpage-day_nexus.css" id="light-styles">');
-	document.write('<link rel="stylesheet" href="css/frontpage-night_nexus.css" id="dark-styles">');
+	document.write('<link rel="stylesheet" href="css/frontpage-day_nexus.css?id=1234" id="light-styles">');
+	document.write('<link rel="stylesheet" href="css/frontpage-night_nexus.css?id=1234" id="dark-styles">');
 } else {
-	document.write('<link rel="stylesheet" href="css/frontpage-day.css" id="light-styles">');
-	document.write('<link rel="stylesheet" href="css/frontpage-night.css" id="dark-styles">');
+	document.write('<link rel="stylesheet" href="css/frontpage-day.css?id=1234" id="light-styles">');
+	document.write('<link rel="stylesheet" href="css/frontpage-night.css?id=1234" id="dark-styles">');
 }
 </script>
 
