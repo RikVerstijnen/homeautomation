@@ -6,7 +6,8 @@
 		'Sabine is thuis',
 		'Beweging',
 		'Achterdeur',
-		'Buitensensor'
+		'Buitensensor',
+		'Auto thuis'
         }
     },
     execute = function(domoticz,switch)
@@ -16,7 +17,8 @@
 		Iemand = domoticz.devices('Iemand thuis').state
 		Achterdeur = domoticz.devices('Achterdeur').state
 		Buiten = domoticz.devices('Buitensensor').state
-		if Iemand == 'Off' and (Rik == 'On' or Sabine == 'On' or Beweging == 'On' or Achterdeur.state == 'Open' or Buitensensor.state == 'On') then
+		Auto = domoticz.devices('Auto thuis').state
+		if Iemand == 'Off' and (Rik == 'On' or Sabine == 'On' or Beweging == 'On' or Achterdeur.state == 'Open' or Buitensensor.state == 'On' or Auto == 'On') then
 			domoticz.log("Iemand thuis")
 			domoticz.devices('Iemand thuis').switchOn()
 			if (domoticz.devices('Mode').state == 'Auto') then
@@ -24,7 +26,7 @@
 				--ToDo: Heating up
 			end
 			--ToDo: Alarm when mode = Off
-		elseif Iemand == 'On' and (Rik == 'Off' and Sabine == 'Off' and Beweging == 'Off') then
+		elseif Iemand == 'On' and (Rik == 'Off' and Sabine == 'Off' and Beweging == 'Off' and Auto == 'Off') then
 			domoticz.log("Niemand thuis")
 			domoticz.devices('Iemand thuis').switchOff()
 			if (domoticz.devices('Mode').state == 'Auto') then
