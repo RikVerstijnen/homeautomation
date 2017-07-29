@@ -9,7 +9,6 @@
         if (switch.state == 'On') then
             domoticz.log('Mode On')
 			domoticz.devices('Lights').switchSelector(10) --Auto
-			domoticz.devices('S_Mediaspeler').SwitchOn()
 			domoticz.devices('S_TV').SwitchOn()
 			domoticz.devices('S_DVD speler').SwitchOn()
 			domoticz.devices('S_Interactieve TV').SwitchOn()
@@ -18,21 +17,19 @@
 			--ToDo: Heating up
         elseif (switch.state == 'Auto') then
             domoticz.log('Mode Auto')		
+			if (domoticz.devices('Iemand thuis').state == 'On') then
+				domoticz.devices('Lights').switchSelector(10) --Auto
+				--ToDo: Heating up
+			end
 			--Devices on; even when not at home
-			domoticz.devices('S_Mediaspeler').SwitchOn()
 			domoticz.devices('S_TV').SwitchOn()
 			domoticz.devices('S_DVD speler').SwitchOn()
 			domoticz.devices('S_Interactieve TV').SwitchOn()
 			domoticz.devices('S_Wasmachine').SwitchOn()
 			domoticz.devices('S_Droger').SwitchOn()
-			if (domoticz.devices('Iemand thuis').state == 'On') then
-				domoticz.devices('Lights').switchSelector(10) --Auto
-				--ToDo: Heating up
-			end
 		elseif (switch.state == 'Off') then
             domoticz.log('Mode Off')
 			domoticz.devices('Lights').switchSelector(0) --Off
-			domoticz.devices('S_Mediaspeler').SwitchOff()
 			domoticz.devices('S_TV').SwitchOff()
 			domoticz.devices('S_DVD speler').SwitchOff()
 			domoticz.devices('S_Interactieve TV').SwitchOff()
