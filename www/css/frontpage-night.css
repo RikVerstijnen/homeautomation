@@ -61,7 +61,6 @@ a:hover { text-decoration: none; color: #ADABAE; }
 
 #afval-div
 {
-
     width    : 582px;
     height   : 87px;
    zoom     : 2.5;
@@ -84,6 +83,16 @@ a:hover { text-decoration: none; color: #ADABAE; }
     width    : 700px;
     height   : 500px;
       border-radius: 5px;
+}
+
+#buien-iframe 
+{
+    position : absolute;
+    top      : -30px;
+	left     : 15px;
+	width    : 256px;
+	height	 : 256px;
+    border-radius: 5px;
 }
 
 #ls_cell1, #ls_cell1a, #ls_cell2, #ls_cell2a, #ls_cell3, #ls_cell4, #ls_cell4a,
@@ -151,27 +160,6 @@ a:hover { text-decoration: none; color: #ADABAE; }
 	-webkit-border-radius: 0px 0px 4px 4px;
 	border-radius: 0px 0px 4px 4px;
 }
-
-/*
-#cell3, #cell25
-{
-	font-family: arimo, serif;
-	font-weight: bold;
-	width: 277px;
-	padding: 5px;
-	border: 1px solid #666;
-	height: 217px;	
-	line-height: 210px; 
-	font-size: 90px;	
-	color: #c0c0c0;
-	margin: 0px ;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
-	//background-color: #35353F;
-	//opacity: 1;
-	position: relative;
-	z-index: 20;
-}*/
 
 #cell3, #cell25,
 #cell2_3, #cell2_25

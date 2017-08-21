@@ -75,6 +75,16 @@ a:hover { text-decoration: none; color: #333333; }
 
 }
 
+#buien-iframe 
+{
+    position : absolute;
+    top      : -30px;
+	left     : 15px;
+	width    : 256px;
+	height	 : 256px;
+    border-radius: 5px;
+}
+
 #afval-iframe
 {
     position : absolute;
