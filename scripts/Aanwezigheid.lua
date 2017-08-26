@@ -7,7 +7,8 @@
 		'Beweging',
 		'Achterdeur',
 		'Buitensensor',
-		'Auto thuis'
+		'Auto thuis',
+		'VoordeurOpen'
         }
     },
     execute = function(domoticz,switch)
@@ -18,7 +19,7 @@
 		Achterdeur = domoticz.devices('Achterdeur').state
 		Buiten = domoticz.devices('Buitensensor').state
 		Auto = domoticz.devices('Auto thuis').state
-		if Iemand == 'Off' and (Rik == 'On' or Sabine == 'On' or Beweging == 'On' or Achterdeur.state == 'Open' or Buitensensor.state == 'On' or Auto == 'On') then
+		if Iemand == 'Off' and (Rik == 'On' or Sabine == 'On' or Beweging == 'On' or Achterdeur.state == 'Open' or Buitensensor.state == 'On' or Auto == 'On' or VoordeurOpen == 'On') then
 			domoticz.log("Iemand thuis")
 			domoticz.devices('Iemand thuis').switchOn()
 			if (domoticz.devices('Mode').state == 'Auto') then
