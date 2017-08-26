@@ -23,15 +23,16 @@
 			domoticz.devices('Iemand thuis').switchOn()
 			if (domoticz.devices('Mode').state == 'Auto') then
 				domoticz.devices('Lights').switchSelector(10) --Auto
-				--ToDo: Heating up
+				domoticz.devices('Heating').SwitchOn()
 			end
 			--ToDo: Alarm when mode = Off
+			--domoticz.notify('Alarm!','Beweging terwijl mode Off is',domoticz.PRIORITY_EMERGENCY)
 		elseif Iemand == 'On' and (Rik == 'Off' and Sabine == 'Off' and Beweging == 'Off' and Auto == 'Off') then
 			domoticz.log("Niemand thuis")
 			domoticz.devices('Iemand thuis').switchOff()
 			if (domoticz.devices('Mode').state == 'Auto') then
 				domoticz.devices('Lights').switchSelector(0) --Off
-				--ToDo: Heating down
+				domoticz.devices('Heating').SwitchOff()
 			end
 		end
     end
