@@ -7,14 +7,14 @@
     },
     execute = function(domoticz)
 		local Lux = tonumber(domoticz.devices('Daglicht').state)
-		if Lux > 50 then Lux = 50 end
+		if Lux > 40 then Lux = 40 end
         if (domoticz.devices('Lights').state == 'Auto') then
 			if Lux < 12 then 
 				domoticz.devices('Buitenlamp 1').switchOn() 
 			else
 				domoticz.devices('Buitenlamp 1').switchOff()
 			end
-			if Lux == 50 then
+			if Lux == 40 then
 				domoticz.log('Too light; switch off lights')
 				domoticz.devices('Buitenlamp 1').switchOff()
 				domoticz.devices('Lamp achter').switchOff()
