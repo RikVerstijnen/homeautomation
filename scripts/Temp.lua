@@ -8,6 +8,10 @@
         }
     },
     execute = function(domoticz)
+		--Triggers: Temps
+		
+		--Triggers: Stats
+	
 		Heating = domoticz.devices('VerwarmingOmhoog').state
 		TmpWoonkamer = tonumber(domoticz.devices('TempWoonkamer').temperature)
 		StatWoonkamer = tonumber(domoticz.devices('Woonkamer-Stat').state)
