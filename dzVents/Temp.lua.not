@@ -4,29 +4,30 @@
         devices = {
         'TempWoonkamer',
 		'Woonkamer-Stat',
-		'VerwarmingOmhoog'
+		'Heating'
         }
     },
     execute = function(domoticz)
 		--Triggers: Temps
+		TmpWoonkamer = tonumber(domoticz.devices('TempWoonkamer').temperature)
 		
 		--Triggers: Stats
-	
-		Heating = domoticz.devices('VerwarmingOmhoog').state
-		TmpWoonkamer = tonumber(domoticz.devices('TempWoonkamer').temperature)
+		Heating = domoticz.devices('Heating').state
 		StatWoonkamer = tonumber(domoticz.devices('Woonkamer-Stat').state)
-		if Heating == 'On' then
+						
+		if Heating == 'Comfort' then
 			if TmpWoonkamer < StatWoonkamer then
 				domoticz.devices('Ketel').switchOn()
 			else
 				domoticz.devices('Ketel').switchOff()
 			end
-		elseif Heating == 'Off' then
+		elseif Heating == 'Eco' then
 			if TmpWoonkamer < 15 then
 				domoticz.devices('Ketel').switchOn()
 			else
 				domoticz.devices('Ketel').switchOff()
 			end
 		end
+				
     end
 }
