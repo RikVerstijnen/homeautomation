@@ -10,6 +10,7 @@ local MaxIP='192.168.1.209'
 local MaxPort = 62910
 local useWMT = false --Set to true if there is a wall mounted thermostat in every room
 local interval = 5 --Polling interval in minutes, possible range 1-59. Cube doesn't seem to like too frequent communication, 5 minutes is a safe value
+local DomoticzIP = '192.168.1.200'
 local DomoticzPort = 8080
  
 local Rooms   = {}
@@ -28,7 +29,7 @@ function age(timestring)
 end
  
 function maxCmd_H(data)
---   print('H='..data)
+   --print('H='..data)
 end
  
 function maxCmd_M(data)
@@ -45,7 +46,7 @@ function maxCmd_M(data)
    dec = Basexx.from_base64(s)
    num_rooms = string.byte(dec,3)
    pos=4
- 
+   
    for i=1, num_rooms do
       room_num = string.byte(dec, pos)
       name_len = string.byte(dec, pos+1)
@@ -68,13 +69,13 @@ function maxCmd_M(data)
       pos  = pos+name_len
       room_num = string.byte(dec, pos)
       Room_nums[adr] = room_num
-      Devices[adr] = name
+      Devices[adr] = name  
    end
  
 end
  
 function maxCmd_C(data)
---   print('C='..data)
+   --print('C='..data)
 end
  
 function maxCmd_L(data)
@@ -131,7 +132,7 @@ function maxCmd_L(data)
  
       -- Update virtual devices in Domoticz and update MAX! setpoints if necessary
  
-      print(dtype.."  "..name.."  Setpoint="..setpoint.."  Temp="..temp.."  Valve pos="..valve_pos)
+      --print(dtype.."  "..name.."  Setpoint="..setpoint.."  Temp="..temp.."  Valve pos="..valve_pos)
       if dtype == "Valve" and name:sub(-5,-1) ~= "-Sens" then
         table.insert(commandArray, { ['UpdateDevice'] = otherdevices_idx[name]..'|0|'..valve_pos})   
         if not useWMT then --Use valve to update temperature and synchronize setpoints
@@ -139,7 +140,7 @@ function maxCmd_L(data)
           setpoint_Domoticz = tonumber(otherdevices_svalues[name])
           if setpoint_Domoticz ~= setpoint then
             if age(otherdevices_lastupdate[name]) > interval * 60 then --Domoticz thermostat value must be updated
-              table.insert(commandArray, { ['OpenURL'] = 'http://127.0.0.1:'..DomoticzPort..'/json.htm?type=command&param=udevice&idx='..otherdevices_idx[name]..'&nvalue=0&svalue='..setpoint})
+              table.insert(commandArray, { ['OpenURL'] = 'http://'..DomoticzIP..':'..DomoticzPort..'/json.htm?type=command&param=udevice&idx='..otherdevices_idx[name]..'&nvalue=0&svalue='..setpoint})
               print('Domoticz setpoint ' .. name .. ' updated')
             else --Max! setpoint must be updated
               MaxCmdSend(adr, room_num, "manual", setpoint_Domoticz)
@@ -152,7 +153,7 @@ function maxCmd_L(data)
         setpoint_Domoticz = tonumber(otherdevices_svalues[name])
         if setpoint_Domoticz ~= setpoint then
           if age(otherdevices_lastupdate[name]) > interval * 60 then --Domoticz thermostat value must be updated
-            table.insert(commandArray, { ['OpenURL'] = 'http://127.0.0.1:'..DomoticzPort..'/json.htm?type=command&param=udevice&idx='..otherdevices_idx[name]..'&nvalue=0&svalue='..setpoint})
+            table.insert(commandArray, { ['OpenURL'] = 'http://'..DomoticzIP..':'..DomoticzPort..'/json.htm?type=command&param=udevice&idx='..otherdevices_idx[name]..'&nvalue=0&svalue='..setpoint})
             print('Domoticz setpoint ' .. name .. ' updated')
           else --Max! setpoint must be updated
             MaxCmdSend(adr, room_num, "manual", setpoint_Domoticz)
@@ -190,9 +191,11 @@ end
  
  
 commandArray = {}
+
  
 local m = os.date('%M')
-if (m % interval == 0) and (m ~= 0) then
+
+--if (m % interval == 0) and (m ~= 0) then
  
   tcp = Socket.connect(MaxIP, MaxPort)
   if not tcp then
@@ -209,10 +212,11 @@ if (m % interval == 0) and (m ~= 0) then
     end
  
     local line = (s or partial)
+	
     local cmd  = line:sub(1,1)
     local data = line:sub(3)
- 
-    if (cmd == 'H') then
+	
+	if (cmd == 'H') then
       status = maxCmd_H(data)
       if status == 'Error' then break end
     elseif (cmd == 'M') then
@@ -227,6 +231,6 @@ if (m % interval == 0) and (m ~= 0) then
  
   tcp:close()
  
-end
+--end
  
 return commandArray

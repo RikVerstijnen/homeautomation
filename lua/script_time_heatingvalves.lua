@@ -14,7 +14,7 @@
 -- Preset Values
 BoilerOnPercent = 30               -- percentage valve open at which the boiler will be turned on
 HysterysisOffPercent = 20             -- percentage below BoilerOnPercent to switch off the boiler
-MinValves = 2                      -- Number of Valves that need to be open before boiler is turned on
+MinValves = 1                      -- Number of Valves that need to be open before boiler is turned on
 ValvePercentOveride = 75            -- Percentage value of valve open required to override MinValves value (one room is very cold)
 HolidayMinTemp = 15                -- Minimum room temperature before boiler is turned on during holiday period
 HolidayHysterysisTemp = 2             -- Value to increase house temperature by while in holiday mode if boiler is turned on due to low temperatures
@@ -32,7 +32,7 @@ BoilerSwitch = "Ketel"
  
 -- Set printing to log options (true / false)
 printData = true
-printDebug = false
+printDebug = true
  
  
 -- Get current date & time
@@ -102,42 +102,94 @@ commandArray = {}
  
             end
       end
+	  
+	--RV: Add living room "valve"
+	RoomName = "Woonkamer"
+	sSetTempValue = otherdevices_svalues['Woonkamer-Comfort']
+	sRealTemp = string.sub(otherdevices_svalues['TempWoonkamer'],1,string.find(otherdevices_svalues['TempWoonkamer'],";",1,true)-1) 
+	if printData == true then
+		print ("Woonkamer set temp: "..sSetTempValue.."; real temp: "..sRealTemp)
+    end
+    --Difference 1.0 degrees = 100% open
+	difference = tonumber(sSetTempValue) - tonumber(sRealTemp)
+	if difference > 1 then difference = 1 end
+	if difference < 1 then difference = 0 end
+	sValvePercentOpen = tostring(difference*100)
+    sLastUpdateTime = otherdevices_lastupdate['Woonkamer-Comfort']
+    sElapsedTime = TimeElapsed(otherdevices_lastupdate['Woonkamer-Comfort'])
+	message = RoomName .. " valve is open " .. sValvePercentOpen .. " percent " .. " Setpoint temperature is " .. sSetTempValue .. "C"  -- for debug
+    message2 = RoomName .. " last seen " .. sLastUpdateTime  ..  " Elapsed time " .. sElapsedTime
+    if printData == true then
+		print (message)
+		print (message2)
+    end
+ 
+    -- get the % value of the most open Radiator Valve
+    if tonumber(sValvePercentOpen) > PercentMax then
+		PercentMax = tonumber(sValvePercentOpen)
+    end
+ 
+    -- Count the number of valves that are open more than BoilerOnPercent
+    if tonumber(sValvePercentOpen) >= BoilerOnPercent then
+		ValveCount = ValveCount + 1
+    end   
+
+	--/RV
  
        if printData == true then
          print (" ")
        end     
  
       -- Get Data from Thermostats
-      for i, v in pairs(otherdevices) do -- Get all devices in the database
-         v = i:sub(-5,-1) -- Grab the last five characters of the device name
- 
-            if (v == '-Stat') then -- are the last five characters "-Stat "? If so we have an EQ-3 Thermostat
- 
-                RoomName = i:sub(1,-6) -- Get the rest of the name, which will be the room name
-                  sTemp = otherdevices_svalues[i] -- get the temperature   
-                sLastUpdateTime = otherdevices_lastupdate[i]
-                sElapsedTime = TimeElapsed(otherdevices_lastupdate[i])               
-                message = RoomName.." temperature is " .. sTemp .. " Centigrade "  -- for debug
-                message2 = RoomName .. " last seen " .. sLastUpdateTime  ..  " Elapsed time " .. sElapsedTime
-                if printData == true then
-                  print(message)
-                  print(message2)
-                end
+ --     for i, v in pairs(otherdevices) do -- Get all devices in the database
+ --        v = i:sub(-5,-1) -- Grab the last five characters of the device name
+ --
+ --           if (v == '-Stat') then -- are the last five characters "-Stat "? If so we have an EQ-3 Thermostat
+-- 
+ --               RoomName = i:sub(1,-6) -- Get the rest of the name, which will be the room name
+ --               sTemp = otherdevices_svalues[i] -- get the temperature   
+ --               sLastUpdateTime = otherdevices_lastupdate[i]
+ --               sElapsedTime = TimeElapsed(otherdevices_lastupdate[i])               
+ --               message = RoomName.." temperature is " .. sTemp .. " Centigrade "  -- for debug
+ --               message2 = RoomName .. " last seen " .. sLastUpdateTime  ..  " Elapsed time " .. sElapsedTime
+ --               if printData == true then
+ --                 print(message)
+ --                 print(message2)
+--                end
  
                 -- get the lowest temperature of the thermostats
-                if tonumber(sTemp) < TempMin then
-                  TempMin = tonumber(sTemp)
-                end
+  --              if tonumber(sTemp) < TempMin then
+  --                TempMin = tonumber(sTemp)
+ --               end
  
                 -- check for missing devices
-                if sElapsedTime > MissingDevicesTime then
-                SendAnEmail = true                      -- change this to false if you do not require emails to be sent
-                MissingDeviceCount = MissingDeviceCount + 1
-                end
+  --              if sElapsedTime > MissingDevicesTime then
+  --              SendAnEmail = true                      -- change this to false if you do not require emails to be sent
+  --              MissingDeviceCount = MissingDeviceCount + 1
+  --              end
  
-            end   
+--            end   
  
-      end
+  --    end
+	  
+	--RV: Add living room "stat"
+	RoomName = "Woonkamer"
+	sTemp = string.sub(otherdevices_svalues['TempWoonkamer'],1,string.find(otherdevices_svalues['TempWoonkamer'],";",1,true)-1) 
+    sLastUpdateTime = otherdevices_lastupdate['Woonkamer-Comfort']
+    sElapsedTime = TimeElapsed(otherdevices_lastupdate['Woonkamer-Comfort'])
+	message = RoomName.." temperature is " .. sTemp .. " Centigrade "  -- for debug
+    message2 = RoomName .. " last seen " .. sLastUpdateTime  ..  " Elapsed time " .. sElapsedTime
+    if printData == true then
+		print(message)
+        print(message2)
+    end
+ 
+    -- get the lowest temperature of the thermostats
+    if tonumber(sTemp) < TempMin then
+        TempMin = tonumber(sTemp)
+    end
+
+	--/RV  
  
         if printData == true then
          print (" ")
@@ -199,7 +251,7 @@ commandArray = {}
 						print ("Test passed - Either multiple valves are open or override count is reached ")
                     end   
  
-					commandArray[BoilerSwitch]='On' -- turn on boiler
+--					commandArray[BoilerSwitch]='On' -- turn on boiler
                         
 					if printData == true then
 						print ("Command sent - Turn ON Boiler ")
@@ -209,21 +261,27 @@ commandArray = {}
         end
         
         if (PercentMax < (BoilerOnPercent - HysterysisOffPercent) or (ValveCount < MinValves)) and (otherdevices[BoilerSwitch] == 'On')  then -- If the number of valves open more than BoilerOnPercent minus HysterysisOffPercent
-            commandArray[BoilerSwitch]='Off' -- turn off boiler
+--            commandArray[BoilerSwitch]='Off' -- turn off boiler
                   if printData == true then
                      print ("Command sent - Turn OFF Boiler ")
                   end   
          end
 	end
 	
-    if (otherdevices[HeatingSwitch] == 'Eco')then -- It's time to heat the house a bit
+    if (otherdevices[HeatingSwitch] == 'Eco') then -- It's time to heat the house a bit
  
         if (TempMin <= HolidayMinTemp) and (otherdevices[BoilerSwitch] == 'Off') then  -- house is very cold
-            commandArray[BoilerSwitch]='On' -- turn on boiler
+--            commandArray[BoilerSwitch]='On' -- turn on boiler
+			if printDebug == true then
+                print ("House is very cold; turn heating on")
+            end   
         end
  
         if (TempMin >= (HolidayMinTemp + HolidayHysterysisTemp)) and (otherdevices[BoilerSwitch] == 'On') then  -- house is warm enough
-            commandArray[BoilerSwitch]='Off' -- turn on boiler
+--            commandArray[BoilerSwitch]='Off' -- turn off boiler
+			if printDebug == true then
+                print ("House was very cold but warm enhough now; turn heating off")
+            end   
         end
  
     end
