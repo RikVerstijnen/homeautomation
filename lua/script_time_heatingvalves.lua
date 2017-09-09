@@ -31,8 +31,8 @@ HeatingSwitch = "Heating"
 BoilerSwitch = "Ketel"
  
 -- Set printing to log options (true / false)
-printData = true
-printDebug = true
+printData = false
+printDebug = false
  
  
 -- Get current date & time
@@ -251,7 +251,7 @@ commandArray = {}
 						print ("Test passed - Either multiple valves are open or override count is reached ")
                     end   
  
---					commandArray[BoilerSwitch]='On' -- turn on boiler
+					commandArray[BoilerSwitch]='On' -- turn on boiler
                         
 					if printData == true then
 						print ("Command sent - Turn ON Boiler ")
@@ -261,7 +261,7 @@ commandArray = {}
         end
         
         if (PercentMax < (BoilerOnPercent - HysterysisOffPercent) or (ValveCount < MinValves)) and (otherdevices[BoilerSwitch] == 'On')  then -- If the number of valves open more than BoilerOnPercent minus HysterysisOffPercent
---            commandArray[BoilerSwitch]='Off' -- turn off boiler
+            commandArray[BoilerSwitch]='Off' -- turn off boiler
                   if printData == true then
                      print ("Command sent - Turn OFF Boiler ")
                   end   
@@ -271,14 +271,14 @@ commandArray = {}
     if (otherdevices[HeatingSwitch] == 'Eco') then -- It's time to heat the house a bit
  
         if (TempMin <= HolidayMinTemp) and (otherdevices[BoilerSwitch] == 'Off') then  -- house is very cold
---            commandArray[BoilerSwitch]='On' -- turn on boiler
+            commandArray[BoilerSwitch]='On' -- turn on boiler
 			if printDebug == true then
                 print ("House is very cold; turn heating on")
             end   
         end
  
         if (TempMin >= (HolidayMinTemp + HolidayHysterysisTemp)) and (otherdevices[BoilerSwitch] == 'On') then  -- house is warm enough
---            commandArray[BoilerSwitch]='Off' -- turn off boiler
+            commandArray[BoilerSwitch]='Off' -- turn off boiler
 			if printDebug == true then
                 print ("House was very cold but warm enhough now; turn heating off")
             end   

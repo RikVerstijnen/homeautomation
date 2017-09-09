@@ -3,21 +3,23 @@
     on = {
         devices = {
             'Lights',
-			'Daglicht'
+			'Daglicht 2'
         }
     },
     execute = function(domoticz,switch)
 		--Triggers
 		Lights = domoticz.devices('Lights').state
-		Daglicht = domoticz.devices('Daglicht').state
+		Daglicht = domoticz.devices('Daglicht 2').state
 		
-		local Lux = tonumber(domoticz.devices('Daglicht').state)
+		local Lux = tonumber(Daglicht)
 		local Factor
+		
 		if Lux > 50 then 
 			Factor = 50
 		else
 			Factor = Lux
 		end
+		
 		if (Lights == 'Full') then
             domoticz.log('Lights Full')
 			--Set Milight to white
@@ -50,7 +52,6 @@
 			else
 				domoticz.log('Adjust light intensity; Factor = '..Factor)
 				--Set Milight to white
-
 				domoticz.openURL('http://192.168.1.200:8080/json.htm?type=command&param=switchlight&idx=230&switchcmd=Set%20Level&level=' .. tostring(50-Factor))
 				domoticz.openURL('http://192.168.1.200:8080/json.htm?type=command&param=whitelight&idx=230')
 				domoticz.openURL('http://192.168.1.200:8080/json.htm?type=command&param=switchlight&idx=231&switchcmd=Set%20Level&level=' .. tostring(50-Factor))

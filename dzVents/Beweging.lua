@@ -29,7 +29,8 @@ return {
 			end
 			--Thuis en mode uit: Licht
 			if (Iemand == 'On' and Mode == 'Off') then
-				domoticz.devices('Lights').switchSelector(20) --Full
+				--domoticz.devices('Lights').switchSelector(20) --Full
+				--zo staan lampen de hele nacht aan als je wegloopt naar op Off te hebbben gezet
 			end
 		end
 		
