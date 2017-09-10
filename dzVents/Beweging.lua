@@ -22,8 +22,8 @@ return {
 		Mode = domoticz.devices('Mode').state
 		
 		--Variabelen
-		local ModeDelay = domoticz.devices('Mode').lastUpdate.minutesAgo > domoticz.variables('anotherVar')
-		local IemandDelay = domoticz.devices('Iemand thuis').lastUpdate.minutesAgo > domoticz.variables('anotherVar')
+		local ModeDelay = domoticz.devices('Mode').lastUpdate.minutesAgo > domoticz.variables('AlarmDelay').value
+		local IemandDelay = domoticz.devices('Iemand thuis').lastUpdate.minutesAgo > domoticz.variables('AlarmDelay').value
 		local InsideThreshold = domoticz.variables('LuxThesholdInside').value
 		local OutsideThreshold = domoticz.variables('LuxThesholdOutside').value
 		

@@ -19,6 +19,8 @@ return {
 			domoticz.log("Iemand thuis")
 			domoticz.notify('Aanwezigheid','Iemand thuis',domoticz.PRIORITY_LOWEST)
 			domoticz.devices('Iemand thuis').switchOn()
+			domoticz.devices('Lights').switchSelector(10) --Auto
+			domoticz.devices('Heating').switchSelector(20) --Comfort
 		end
 				
 		--Niemand thuis
@@ -26,6 +28,8 @@ return {
 			domoticz.log("Niemand thuis")
 			domoticz.notify('Aanwezigheid','Niemand thuis',domoticz.PRIORITY_LOWEST)
 			domoticz.devices('Iemand thuis').switchOff()
+			domoticz.devices('Lights').switchSelector(0) --Off
+			domoticz.devices('Heating').switchSelector(10) --Eco
 		end
 		
     end

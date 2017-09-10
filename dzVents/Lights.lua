@@ -3,7 +3,8 @@
     on = {
         devices = {
             'Lights',
-			'Daglicht'
+			'Daglicht',
+			'Iemand thuis'
         }
     },
 	data = {
@@ -21,7 +22,7 @@
 		local InsideThreshold = domoticz.variables('LuxThesholdInside').value
 		local OutsideThreshold = domoticz.variables('LuxThesholdOutside').value
 		
-		if Daglicht == domoticz.data.previousLux then
+		if Daglicht == domoticz.data.previousLux then --or trigger != Lights/Daglicht!!
 		
 			domoticz.log('Lux did not change; abort')
 		
@@ -66,7 +67,7 @@
 					domoticz.devices('Lamp keuken').switchOff()
 					domoticz.devices('Lamp zithoek').switchOff()
 					domoticz.devices('Schemerlampen').dimTo(0)
-				elseif Factor > InsideThreshold and domoticz.devices('Schemerlampen').level == 0 then
+				elseif Factor < InsideThreshold and domoticz.devices('Schemerlampen').level == 0 then
 					domoticz.log('Adjust light intensity; Factor = '..Factor)
 					domoticz.notify('Lights','Adjust light intensity; Factor = '..Factor,domoticz.PRIORITY_LOWEST)
 					--Set Milight to white
