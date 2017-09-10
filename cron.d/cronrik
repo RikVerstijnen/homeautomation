@@ -29,6 +29,6 @@
 
 */1 * * * * root /usr/bin/php /home/pi/scripts/Temps.php
 
-*/10 * * * * root /home/pi/scripts/check_device_online.py 192.168.1.246 187 10 2700
+*/10 * * * * root /home/pi/scripts/check_device_online.py 192.168.1.246 187 10 3000 #rik
 
-*/10 * * * * root /home/pi/scripts/check_device_online.py 192.168.1.105 197 10 2700
+*/10 * * * * root /home/pi/scripts/check_device_online.py 192.168.1.105 197 10 2700 #sabine
