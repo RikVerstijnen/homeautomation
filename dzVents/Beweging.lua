@@ -21,24 +21,32 @@ return {
 		Sproeier = domoticz.devices('Sproeier achter').state
 		Mode = domoticz.devices('Mode').state
 		
+		--Variabelen
+		local Delay = 2
+		local ModeDelay = domoticz.devices('Mode').lastUpdate.minutesAgo > Delay
+		local IemandDelay = domoticz.devices('Iemand thuis').lastUpdate.minutesAgo > Delay
+		
 		--Iemand Binnen
 		if (Beweging == 'On' or Achterdeur == 'On' or Voordeur == 'On') then
-			--Niet thuis of mode uit: Alarm
-			if (Iemand == 'Off' or Mode == 'Off') then
-				domoticz.notify('Alarm!','Beweging binnen',domoticz.PRIORITY_HIGH)	
+			--Niet thuis
+			if (Iemand == 'Off' and IemandDelay == true) then
+				domoticz.notify('Alarm!','Beweging binnen terwijl weg',domoticz.PRIORITY_HIGH)	
 			end
-			--Thuis en mode uit: Licht
-			if (Iemand == 'On' and Mode == 'Off') then
-				--domoticz.devices('Lights').switchSelector(20) --Full
-				--zo staan lampen de hele nacht aan als je wegloopt naar op Off te hebbben gezet
+			--Thuis en mode uit
+			if (Iemand == 'On' and Mode == 'Off' and IemandDelay == true and ModeDealy == true) then
+				domoticz.notify('Alarm!','Beweging binnen terwijl slapen',domoticz.PRIORITY_HIGH)	
 			end
 		end
 		
 		--Iemand Buiten
 		if (Achterdeur == 'On' or Buiten == 'On') then
-			--Niet thuis of mode uit: alarm
-			if (Iemand == 'Off' or Mode == 'Off') then
-				domoticz.notify('Alarm!','Beweging buiten',domoticz.PRIORITY_HIGH)	
+			--Niet thuis of mode uit
+			if (Iemand == 'Off' and IemandDelay == true) then
+				domoticz.notify('Alarm!','Beweging buiten terwijl weg',domoticz.PRIORITY_HIGH)	
+			end
+			--Thuis en mode uit
+			if (Iemand == 'On' and Mode == 'Off' and IemandDelay == true and ModeDealy == true) then
+				domoticz.notify('Alarm!','Beweging buiten terwijl slapen',domoticz.PRIORITY_HIGH)	
 			end
 			--Bij schemer buitenlamp aan
 			if (domoticz.devices('Mode').state == 'Auto') then
