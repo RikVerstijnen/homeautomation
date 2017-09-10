@@ -22,9 +22,10 @@ return {
 		Mode = domoticz.devices('Mode').state
 		
 		--Variabelen
-		local Delay = 2
-		local ModeDelay = domoticz.devices('Mode').lastUpdate.minutesAgo > Delay
-		local IemandDelay = domoticz.devices('Iemand thuis').lastUpdate.minutesAgo > Delay
+		local ModeDelay = domoticz.devices('Mode').lastUpdate.minutesAgo > domoticz.variables('anotherVar')
+		local IemandDelay = domoticz.devices('Iemand thuis').lastUpdate.minutesAgo > domoticz.variables('anotherVar')
+		local InsideThreshold = domoticz.variables('LuxThesholdInside').value
+		local OutsideThreshold = domoticz.variables('LuxThesholdOutside').value
 		
 		--Iemand Binnen
 		if (Beweging == 'On' or Achterdeur == 'On' or Voordeur == 'On') then
@@ -50,8 +51,7 @@ return {
 			end
 			--Bij schemer buitenlamp aan
 			if (domoticz.devices('Mode').state == 'Auto') then
-				if Lux > 40 then Lux = 40 end
-        		if Lux < 12 then domoticz.devices('Buitenlamp 1').switchOn() end	
+        		if Lux < OutsideThreshold then domoticz.devices('Buitenlamp 1').switchOn() end	
 			end
 			--Sproeier aan: zet maar uit
 			if Sproeier == 'On' then
