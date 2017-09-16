@@ -49,11 +49,11 @@
 				domoticz.devices('Schemerlampen').dimTo(100)
 			elseif (Lights == 'Auto') then
 				domoticz.log('Lights Auto')
-				if Factor < OutsideThreshold and domoticz.devices('Buitenlamp 1').state == Off then 
+				if Factor < OutsideThreshold and domoticz.devices('Buitenlamp 1').state == 'Off' then 
 					domoticz.log('Dark; switch on lights outside')
 					domoticz.notify('Lights','Dark; switch on lights outside',domoticz.PRIORITY_LOWEST)
 					domoticz.devices('Buitenlamp 1').switchOn() 
-				elseif Factor >= OutsideThreshold and domoticz.devices('Buitenlamp 1').state == On then 
+				elseif Factor >= OutsideThreshold and domoticz.devices('Buitenlamp 1').state == 'On' then 
 					domoticz.log('Light; switch off lights outside')
 					domoticz.notify('Lights','Light; switch off lights outside',domoticz.PRIORITY_LOWEST)
 					domoticz.devices('Buitenlamp 1').switchOff()
@@ -67,10 +67,9 @@
 					domoticz.devices('Lamp keuken').switchOff()
 					domoticz.devices('Lamp zithoek').switchOff()
 					domoticz.devices('Schemerlampen').dimTo(0)
-				elseif Factor < InsideThreshold and domoticz.devices('Schemerlampen').level == 0 then
+				elseif Factor < InsideThreshold then
+					--ToDo: Only adjust if last adjustment was longer than x minutes ago
 					domoticz.log('Adjust light intensity; Factor = '..Factor)
-					domoticz.notify('Lights','Adjust light intensity; Factor = '..Factor,domoticz.PRIORITY_LOWEST)
-					--Set Milight to white
 					domoticz.openURL('http://192.168.1.200:8080/json.htm?type=command&param=switchlight&idx=230&switchcmd=Set%20Level&level=' .. tostring(InsideThreshold-Factor))
 					domoticz.openURL('http://192.168.1.200:8080/json.htm?type=command&param=whitelight&idx=230')
 					domoticz.openURL('http://192.168.1.200:8080/json.htm?type=command&param=switchlight&idx=231&switchcmd=Set%20Level&level=' .. tostring(InsideThreshold-Factor))
