@@ -81,7 +81,7 @@
 					domoticz.devices('Lamp zithoek').switchOn()
 					domoticz.devices('Schemerlampen').dimTo(InsideThreshold+10-Factor) --Between 10 and 60
 				end
-			elseif (Lights == 'Off') then
+			elseif (Lights == 'Off' and domoticz.devices('Buitenlamp 1').state == 'On') then
 				domoticz.log('Lights Off')
 				domoticz.notify('Lights','Switch off lights',domoticz.PRIORITY_LOWEST)
 				domoticz.devices('Buitenlamp 1').switchOff()

@@ -1,3 +1,26 @@
 .fa.fa-lightbulb-o.on {color: yellow}
 .fa.fa-power-off.on {color: green}
 .fa.fa-power-off.off {color: red}
+
+.title { 
+    font-size:15px;
+}
+
+.transbg.col-xs-1,
+.transbg.col-xs-2,
+.transbg.col-xs-3,
+.transbg.col-xs-4,
+.transbg.col-xs-5,
+.transbg.col-xs-6,
+.transbg.col-xs-7,
+.transbg.col-xs-8,
+.transbg.col-xs-9,
+.transbg.col-xs-10,
+.transbg.col-xs-11,
+.transbg.col-xs-12 {
+	padding-top:5px;
+	padding-bottom:15px;
+	border: 6px solid rgba(255,255,255,0);		/* border: 7px -> 3px - Smaller space between blocks */
+	background: rgba(0,0,0,0.2);				
+	background-clip: padding-box;
+}
