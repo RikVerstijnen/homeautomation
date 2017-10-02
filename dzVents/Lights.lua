@@ -94,6 +94,7 @@
 				domoticz.devices('Lamp zithoek').switchOff()
 				domoticz.devices('Lamp zithoek').dimTo(0)
 				domoticz.devices('Schemerlampen').dimTo(0)
+				domoticz.devices('Speelkamer').switchOff()
 			elseif (Lights == 'Disco') then
 				domoticz.log('Disco!!')
 				domoticz.notify('Lights','Turn on disco mode',domoticz.PRIORITY_LOWEST)
