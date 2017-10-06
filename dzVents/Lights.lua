@@ -36,7 +36,6 @@
 		
 			if (Lights == 'Full') then
 				domoticz.log('Lights Full')
-				domoticz.notify('Lights','Lights full',domoticz.PRIORITY_LOWEST)
 				--Set Milight to white
 				domoticz.openURL('http://192.168.1.200:8080/json.htm?type=command&param=switchlight&idx=230&switchcmd=Set%20Level&level=' .. tostring(100))
 				domoticz.openURL('http://192.168.1.200:8080/json.htm?type=command&param=whitelight&idx=230')
@@ -51,7 +50,6 @@
 				domoticz.log('Lights Auto')
 				if Factor < OutsideThreshold and domoticz.devices('Buitenlamp 1').state == 'Off' then 
 					domoticz.log('Dark; switch on lights outside')
-					domoticz.notify('Lights','Dark; switch on lights outside',domoticz.PRIORITY_LOWEST)
 					domoticz.devices('Buitenlamp 1').switchOn() 
 				elseif Factor >= OutsideThreshold and domoticz.devices('Buitenlamp 1').state == 'On' then 
 					domoticz.log('Light; switch off lights outside')
@@ -60,7 +58,6 @@
 				end
 				if Factor == InsideThreshold and domoticz.devices('Schemerlampen').level > 0 then
 					domoticz.log('Light; switch off lights inside')
-					domoticz.notify('Lights','Light; switch off lights outside',domoticz.PRIORITY_LOWEST)
 					domoticz.devices('Buitenlamp 1').switchOff()
 					domoticz.devices('Lamp achter').switchOff()
 					domoticz.devices('Lamp tussen').switchOff()
@@ -83,7 +80,6 @@
 				end
 			elseif (Lights == 'Off' and domoticz.devices('Buitenlamp 1').state == 'On') then
 				domoticz.log('Lights Off')
-				domoticz.notify('Lights','Switch off lights',domoticz.PRIORITY_LOWEST)
 				domoticz.devices('Buitenlamp 1').switchOff()
 				domoticz.devices('Lamp achter').switchOff()
 				domoticz.devices('Lamp achter').dimTo(0)
@@ -97,7 +93,6 @@
 				domoticz.devices('Speelkamer').switchOff()
 			elseif (Lights == 'Disco') then
 				domoticz.log('Disco!!')
-				domoticz.notify('Lights','Turn on disco mode',domoticz.PRIORITY_LOWEST)
 				domoticz.openURL('http://192.168.1.200:8080/json.htm?type=command&param=discomodenum5&idx=230')
 				domoticz.openURL('http://192.168.1.200:8080/json.htm?type=command&param=discomodenum5&idx=231')
 				domoticz.openURL('http://192.168.1.200:8080/json.htm?type=command&param=discomodenum5&idx=232')

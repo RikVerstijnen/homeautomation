@@ -5,8 +5,7 @@ return {
 		'Beweging',
 		'AchterdeurOpen',
 		'Buitensensor',
-		'VoordeurOpen',
-		'Beweging speelkamer'
+		'VoordeurOpen'
         }
     },
     execute = function(domoticz,switch)
@@ -15,14 +14,12 @@ return {
 		Achterdeur = domoticz.devices('AchterdeurOpen').state
 		Voordeur = domoticz.devices('VoordeurOpen').state
 		Buiten = domoticz.devices('Buitensensor').state
-		Speelkamer = domoticz.devices('Beweging speelkamer').state
 		
 		--Extra
 		Iemand = domoticz.devices('Iemand thuis').state
 		Lux = tonumber(domoticz.devices('Daglicht').state)
 		Sproeier = domoticz.devices('Sproeier achter').state
 		Mode = domoticz.devices('Mode').state
-		LampSpeelkamer = domoticz.devices('Speelkamer').state
 		
 		--Variabelen
 		ModeDelay = domoticz.devices('Mode').lastUpdate.minutesAgo > domoticz.variables('AlarmDelay').value
@@ -31,11 +28,7 @@ return {
 		OutsideThreshold = domoticz.variables('LuxThesholdOutside').value
 		
 		--Iemand Binnen
-		if (Beweging == 'On' or Achterdeur == 'On' or Voordeur == 'On' or Speelkamer == 'On') then
-			--Thuis en donker
-			if (Iemand == 'On' and Mode == 'Auto' and Speelkamer == 'On' and Lux < InsideThreshold) then
-				domoticz.devices('Speelkamer').switchOn().forMin(1)
-			end			
+		if (Beweging == 'On' or Achterdeur == 'On' or Voordeur == 'On') then
 			--Niet thuis
 			if (Iemand == 'Off' and IemandDelay == true) then
 				domoticz.notify('Alarm!','Beweging binnen terwijl weg',domoticz.PRIORITY_HIGH)	
