@@ -1,0 +1,10 @@
+media_player.woonkamer:
+  friendly_name: Chromecast Woonkamer
+sensor.temperature:
+  friendly_name: Temperatuur woonkamer
+switch.qubino_zmnhdd1_flush_dimmer_switch:
+  friendly_name: Schemerlampen woonkamer
+light.qubino_zmnhdd1_flush_dimmer_level:
+  friendly_name: Schemerlampen woonkamer
+sensor.aeotec_zw074_multisensor_gen5_temperature:
+  friendly_name: Temperatuur woonkamer

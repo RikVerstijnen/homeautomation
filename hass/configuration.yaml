@@ -1,0 +1,132 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 51.6908
+  longitude: 5.2819
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 4
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Amsterdam
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  # api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+
+sensor:
+# Weather prediction
+  - platform: yr
+# Smart meter
+  - platform: dsmr
+    port: /dev/ttyUSB22
+    dsmr_version: 2.2
+  
+# Text to speech
+tts:
+  - platform: google
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+mqtt:
+  broker: 127.0.0.1
+  port: 1883
+  client_id: home-assistant-1
+  username: pi
+  password: raspberry
+
+tradfri:
+  host: 192.168.1.118
+  api_key: eEkXeguIM1Wox7Jh
+
+zwave:
+  usb_path: /dev/ttyUSB21
+      
+rfxtrx:
+  device: /dev/ttyUSB23
+  
+switch:
+  platform: command_line
+  switches:
+    ketel:
+      command_on: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0101"
+      command_off: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0100"
+      
+climate:
+  - platform: generic_thermostat
+    name: Woonkamer
+    heater: switch.ketel
+    target_sensor: sensor.aeotec_zw074_multisensor_gen5_temperature
+    target_temp: 19
+    
+light:
+  platform: limitlessled
+  bridges:
+    - host: 192.168.1.192
+      version: 5
+      port: 8899
+      groups:
+      - number: 1
+        name: Lamp tussen
+        fade: on
+      - number: 2
+        type: rgbw
+        name: Lamp keuken
+        fade: on
+      - number: 3
+        type: rgbw
+        name: Lamp zithoek
+        fade: on
+      - number: 4
+        type: rgbw
+        name: Lamp achter
+        fade: on
+        
+device_tracker:
+  - platform: ddwrt
+    host: 192.168.1.1
+    username: root
+    password: 3a0eaddde6
+    interval_seconds: 10
+    consider_home: 180
+    track_new_devices: yes

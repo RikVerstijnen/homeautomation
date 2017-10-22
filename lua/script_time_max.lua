@@ -79,6 +79,9 @@ function maxCmd_C(data)
 end
  
 function maxCmd_L(data)
+   
+   print('L='..data)
+   
    pos = 1
    dec = Basexx.from_base64(data)
    L_hex = Basexx.to_hex(dec)

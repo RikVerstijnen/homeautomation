@@ -1,0 +1,20 @@
+group:
+  default_view:
+    view: yes
+    icon: mdi:home 
+    entities:
+      - light.qubino_zmnhdd1_flush_dimmer_level
+      - light.lamp_keuken
+      - light.lamp_achter
+      - light.lamp_tussen
+      - light.lamp_zithoek
+
+verlichting:
+    name: Verlichting woonkamer
+    view: yes
+    entities:
+      - light.qubino_zmnhdd1_flush_dimmer_level
+      - light.lamp_keuken
+      - light.lamp_achter
+      - light.lamp_tussen
+      - light.lamp_zithoek

@@ -12,7 +12,7 @@
 -- If demand is less than BoilerOnPercent minus HysterysisOffPercent then switch off boiler
  
 -- Preset Values
-BoilerOnPercent = 30               -- percentage valve open at which the boiler will be turned on
+BoilerOnPercent = 20               -- percentage valve open at which the boiler will be turned on
 HysterysisOffPercent = 20             -- percentage below BoilerOnPercent to switch off the boiler
 MinValves = 1                      -- Number of Valves that need to be open before boiler is turned on
 ValvePercentOveride = 75            -- Percentage value of valve open required to override MinValves value (one room is very cold)
@@ -31,8 +31,8 @@ HeatingSwitch = "Heating"
 BoilerSwitch = "Ketel"
  
 -- Set printing to log options (true / false)
-printData = false
-printDebug = false
+printData = true
+printDebug = true
  
  
 -- Get current date & time
@@ -113,7 +113,7 @@ commandArray = {}
     --Difference 1.0 degrees = 100% open
 	difference = tonumber(sSetTempValue) - tonumber(sRealTemp)
 	if difference > 1 then difference = 1 end
-	if difference < 1 then difference = 0 end
+	if difference < 0 then difference = 0 end
 	sValvePercentOpen = tostring(difference*100)
     sLastUpdateTime = otherdevices_lastupdate['Woonkamer-Comfort']
     sElapsedTime = TimeElapsed(otherdevices_lastupdate['Woonkamer-Comfort'])
@@ -185,9 +185,9 @@ commandArray = {}
     end
  
     -- get the lowest temperature of the thermostats
-    if tonumber(sTemp) < TempMin then
+    --if tonumber(sTemp) < TempMin then
         TempMin = tonumber(sTemp)
-    end
+    --end
 
 	--/RV  
  
