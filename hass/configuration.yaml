@@ -2,8 +2,8 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: 51.6908
-  longitude: 5.2819
+  latitude: 51.687666
+  longitude: 5.1321996
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 4
   # metric for Metric, imperial for Imperial
@@ -14,8 +14,13 @@ homeassistant:
   customize: !include customize.yaml
 
 # Show links to resources in log and frontend
-introduction:
+#introduction:
 
+logger:
+  default: info
+#  logs:
+#    homeassistant.components.rfxtrx: debug
+    
 # Enables the frontend
 frontend:
 
@@ -23,6 +28,11 @@ frontend:
 config:
 
 http:
+  api_password: Rickyboy22
+  ssl_certificate: /etc/letsencrypt/live/riverhass.duckdns.org/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/riverhass.duckdns.org/privkey.pem
+  base_url: riverhass.duckdns.org
+  
   # Secrets are defined in the file secrets.yaml
   # api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
@@ -38,7 +48,7 @@ updater:
   # include_used_components: true
 
 # Discover some devices automatically
-discovery:
+#discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -51,15 +61,32 @@ logbook:
 
 # Track the sun
 sun:
-
+    
+rfxtrx:
+  device: /dev/ttyUSB0
+  debug: true
+  
 sensor:
 # Weather prediction
   - platform: yr
 # Smart meter
   - platform: dsmr
-    port: /dev/ttyUSB22
+    port: /dev/ttyUSB2
     dsmr_version: 2.2
-  
+# Solar
+  - platform: pvoutput
+    system_id: 46986
+    api_key: 19bbac5a442e4c4f5a8d43c0a29507f71b9a3cd5
+    scan_interval: 120
+#RFXTRX
+  - platform: rfxtrx
+    automatic_add: True
+  - platform: command_line
+    name: SSL cert expiry
+    unit_of_measurement: days
+    scan_interval: 10800
+    command: "ssl-cert-check -b -c /etc/letsencrypt/live/riverhass.duckdns.org/cert.pem | awk '{ print $NF }'"
+    
 # Text to speech
 tts:
   - platform: google
@@ -68,36 +95,25 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 
-mqtt:
-  broker: 127.0.0.1
-  port: 1883
-  client_id: home-assistant-1
-  username: pi
-  password: raspberry
-
-tradfri:
-  host: 192.168.1.118
-  api_key: eEkXeguIM1Wox7Jh
-
-zwave:
-  usb_path: /dev/ttyUSB21
-      
-rfxtrx:
-  device: /dev/ttyUSB23
-  
 switch:
-  platform: command_line
-  switches:
-    ketel:
-      command_on: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0101"
-      command_off: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0100"
-      
+  - platform: command_line
+    switches:
+      ketel:
+        command_on: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0101"
+        command_off: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0100"
+      keuken:
+        command_on: "/usr/bin/curl -X GET http://192.168.1.187/control?cmd=event,TurnOn"
+        command_off: "/usr/bin/curl -X GET http://192.168.1.187/control?cmd=event,TurnOff"
+  - platform: rfxtrx
+    automatic_add: True
+    
 climate:
   - platform: generic_thermostat
     name: Woonkamer
     heater: switch.ketel
     target_sensor: sensor.aeotec_zw074_multisensor_gen5_temperature
-    target_temp: 19
+    target_temp: 18
+    tolerance: 0.2
     
 light:
   platform: limitlessled
@@ -107,26 +123,61 @@ light:
       port: 8899
       groups:
       - number: 1
+        type: rgbw
         name: Lamp tussen
-        fade: on
+        fade: off
       - number: 2
         type: rgbw
         name: Lamp keuken
-        fade: on
+        fade: off
       - number: 3
         type: rgbw
         name: Lamp zithoek
-        fade: on
+        fade: off
       - number: 4
         type: rgbw
         name: Lamp achter
-        fade: on
-        
+        fade: off
+  
+zwave:
+  usb_path: /dev/ttyUSB1
+  
+#mqtt:
+#  broker: m20.cloudmqtt.com
+#  port: 25895
+#  username: cnxordxv
+#  password: 0hVNHAToADl0
+  
 device_tracker:
-  - platform: ddwrt
-    host: 192.168.1.1
-    username: root
-    password: 3a0eaddde6
-    interval_seconds: 10
-    consider_home: 180
-    track_new_devices: yes
+  - platform: owntracks
+  
+input_select:
+  mode:
+    name: Mode
+    options:
+     - Off
+     - Auto
+     - On
+    initial: Auto
+    icon: mdi:power
+  mode_light:
+    name: Verlichting
+    options:
+     - Off
+     - Auto
+     - On
+    initial: Auto
+    icon: mdi:lightbulb-on-outline
+  
+maxcube:
+   host: 192.168.1.209
+   
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - mac:
+      key: pq1opqxx5rpoqds9
+      
+#tradfri:
+#  host: 192.168.1.118
+#  api_key: eEkXeguIM1Wox7Jh

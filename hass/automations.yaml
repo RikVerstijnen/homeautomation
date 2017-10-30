@@ -1,1 +1,208 @@
-[]
+#Mode
+
+- alias: "Mode on"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'True'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'True'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.woonkamer
+        operation_mode: 'auto'
+
+#Todo: home/away        
+- alias: "Mode auto - Home"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'Auto'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'Auto'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.woonkamer
+        operation_mode: 'auto'
+        
+- alias: "Mode off"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'False'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'False'        
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.woonkamer
+        operation_mode: 'off'
+        
+#Light
+
+- alias: "Auto lichtsterkte binnen"
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: and
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      below: 50
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'Auto'
+  action:
+    - service: light.turn_on
+      entity_id:
+       - light.qubino_zmnhdd1_flush_dimmer_level
+       - light.lamp_keuken
+       - light.lamp_achter
+       - light.lamp_tussen
+       - light.lamp_zithoek
+      data_template:
+        brightness: '{{ 150 - (states("sensor.aeotec_zw074_multisensor_gen5_luminance") | int) }}'
+
+- alias: "Auto lichtsterkte buiten"
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: and
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      below: 12
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'Auto'
+  action:
+    - service: switch.turn_on
+      entity_id:
+       - switch.philio_technology_corporation_unknown_type0001_id0013_switch
+       
+- alias: "Lampen uit binnen"
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: or
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      above: 50
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'False'
+  action:
+    - service: light.turn_off
+      entity_id:
+       - light.qubino_zmnhdd1_flush_dimmer_level
+       - light.lamp_keuken
+       - light.lamp_achter
+       - light.lamp_tussen
+       - light.lamp_zithoek
+
+- alias: "Lampen uit buiten"
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: or
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      above: 12
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'False'
+  action:
+    - service: switch.turn_off
+      entity_id:
+       - switch.philio_technology_corporation_unknown_type0001_id0013_switch
+       
+- alias: "Lampen volledig aan binnen"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'True'
+  action:
+    - service: light.turn_on
+      entity_id:
+       - light.qubino_zmnhdd1_flush_dimmer_level
+       - light.lamp_keuken
+       - light.lamp_achter
+       - light.lamp_tussen
+       - light.lamp_zithoek
+      data: 
+        brightness: 100
+        
+- alias: "Keukenlamp aan"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'True'
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'Auto'
+  action:
+    - service: switch.turn_on
+      entity_id:
+       - switch.keuken
+       
+- alias: "Keukenlamp uit"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'False'
+  action:
+    - service: switch.turn_off
+      entity_id:
+       - switch.keuken
