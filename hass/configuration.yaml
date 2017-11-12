@@ -17,7 +17,7 @@ homeassistant:
 #introduction:
 
 logger:
-  default: info
+  default: error
 #  logs:
 #    homeassistant.components.rfxtrx: debug
     
@@ -63,7 +63,7 @@ logbook:
 sun:
     
 rfxtrx:
-  device: /dev/ttyUSB0
+  device: /dev/ttyUSB-RFXTRX
   debug: true
   
 sensor:
@@ -71,16 +71,29 @@ sensor:
   - platform: yr
 # Smart meter
   - platform: dsmr
-    port: /dev/ttyUSB2
+    port: /dev/ttyUSB-P1
     dsmr_version: 2.2
 # Solar
   - platform: pvoutput
     system_id: 46986
     api_key: 19bbac5a442e4c4f5a8d43c0a29507f71b9a3cd5
     scan_interval: 120
+  - platform: template
+    sensors:
+      power_generation:
+        value_template: '{% if is_state_attr("sensor.pvoutput", "power_generation", "NaN") %}0{% else %}{{ states.sensor.pvoutput.attributes.power_generation }}{% endif %}'
+        friendly_name: 'Opwek nu'
+        unit_of_measurement: 'Watt'
+      energy_generation:
+        value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float/1000) }}{% endif %}'
+        friendly_name: 'Vandaag opgewekt'
+        unit_of_measurement: 'kWh'
 #RFXTRX
   - platform: rfxtrx
     automatic_add: True
+    devices:
+      0a520701380e006b5b0379:
+        name: Temperatuur buiten
   - platform: command_line
     name: SSL cert expiry
     unit_of_measurement: days
@@ -102,8 +115,8 @@ switch:
         command_on: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0101"
         command_off: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0100"
       keuken:
-        command_on: "/usr/bin/curl -X GET http://192.168.1.187/control?cmd=event,TurnOn"
-        command_off: "/usr/bin/curl -X GET http://192.168.1.187/control?cmd=event,TurnOff"
+        command_on: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOn"
+        command_off: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOff"
   - platform: rfxtrx
     automatic_add: True
     
@@ -112,35 +125,41 @@ climate:
     name: Woonkamer
     heater: switch.ketel
     target_sensor: sensor.aeotec_zw074_multisensor_gen5_temperature
-    target_temp: 18
-    tolerance: 0.2
+    target_temp: 19
+    cold_tolerance: 0.2 
+    # Start when below 18,8
+    hot_tolerance: 0.2
+    # Stop when above 19,2
     
 light:
-  platform: limitlessled
-  bridges:
-    - host: 192.168.1.192
-      version: 5
-      port: 8899
-      groups:
-      - number: 1
-        type: rgbw
-        name: Lamp tussen
-        fade: off
-      - number: 2
-        type: rgbw
-        name: Lamp keuken
-        fade: off
-      - number: 3
-        type: rgbw
-        name: Lamp zithoek
-        fade: off
-      - number: 4
-        type: rgbw
-        name: Lamp achter
-        fade: off
-  
+  - platform: limitlessled
+    bridges:
+      - host: 192.168.1.192
+        version: 5
+        port: 8899
+        groups:
+        - number: 1
+          type: rgbw
+          name: Lamp tussen
+          fade: off
+        - number: 2
+          type: rgbw
+          name: Lamp keuken
+          fade: off
+        - number: 3
+          type: rgbw
+          name: Lamp zithoek
+          fade: off
+        - number: 4
+          type: rgbw
+          name: Lamp achter
+          fade: off
+  - platform: rfxtrx
+    automatic_add: True
+    
 zwave:
-  usb_path: /dev/ttyUSB1
+  usb_path: /dev/ttyUSB-ZWAVE
+  network_key: "0x4A, 0x4A, 0x64, 0xDD, 0x0E, 0xC4, 0xB3, 0xEC, 0x4C, 0x9F, 0x24, 0x8F, 0x2C, 0x4A, 0xC0, 0x04"
   
 #mqtt:
 #  broker: m20.cloudmqtt.com
@@ -181,3 +200,20 @@ xiaomi_aqara:
 #tradfri:
 #  host: 192.168.1.118
 #  api_key: eEkXeguIM1Wox7Jh
+
+cover:
+  - platform: rfxtrx
+    automatic_add: True
+    
+binary_sensor:
+  platform: rfxtrx
+  automatic_add: True
+  devices:
+    091300111078ae013960:
+      name: Achterdeur open
+    091300131078a7013d60:
+      name: Achterdeur dicht
+    09130005eb36ae013960:
+      name: Voordeur open
+    09130006eb36a7013b60:
+      name: Voordeur dicht

@@ -1,0 +1,30 @@
+- alias: "Alle lampen aan"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.schakelaar_1
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: light.fibaro_system_fgrgbwm441_rgbw_controller_level_3
+      state: 'off'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: group.all_lights
+        brightness: 255
+
+- alias: "Alle lampen uit"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.schakelaar_1
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: light.fibaro_system_fgrgbwm441_rgbw_controller_level_3
+      state: 'on'
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: group.all_lights
