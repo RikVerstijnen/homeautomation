@@ -48,7 +48,7 @@ updater:
   # include_used_components: true
 
 # Discover some devices automatically
-#discovery:
+discovery:
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -58,6 +58,8 @@ history:
 
 # View all events in a logbook
 logbook:
+
+map:
 
 # Track the sun
 sun:
@@ -90,10 +92,14 @@ sensor:
         unit_of_measurement: 'kWh'
 #RFXTRX
   - platform: rfxtrx
-    automatic_add: True
+    automatic_add: true
     devices:
       0a520701380e006b5b0379:
         name: Temperatuur buiten
+      0a520702640e00a73a0179:
+        name: Temperatuur slaapkamer Morris
+      0a5207005f0e00ba390179:
+        name: Temperatuur badkamer
   - platform: command_line
     name: SSL cert expiry
     unit_of_measurement: days
@@ -118,18 +124,22 @@ switch:
         command_on: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOn"
         command_off: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOff"
   - platform: rfxtrx
-    automatic_add: True
-    
+    automatic_add: true
+    devices:
+      0b11000800c71b6a01040f60:
+        name: Deurbel
+        fire_event: true
+        
 climate:
   - platform: generic_thermostat
     name: Woonkamer
     heater: switch.ketel
-    target_sensor: sensor.aeotec_zw074_multisensor_gen5_temperature
+    target_sensor: sensor.sensor_woonkamer_temperature
     target_temp: 19
-    cold_tolerance: 0.2 
-    # Start when below 18,8
-    hot_tolerance: 0.2
-    # Stop when above 19,2
+    cold_tolerance: 0.1
+    # Start when below 18,9
+    hot_tolerance: 0.1
+    # Stop when above 19,1
     
 light:
   - platform: limitlessled
@@ -155,17 +165,17 @@ light:
           name: Lamp achter
           fade: off
   - platform: rfxtrx
-    automatic_add: True
+    automatic_add: true
     
 zwave:
   usb_path: /dev/ttyUSB-ZWAVE
   network_key: "0x4A, 0x4A, 0x64, 0xDD, 0x0E, 0xC4, 0xB3, 0xEC, 0x4C, 0x9F, 0x24, 0x8F, 0x2C, 0x4A, 0xC0, 0x04"
   
-#mqtt:
-#  broker: m20.cloudmqtt.com
-#  port: 25895
-#  username: cnxordxv
-#  password: 0hVNHAToADl0
+mqtt:
+  broker: m20.cloudmqtt.com
+  port: 25895
+  username: cnxordxv
+  password: 0hVNHAToADl0
   
 device_tracker:
   - platform: owntracks
@@ -199,15 +209,18 @@ xiaomi_aqara:
       
 #tradfri:
 #  host: 192.168.1.118
-#  api_key: eEkXeguIM1Wox7Jh
-
+  
 cover:
   - platform: rfxtrx
-    automatic_add: True
-    
+    devices:
+      071a000001010101:
+        name: Rolluiken slaapkamer
+      071a000001010102:
+        name: Rolluiken slaapkamer Fedde
+        
 binary_sensor:
   platform: rfxtrx
-  automatic_add: True
+  automatic_add: true
   devices:
     091300111078ae013960:
       name: Achterdeur open
@@ -217,3 +230,29 @@ binary_sensor:
       name: Voordeur open
     09130006eb36a7013b60:
       name: Voordeur dicht
+
+media_player:
+  - platform: cast
+  
+history_graph:
+  gr1:
+    name: "Energie"
+    entities:
+      - sensor.power_consumption
+      - sensor.power_generation
+      - sensor.hourly_gas_consumption
+  gr2:
+    name: "Temperatuur"
+    entities:
+      - sensor.sensor_woonkamer_temperature
+      - sensor.temperatuur_badkamer_temperature
+      - sensor.temperatuur_slaapkamer_morris_temperature
+      - climate.babykamer_babykamer
+      - climate.slaapkamer_slaapkamer
+      - sensor.temperatuur_buiten_temperature
+      
+notify:
+  - name: 'Pushover'
+    platform: pushover
+    api_key: ah27r7zkf4am71szaphaupk6cf49as
+    user_key: uRwtniGoLPSQSAhNxaTXciDgC12hfn

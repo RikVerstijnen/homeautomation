@@ -6,33 +6,54 @@
      - sensor.power_generation
      - sensor.energy_generation
      - sensor.temperatuur_buiten_temperature
-     - sensor.aeotec_zw074_multisensor_gen5_temperature
+     - sensor.sensor_woonkamer_temperature
+     - sensor.temperatuur_badkamer_temperature
+     - sensor.temperatuur_slaapkamer_morris_temperature
      - binary_sensor.achterdeur_dicht
      - binary_sensor.achterdeur_open
      - binary_sensor.voordeur_dicht
      - binary_sensor.voordeur_open
+     - binary_sensor.motion_sensor_158d0001656748
+     - binary_sensor.motion_sensor_158d0001d9752b
+     - device_tracker.cnxordxv_rik
+     - device_tracker.cnxordxv_sabinr
      - group.mode
      - group.verlichting
      - group.verwarming
-
+     - group.rolluiken
   mode:
    name: Mode
    view: no
    entities:
-     - input_select.mode_light
      - input_select.mode
-
+     - input_select.mode_light
+  rolluiken:
+    name: Rolluiken
+    view: no
+    entities:
+      - cover.rolluiken_slaapkamer
+      - cover.rolluiken_babykamer
+  energie:
+    name: Energie
+    view: yes
+    entities:
+      - history_graph.energie
+  temperatuur:
+    name: Temperatuur
+    view: yes
+    entities:
+      - history_graph.temperatuur
   verlichting:
     name: Verlichting
     view: no
     entities:
-      - light.qubino_zmnhdd1_flush_dimmer_level
+      - light.verlichting_woonkamer_schemerlampen_level
       - switch.keuken
       - light.lamp_keuken
       - light.lamp_achter
       - light.lamp_tussen
       - light.lamp_zithoek
-      - light.qubino_zmnhdd1_flush_dimmer_level_2
+      - light.verlichting_speelkamer_level
   verwarming:
     name: Verwarming
     view: no
@@ -40,3 +61,8 @@
       - climate.woonkamer
       - climate.slaapkamer_slaapkamer
       - climate.babykamer_babykamer
+  automations:
+    name: Automations
+    view: yes
+    entities:
+      - group.all_automations

@@ -1,5 +1,3 @@
-#Mode
-
 - alias: "Mode on"
   trigger:
     - platform: state
@@ -20,17 +18,28 @@
         entity_id: climate.woonkamer
         operation_mode: 'auto'
 
-#Todo: home/away        
 - alias: "Mode auto - Home"
   trigger:
     - platform: state
       entity_id: input_select.mode
+    - platform: state
+      entity_id: device_tracker.cnxordxv_rik
+    - platform: state
+      entity_id: device_tracker.cnxordxv_sabinr
   condition:
     condition: and
     conditions:
     - condition: state
       entity_id: input_select.mode
       state: 'Auto'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: device_tracker.cnxordxv_rik
+        state: 'home'  
+      - condition: state
+        entity_id: device_tracker.cnxordxv_sabinr
+        state: 'home'        
   action:
     - service: input_select.select_option
       data:
@@ -40,7 +49,40 @@
       data:
         entity_id: climate.woonkamer
         operation_mode: 'auto'
-        
+
+- alias: "Mode auto - Away"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode
+    - platform: state
+      entity_id: device_tracker.cnxordxv_rik
+    - platform: state
+      entity_id: device_tracker.cnxordxv_sabinr
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'Auto'
+    - condition: state
+      entity_id: device_tracker.cnxordxv_rik
+      state: 'away'  
+    - condition: state
+      entity_id: device_tracker.cnxordxv_sabinr
+      state: 'away'        
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'False'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.woonkamer
+        operation_mode: 'off'
+    - service: light.turn_off
+      entity_id:
+       - light.verlichting_speelkamer_level
+       
 - alias: "Mode off"
   trigger:
     - platform: state
@@ -60,20 +102,21 @@
       data:
         entity_id: climate.woonkamer
         operation_mode: 'off'
-        
-#Light
-
+    - service: light.turn_off
+      entity_id:
+       - light.verlichting_speelkamer_level
+       
 - alias: "Auto lichtsterkte binnen"
   trigger:
     - platform: state
-      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      entity_id: sensor.sensor_woonkamer_luminance
     - platform: state
       entity_id: input_select.mode_light
   condition:
     condition: and
     conditions:
     - condition: numeric_state
-      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      entity_id: sensor.sensor_woonkamer_luminance
       below: 50
     - condition: state
       entity_id: input_select.mode_light
@@ -81,25 +124,25 @@
   action:
     - service: light.turn_on
       entity_id:
-       - light.qubino_zmnhdd1_flush_dimmer_level
+       - light.verlichting_woonkamer_schemerlampen_level
        - light.lamp_keuken
        - light.lamp_achter
        - light.lamp_tussen
        - light.lamp_zithoek
       data_template:
-        brightness: '{{ 150 - (states("sensor.aeotec_zw074_multisensor_gen5_luminance") | int) }}'
+        brightness: '{{ 150 - (states("sensor.sensor_woonkamer_luminance") | int) }}'
 
 - alias: "Auto lichtsterkte buiten"
   trigger:
     - platform: state
-      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      entity_id: sensor.sensor_woonkamer_luminance
     - platform: state
       entity_id: input_select.mode_light
   condition:
     condition: and
     conditions:
     - condition: numeric_state
-      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      entity_id: sensor.sensor_woonkamer_luminance
       below: 12
     - condition: state
       entity_id: input_select.mode_light
@@ -112,14 +155,14 @@
 - alias: "Lampen uit binnen"
   trigger:
     - platform: state
-      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      entity_id: sensor.sensor_woonkamer_luminance
     - platform: state
       entity_id: input_select.mode_light
   condition:
     condition: or
     conditions:
     - condition: numeric_state
-      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      entity_id: sensor.sensor_woonkamer_luminance
       above: 50
     - condition: state
       entity_id: input_select.mode_light
@@ -127,7 +170,7 @@
   action:
     - service: light.turn_off
       entity_id:
-       - light.qubino_zmnhdd1_flush_dimmer_level
+       - light.verlichting_woonkamer_schemerlampen_level
        - light.lamp_keuken
        - light.lamp_achter
        - light.lamp_tussen
@@ -136,14 +179,14 @@
 - alias: "Lampen uit buiten"
   trigger:
     - platform: state
-      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      entity_id: sensor.sensor_woonkamer_luminance
     - platform: state
       entity_id: input_select.mode_light
   condition:
     condition: or
     conditions:
     - condition: numeric_state
-      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      entity_id: sensor.sensor_woonkamer_luminance
       above: 12
     - condition: state
       entity_id: input_select.mode_light
@@ -166,7 +209,7 @@
   action:
     - service: light.turn_on
       entity_id:
-       - light.qubino_zmnhdd1_flush_dimmer_level
+       - light.verlichting_woonkamer_schemerlampen_level
        - light.lamp_keuken
        - light.lamp_achter
        - light.lamp_tussen
@@ -206,3 +249,106 @@
     - service: switch.turn_off
       entity_id:
        - switch.keuken
+
+- alias: "Verwarming Fedde omhoog"
+  trigger:
+    - platform: time
+      at: '17:00:00'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.babykamer_babykamer
+        temperature: 18
+
+- alias: "Verwarming Fedde omlaag"
+  trigger:
+    - platform: time
+      at: '20:30:00'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.babykamer_babykamer
+        temperature: 5
+        
+- alias: "Lamp speelkamer automatisch aan bij beweging"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001d9752b
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.sensor_woonkamer_luminance
+      below: 12
+    - condition: state
+      entity_id: light.verlichting_speelkamer_level
+      state: 'off'
+  action:
+    - service: light.turn_on
+      entity_id:
+       - light.verlichting_speelkamer_level
+
+- alias: "Lamp speelkamer automatisch uit bij 5 min geen beweging"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001d9752b
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 5
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: light.verlichting_speelkamer_level
+      state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id:
+       - light.verlichting_speelkamer_level
+       
+- alias: "Lampen woonkamer automatisch aan bij beweging"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001656748
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.sensor_woonkamer_luminance
+      below: 12
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'False'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'Auto'        
+
+- alias: "Zwave heal"
+  trigger:
+    platform: time
+    at: '2:30:00'
+  action:
+    service: zwave.heal_network
+    
+- alias: "Deurbel"
+  trigger:
+    - platform: event
+      event_type: button_pressed
+      event_data: {'state': 'group on', 'entity_id': 'switch.deurbel'}
+  action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        ringtone_id: 10
+        ringtone_vol: 60
+    - service: notify.pushover
+      data_template:
+        title: "Doorbell"
+        message: >-
+          Someone at the door, open it!

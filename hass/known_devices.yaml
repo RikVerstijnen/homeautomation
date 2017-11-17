@@ -7,3 +7,12 @@ cnxordxv_rik:
   picture:
   track: true
   vendor:
+
+cnxordxv_sabinr:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Sabine
+  picture:
+  track: true
+  vendor:
