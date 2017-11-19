@@ -1,3 +1,34 @@
+  mode:
+   name: Mode
+   view: no
+   entities:
+     - input_select.mode
+     - input_select.mode_light
+  verlichting:
+    name: Verlichting
+    view: no
+    entities:
+      - light.verlichting_woonkamer_schemerlampen_level
+      - switch.keuken
+      - light.lamp_keuken
+      - light.lamp_achter
+      - light.lamp_tussen
+      - light.lamp_zithoek
+      - light.verlichting_speelkamer_level
+  verwarming:
+    name: Verwarming
+    view: no
+    entities:
+      - climate.woonkamer
+      - climate.slaapkamer_slaapkamer
+      - climate.babykamer_babykamer
+  rolluiken:
+    name: Rolluiken
+    view: no
+    entities:
+      - cover.rolluiken_slaapkamer
+      - cover.rolluiken_slaapkamer_fedde
+
   default_view:
    view: yes
    entities:
@@ -21,18 +52,8 @@
      - group.verlichting
      - group.verwarming
      - group.rolluiken
-  mode:
-   name: Mode
-   view: no
-   entities:
-     - input_select.mode
-     - input_select.mode_light
-  rolluiken:
-    name: Rolluiken
-    view: no
-    entities:
-      - cover.rolluiken_slaapkamer
-      - cover.rolluiken_babykamer
+     - alarm_control_panel.alarm
+   
   energie:
     name: Energie
     view: yes
@@ -43,24 +64,6 @@
     view: yes
     entities:
       - history_graph.temperatuur
-  verlichting:
-    name: Verlichting
-    view: no
-    entities:
-      - light.verlichting_woonkamer_schemerlampen_level
-      - switch.keuken
-      - light.lamp_keuken
-      - light.lamp_achter
-      - light.lamp_tussen
-      - light.lamp_zithoek
-      - light.verlichting_speelkamer_level
-  verwarming:
-    name: Verwarming
-    view: no
-    entities:
-      - climate.woonkamer
-      - climate.slaapkamer_slaapkamer
-      - climate.babykamer_babykamer
   automations:
     name: Automations
     view: yes

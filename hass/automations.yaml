@@ -66,10 +66,10 @@
       state: 'Auto'
     - condition: state
       entity_id: device_tracker.cnxordxv_rik
-      state: 'away'  
+      state: 'not_home'  
     - condition: state
       entity_id: device_tracker.cnxordxv_sabinr
-      state: 'away'        
+      state: 'note_home'        
   action:
     - service: input_select.select_option
       data:
@@ -349,6 +349,41 @@
         ringtone_vol: 60
     - service: notify.pushover
       data_template:
-        title: "Doorbell"
-        message: >-
-          Someone at the door, open it!
+        title: "Deurbel"
+        message: "De bel gaat"
+
+- alias: "Trigger alarm bij armed away"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.achterdeur_open
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.sensor_woonkamer_sensor
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.voordeur_open
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001656748
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001d9752b
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: armed_away
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.alarm
+
+- alias: "Hond blaft bij alarm"
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.alarm
+      to: 'triggered'
+  action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        ringtone_id: 8
+        ringtone_vol: 8

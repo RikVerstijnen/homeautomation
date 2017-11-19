@@ -52,7 +52,8 @@ cover.rolluiken_babykamer:
   device_class: none
 cover.rolluiken_slaapkamer:
   device_class: none
-group.all_automations: {}
+group.all_automations:
+  hidden: false
 group.all_covers:
   friendly_name: Rolluiken
 switch.keuken:

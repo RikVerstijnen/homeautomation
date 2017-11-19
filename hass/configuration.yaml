@@ -256,3 +256,14 @@ notify:
     platform: pushover
     api_key: ah27r7zkf4am71szaphaupk6cf49as
     user_key: uRwtniGoLPSQSAhNxaTXciDgC12hfn
+    
+alarm_control_panel:
+  - platform: manual
+    name: Alarm
+    code: 9512
+    pending_time: 30
+    armed_home:
+      pending_time: 0
+    triggered:
+      pending_time: 20
+    trigger_time: 4 
