@@ -46,13 +46,13 @@
      - binary_sensor.voordeur_open
      - binary_sensor.motion_sensor_158d0001656748
      - binary_sensor.motion_sensor_158d0001d9752b
-     - device_tracker.cnxordxv_rik
-     - device_tracker.cnxordxv_sabinr
+     - device_tracker.android618bdafece7c66a8
+     - device_tracker.samsunggalaxys7
      - group.mode
      - group.verlichting
      - group.verwarming
      - group.rolluiken
-     - alarm_control_panel.alarm
+     - alarm_control_panel.house
    
   energie:
     name: Energie

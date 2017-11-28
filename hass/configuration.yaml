@@ -2,8 +2,8 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: 51.687666
-  longitude: 5.1321996
+  latitude: 51.68751
+  longitude: 5.13299
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 4
   # metric for Metric, imperial for Imperial
@@ -179,7 +179,11 @@ mqtt:
   
 device_tracker:
   - platform: owntracks
-  
+  - platform: netgear
+    host: 192.168.1.1
+    username: admin
+    password: 3a0eaddde6
+    
 input_select:
   mode:
     name: Mode
@@ -256,14 +260,17 @@ notify:
     platform: pushover
     api_key: ah27r7zkf4am71szaphaupk6cf49as
     user_key: uRwtniGoLPSQSAhNxaTXciDgC12hfn
+  - name: Rik
+    platform: zanzito
+    device-name: Rik
     
-alarm_control_panel:
-  - platform: manual
-    name: Alarm
-    code: 9512
-    pending_time: 30
-    armed_home:
-      pending_time: 0
-    triggered:
-      pending_time: 20
-    trigger_time: 4 
+alarm_control_panel: !include alarm.yaml
+panel_custom: !include panel_custom.yaml
+
+zone:
+  # This will override the default home zone
+  - name: Home
+    latitude: 51.68751
+    longitude: 5.13299
+    radius: 50
+    icon: mdi:account-multiple

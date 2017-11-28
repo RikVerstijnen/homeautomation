@@ -12,7 +12,7 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.mode_light
-        option: 'True'
+        option: 'Auto'
     - service: climate.set_operation_mode
       data:
         entity_id: climate.woonkamer
@@ -23,9 +23,9 @@
     - platform: state
       entity_id: input_select.mode
     - platform: state
-      entity_id: device_tracker.cnxordxv_rik
+      entity_id: device_tracker.android618bdafece7c66a8
     - platform: state
-      entity_id: device_tracker.cnxordxv_sabinr
+      entity_id: device_tracker.samsunggalaxys7
   condition:
     condition: and
     conditions:
@@ -35,10 +35,10 @@
     - condition: or
       conditions:
       - condition: state
-        entity_id: device_tracker.cnxordxv_rik
+        entity_id: device_tracker.android618bdafece7c66a8
         state: 'home'  
       - condition: state
-        entity_id: device_tracker.cnxordxv_sabinr
+        entity_id: device_tracker.samsunggalaxys7
         state: 'home'        
   action:
     - service: input_select.select_option
@@ -55,9 +55,9 @@
     - platform: state
       entity_id: input_select.mode
     - platform: state
-      entity_id: device_tracker.cnxordxv_rik
+      entity_id: device_tracker.android618bdafece7c66a8
     - platform: state
-      entity_id: device_tracker.cnxordxv_sabinr
+      entity_id: device_tracker.samsunggalaxys7
   condition:
     condition: and
     conditions:
@@ -65,11 +65,11 @@
       entity_id: input_select.mode
       state: 'Auto'
     - condition: state
-      entity_id: device_tracker.cnxordxv_rik
+      entity_id: device_tracker.android618bdafece7c66a8
       state: 'not_home'  
     - condition: state
-      entity_id: device_tracker.cnxordxv_sabinr
-      state: 'note_home'        
+      entity_id: device_tracker.samsunggalaxys7
+      state: 'not_home'        
   action:
     - service: input_select.select_option
       data:
@@ -347,10 +347,11 @@
       data:
         ringtone_id: 10
         ringtone_vol: 60
-    - service: notify.pushover
-      data_template:
-        title: "Deurbel"
-        message: "De bel gaat"
+    - service: notify.rik
+      data:
+        message: 'Deurbel gaat'
+        data:
+          say:
 
 - alias: "Trigger alarm bij armed away"
   trigger:
@@ -387,3 +388,8 @@
       data:
         ringtone_id: 8
         ringtone_vol: 8
+    - service: notify.rik
+      data:
+        message: 'Alarm gaat af'
+        data:
+          say:

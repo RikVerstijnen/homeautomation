@@ -5,14 +5,203 @@ cnxordxv_rik:
   mac:
   name: Rik
   picture:
-  track: true
+  track: false
+  vendor:
+
+cnxordxv_sabine:
+  hide_if_away: false
+  icon:
+  mac:
+  name: Sabine
+  picture:
+  track: false
   vendor:
 
 cnxordxv_sabinr:
   hide_if_away: false
   icon:
   mac:
+  name: cnxordxv
+  picture:
+  track: false
+  vendor:
+
+mhf_wifi_xxl_258c:
+  hide_if_away: false
+  icon:
+  mac: 02:22:6C:02:25:8C
+  name: MHF Wifi XXL 258C
+  picture:
+  track: false
+  vendor: unknown
+
+8018a7e469b8:
+  hide_if_away: false
+  icon:
+  mac: 80:18:A7:E4:69:B8
+  name: --
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+samsunggalaxys7:
+  hide_if_away: false
+  icon:
+  mac: 2C:0E:3D:90:35:E4
   name: Sabine
   picture:
   track: true
-  vendor:
+  vendor: SAMSUNG ELECTRO-MECHANICS(THAILAND)
+
+gwdcefcab84075:
+  hide_if_away: false
+  icon:
+  mac: DC:EF:CA:B8:40:75
+  name: GW-DCEFCAB84075
+  picture:
+  track: false
+  vendor: Murata Manufacturing Co., Ltd.
+
+70b3d53a5788:
+  hide_if_away: false
+  icon:
+  mac: 70:B3:D5:3A:57:88
+  name: --
+  picture:
+  track: false
+  vendor: IEEE Registration Authority
+
+verlichtingkeuken:
+  hide_if_away: false
+  icon:
+  mac: 5C:CF:7F:83:30:57
+  name: VerlichtingKeuken
+  picture:
+  track: false
+  vendor: Espressif Inc.
+
+keq0535936:
+  hide_if_away: false
+  icon:
+  mac: 00:1A:22:03:61:95
+  name: KEQ0535936
+  picture:
+  track: false
+  vendor: eQ-3 Entwicklung GmbH
+
+hppc:
+  hide_if_away: false
+  icon:
+  mac: 10:0B:A9:41:DD:30
+  name: HP-PC
+  picture:
+  track: false
+  vendor: Intel Corporate
+
+diskstation:
+  hide_if_away: false
+  icon:
+  mac: 00:11:32:30:34:97
+  name: DISKSTATION
+  picture:
+  track: false
+  vendor: Synology Incorporated
+
+lumigatewayv3_miio52246946:
+  hide_if_away: false
+  icon:
+  mac: 28:6C:07:88:BB:1D
+  name: lumi-gateway-v3 miio52246946
+  picture:
+  track: false
+  vendor: XIAOMI Electronics,CO.,LTD
+
+002369b5bb5b:
+  hide_if_away: false
+  icon:
+  mac: 00:23:69:B5:BB:5B
+  name: --
+  picture:
+  track: false
+  vendor: unknown
+
+chromecast:
+  hide_if_away: false
+  icon:
+  mac: 54:60:09:1A:1C:5A
+  name: Chromecast
+  picture:
+  track: false
+  vendor: unknown
+
+00ce39b17298:
+  hide_if_away: false
+  icon:
+  mac: 00:CE:39:B1:72:98
+  name: --
+  picture:
+  track: false
+  vendor: unknown
+
+android80e99fb963293fef:
+  hide_if_away: false
+  icon:
+  mac: D8:50:E6:8C:33:6F
+  name: android-80e99fb963293fef
+  picture:
+  track: false
+  vendor: unknown
+
+target:
+  hide_if_away: false
+  icon:
+  mac: 00:27:02:1A:59:2C
+  name: target
+  picture:
+  track: false
+  vendor: unknown
+
+caa96e336839:
+  hide_if_away: false
+  icon:
+  mac: CA:A9:6E:33:68:39
+  name: --
+  picture:
+  track: false
+  vendor: unknown
+
+ipadvanrik:
+  hide_if_away: false
+  icon:
+  mac: 10:1C:0C:18:BD:90
+  name: iPad-van-Rik
+  picture:
+  track: false
+  vendor: unknown
+
+accf239e3664:
+  hide_if_away: false
+  icon:
+  mac: AC:CF:23:9E:36:64
+  name: --
+  picture:
+  track: false
+  vendor: unknown
+
+hassbian:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:4F:03:0D
+  name: hassbian
+  picture:
+  track: false
+  vendor: unknown
+
+android618bdafece7c66a8:
+  hide_if_away: false
+  icon:
+  mac: 94:65:2D:7C:A9:F6
+  name: Rik
+  picture:
+  track: true
+  vendor: OnePlus Technology (Shenzhen) Co., Ltd

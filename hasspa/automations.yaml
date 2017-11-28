@@ -1,30 +1,82 @@
-- alias: "Alle lampen aan"
+- alias: "Woonkamer aan"
   trigger:
     - platform: state
       entity_id: binary_sensor.schakelaar_1
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.schakelaar_achter
+      from: 'off'
+      to: 'on'
   condition:
     condition: and
     conditions:
     - condition: state
-      entity_id: light.fibaro_system_fgrgbwm441_rgbw_controller_level_3
+      entity_id: group.woonkamer
       state: 'off'
   action:
-    - service: light.turn_on
-      data:
-        entity_id: group.all_lights
-        brightness: 255
-
-- alias: "Alle lampen uit"
+    - service: homeassistant.turn_on
+      entity_id: group.woonkamer
+    - service: homeassistant.turn_on
+      entity_id: group.gang
+      
+- alias: "Woonkamer uit"
   trigger:
     - platform: state
       entity_id: binary_sensor.schakelaar_1
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.schakelaar_achter
+      from: 'off'
+      to: 'on'
   condition:
     condition: and
     conditions:
     - condition: state
-      entity_id: light.fibaro_system_fgrgbwm441_rgbw_controller_level_3
+      entity_id: group.woonkamer
       state: 'on'
   action:
     - service: light.turn_off
-      data:
-        entity_id: group.all_lights
+      entity_id: group.woonkamer
+    - service: light.turn_off
+      entity_id: group.gang
+      
+# - alias: "Gang aan bij beweging"
+  # trigger:
+    # - platform: state
+      # entity_id: binary_sensor.sensor_gang_sensor
+      # from: 'off'
+      # to: 'on'
+  # condition:
+    # condition: and
+    # conditions:
+    # - condition: state
+      # entity_id: group.gang
+      # state: 'off'
+  # action:
+    # - service: light.turn_on
+      # entity_id: group.gang
+      
+# - alias: "Gang uit bij 10 min geen beweging"
+  # trigger:
+    # - platform: state
+      # entity_id: binary_sensor.sensor_gang_sensor
+      # from: 'on'
+      # to: 'off'
+  # condition:
+    # condition: and
+    # conditions:
+    # - condition: state
+      # entity_id: group.gang
+      # state: 'on'
+  # action:
+    # - service: light.turn_off
+      # entity_id: group.gang
+      
+- alias: "Zwave heal"
+  trigger:
+    platform: time
+    at: '2:30:00'
+  action:
+    service: zwave.heal_network

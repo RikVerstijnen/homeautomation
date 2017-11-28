@@ -74,3 +74,5 @@ climate.slaapkamer_slaapkamer:
   friendly_name: Slaapkamer
 climate.babykamer_babykamer:
   friendly_name: Slaapkamer Fedde
+device_tracker.cnxordxv_sabine:
+  friendly_name: Sabine

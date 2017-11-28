@@ -7,3 +7,6 @@ sensor.fibaro_system_fgms001zw5_motion_sensor_luminance:
   unit_of_measurement: lux
 sensor.fibaro_system_fgms001zw5_motion_sensor_general:
   friendly_name: Beweging woonkamer
+light.dimmer_level_3:
+  friendly_name: Kast
+group.all_automations: {}

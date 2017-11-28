@@ -75,16 +75,16 @@ switch:
       1:
         name: Relais 2
       2:
-        name: Relais 3
+        name: Zonnescherm uit
       3:
-        name: Relais 4
+        name: Zonnescherm in
       4:
         name: Relais 5
       5:
         name: Relais 6
         
 zwave:
-  usb_path: /dev/ttyACM0
+  usb_path: /dev/ttyUSB-ZWAVE
   
 binary_sensor:
   - platform: rpi_pfio
@@ -97,3 +97,34 @@ binary_sensor:
         name: Schakelaar 3
       3:
         name: Schakelaar 4
+      4:
+        name: Schakelaar achter
+        
+cover:
+  - platform: template
+    covers:
+      zonnescherm:
+        friendly_name: "Zonnescherm"
+        open_cover:
+          - service: switch.turn_off
+            data:
+              entity_id: switch.zonnescherm_in
+          - delay: 0:00:02
+          - service: switch.turn_on
+            data:
+              entity_id: switch.zonnescherm_uit
+        close_cover:
+          - service: switch.turn_off
+            data:
+              entity_id: switch.zonnescherm_uit
+          - delay: 0:00:02
+          - service: switch.turn_on
+            data:
+              entity_id: switch.zonnescherm_in
+        stop_cover:
+          - service: switch.turn_off
+            data:
+              entity_id: switch.zonnescherm_in
+          - service: switch.turn_off
+            data:
+              entity_id: switch.zonnescherm_uit

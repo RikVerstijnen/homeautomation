@@ -1,0 +1,57 @@
+  woonkamer:
+   name: Woonkamer
+   view: no
+   entities:
+     - light.links_1
+     - light.links_2
+     - light.links_3
+     - light.achter_1
+     - light.achter_2
+     - light.rechts_3
+     - light.rechts_4
+     - light.dimmer_level_3
+     - light.keuken_1
+     - light.keuken_2
+     - light.schilderij
+     
+  gang:
+    name: Gang
+    view: no
+    entities:
+      - light.gang_1
+      - light.gang_2
+      - light.gang_3
+  
+  zonwering:
+    name: Zonwering
+    view: no
+    entities:
+      - cover.zonnescherm
+  
+  default_view:
+   view: yes
+   entities:
+     - sensor.sensor_woonkamer_luminance
+     - sensor.sensor_woonkamer_temperature
+     - binary_sensor.sensor_woonkamer_sensor
+     - sensor.sensor_gang_luminance
+     - sensor.sensor_gang_temperature
+     - binary_sensor.sensor_gang_sensor
+     - sensor.sensor_toilet_luminance
+     - sensor.sensor_toilet_temperature
+     - binary_sensor.sensor_toilet_sensor
+     - binary_sensor.schakelaar_1
+     - binary_sensor.schakelaar_2
+     - binary_sensor.schakelaar_3
+     - binary_sensor.schakelaar_4
+     - binary_sensor.schakelaar_achter
+     - group.woonkamer
+     - group.gang
+     - group.zonwering
+     - group.rolluiken
+
+  automations:
+    name: Automations
+    view: yes
+    entities:
+      - group.all_automations
