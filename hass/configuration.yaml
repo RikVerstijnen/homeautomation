@@ -17,7 +17,7 @@ homeassistant:
 #introduction:
 
 logger:
-  default: error
+#  default: error
 #  logs:
 #    homeassistant.components.rfxtrx: debug
     
@@ -178,11 +178,12 @@ mqtt:
   password: 0hVNHAToADl0
   
 device_tracker:
-  - platform: owntracks
-  - platform: netgear
+  - platform: asuswrt
     host: 192.168.1.1
     username: admin
     password: 3a0eaddde6
+    interval_seconds: 10
+    consider_home: 180
     
 input_select:
   mode:
@@ -191,6 +192,7 @@ input_select:
      - Off
      - Auto
      - On
+     - Sim
     initial: Auto
     icon: mdi:power
   mode_light:
@@ -211,8 +213,8 @@ xiaomi_aqara:
     - mac:
       key: pq1opqxx5rpoqds9
       
-#tradfri:
-#  host: 192.168.1.118
+tradfri:
+  host: 192.168.1.118
   
 cover:
   - platform: rfxtrx
@@ -274,3 +276,21 @@ zone:
     longitude: 5.13299
     radius: 50
     icon: mdi:account-multiple
+    
+remote:
+  - platform: harmony
+    name: Woonkamer
+    host: 10.168.1.120
+    
+timer:
+  buiten:
+    duration: '00:01:00'
+  hal:
+    duration: '00:01:00'
+  overloop:
+    duration: '00:01:00'
+    
+recorder:
+  purge_interval: 2
+  purge_keep_days: 5
+  db_url: mysql://hassuser:Rickyboy22@127.0.0.1/hass_db

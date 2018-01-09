@@ -37,9 +37,9 @@ light.qubino_zmnhdd1_flush_dimmer_level_2:
 sensor.0a520701380e0063490369_temperature:
   friendly_name: Temperatuur buiten
 binary_sensor.motion_sensor_158d0001656748:
-  friendly_name: Beweging woonkamer
+  friendly_name: Beweging hal
 binary_sensor.motion_sensor_158d0001d9752b:
-  friendly_name: Beweging speelkamer
+  friendly_name: Beweging overloop
 sensor.hourly_gas_consumption:
   friendly_name: Gasverbruik uur
 sensor.power_consumption_2:
@@ -76,3 +76,5 @@ climate.babykamer_babykamer:
   friendly_name: Slaapkamer Fedde
 device_tracker.cnxordxv_sabine:
   friendly_name: Sabine
+switch.verlichting_buiten__switch_2:
+  friendly_name: Verlichting buiten

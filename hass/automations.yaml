@@ -82,17 +82,52 @@
     - service: light.turn_off
       entity_id:
        - light.verlichting_speelkamer_level
+
+- alias: "Simulation - Random on"
+  trigger:
+    platform: time
+    at: '9:18:00'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'Sim'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'Auto'
+
+- alias: "Simulation - Random off"
+  trigger:
+    platform: time
+    at: '23:08:00'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'Sim'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'False'
        
 - alias: "Mode off"
   trigger:
     - platform: state
       entity_id: input_select.mode
   condition:
-    condition: and
+    condition: or
     conditions:
     - condition: state
       entity_id: input_select.mode
       state: 'False'
+    - condition: state
+      entity_id: input_select.mode
+      state: 'Sim'
   action:
     - service: input_select.select_option
       data:
@@ -102,10 +137,14 @@
       data:
         entity_id: climate.woonkamer
         operation_mode: 'off'
-    - service: light.turn_off
+    - service: remote.turn_off
       entity_id:
-       - light.verlichting_speelkamer_level
-       
+       - remote.harmony_hub
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.babykamer_babykamer
+        temperature: 5
+        
 - alias: "Auto lichtsterkte binnen"
   trigger:
     - platform: state
@@ -121,6 +160,8 @@
     - condition: state
       entity_id: input_select.mode_light
       state: 'Auto'
+    # - condition: template
+       # value_template: '{{(as_timestamp(now())-as_timestamp(automation.lampen_uit_binnen.last_triggered)) > 900}}'
   action:
     - service: light.turn_on
       entity_id:
@@ -132,7 +173,7 @@
       data_template:
         brightness: '{{ 150 - (states("sensor.sensor_woonkamer_luminance") | int) }}'
 
-- alias: "Auto lichtsterkte buiten"
+- alias: "Lampen aan buiten"
   trigger:
     - platform: state
       entity_id: sensor.sensor_woonkamer_luminance
@@ -147,10 +188,13 @@
     - condition: state
       entity_id: input_select.mode_light
       state: 'Auto'
+    - condition: state
+      entity_id: switch.verlichting_buiten_switch_2
+      state: 'off'
   action:
     - service: switch.turn_on
       entity_id:
-       - switch.philio_technology_corporation_unknown_type0001_id0013_switch
+       - switch.verlichting_buiten_switch_2
        
 - alias: "Lampen uit binnen"
   trigger:
@@ -167,6 +211,8 @@
     - condition: state
       entity_id: input_select.mode_light
       state: 'False'
+    # - condition: template
+       # value_template: '{{(as_timestamp(now())-as_timestamp(automation.auto_lichtsterkte_binnen.last_triggered)) > 900}}'
   action:
     - service: light.turn_off
       entity_id:
@@ -175,6 +221,7 @@
        - light.lamp_achter
        - light.lamp_tussen
        - light.lamp_zithoek
+       - light.verlichting_speelkamer_level
 
 - alias: "Lampen uit buiten"
   trigger:
@@ -183,18 +230,23 @@
     - platform: state
       entity_id: input_select.mode_light
   condition:
-    condition: or
+    condition: and
     conditions:
-    - condition: numeric_state
-      entity_id: sensor.sensor_woonkamer_luminance
-      above: 12
+    - condition: or
+      conditions:
+      - condition: numeric_state
+        entity_id: sensor.sensor_woonkamer_luminance
+        above: 12
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'False'
     - condition: state
-      entity_id: input_select.mode_light
-      state: 'False'
+      entity_id: switch.verlichting_buiten_switch_2
+      state: 'on'
   action:
     - service: switch.turn_off
       entity_id:
-       - switch.philio_technology_corporation_unknown_type0001_id0013_switch
+       - switch.verlichting_buiten_switch_2
        
 - alias: "Lampen volledig aan binnen"
   trigger:
@@ -260,76 +312,6 @@
         entity_id: climate.babykamer_babykamer
         temperature: 18
 
-- alias: "Verwarming Fedde omlaag"
-  trigger:
-    - platform: time
-      at: '20:30:00'
-  action:
-    - service: climate.set_temperature
-      data:
-        entity_id: climate.babykamer_babykamer
-        temperature: 5
-        
-- alias: "Lamp speelkamer automatisch aan bij beweging"
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001d9752b
-      from: 'off'
-      to: 'on'
-  condition:
-    condition: and
-    conditions:
-    - condition: numeric_state
-      entity_id: sensor.sensor_woonkamer_luminance
-      below: 12
-    - condition: state
-      entity_id: light.verlichting_speelkamer_level
-      state: 'off'
-  action:
-    - service: light.turn_on
-      entity_id:
-       - light.verlichting_speelkamer_level
-
-- alias: "Lamp speelkamer automatisch uit bij 5 min geen beweging"
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001d9752b
-      from: 'on'
-      to: 'off'
-      for:
-        minutes: 5
-  condition:
-    condition: and
-    conditions:
-    - condition: state
-      entity_id: light.verlichting_speelkamer_level
-      state: 'on'
-  action:
-    - service: light.turn_off
-      entity_id:
-       - light.verlichting_speelkamer_level
-       
-- alias: "Lampen woonkamer automatisch aan bij beweging"
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d0001656748
-      from: 'off'
-      to: 'on'
-  condition:
-    condition: and
-    conditions:
-    - condition: numeric_state
-      entity_id: sensor.sensor_woonkamer_luminance
-      below: 12
-    - condition: state
-      entity_id: input_select.mode_light
-      state: 'False'
-  action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.mode_light
-        option: 'Auto'        
-
 - alias: "Zwave heal"
   trigger:
     platform: time
@@ -393,3 +375,93 @@
         message: 'Alarm gaat af'
         data:
           say:
+          
+- alias: "Lamp hal aan"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.voordeur_open
+      to: 'on'
+    - platform: event
+      event_type: button_pressed
+      event_data: {'state': 'group on', 'entity_id': 'switch.deurbel'}
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001656748
+      to: 'on'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.sensor_woonkamer_luminance
+      below: 12
+  action:
+    - service: light.turn_on
+      entity_id: light.hal
+      data: 
+        brightness: 80
+    - service: timer.start
+      entity_id: timer.hal
+
+- alias: "Lamp hal uit"
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data: {'entity_id': 'timer.hal'}
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001656748
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: timer.hal
+      state: 'idle'
+    - condition: state
+      entity_id: binary_sensor.motion_sensor_158d0001656748
+      state: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.hal
+          
+- alias: "Lamp overloop aan"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001d9752b
+      to: 'on'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.sensor_woonkamer_luminance
+      below: 12
+  action:
+    - service: light.turn_on
+      entity_id: light.overloop_1
+      data: 
+        brightness: 50
+    - service: light.turn_on
+      entity_id: light.overloop_2
+      data: 
+        brightness: 50
+    - service: light.turn_on
+      entity_id: light.overloop_3
+      data: 
+        brightness: 50
+    - service: timer.start
+      entity_id: timer.overloop
+
+- alias: "Lamp overloop uit"
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data: {'entity_id': 'timer.overloop'}
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001d9752b
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: timer.overloop
+      state: 'idle'
+    - condition: state
+      entity_id: binary_sensor.motion_sensor_158d0001d9752b
+      state: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.overloop_1
+    - service: light.turn_off
+      entity_id: light.overloop_2
+    - service: light.turn_off
+      entity_id: light.overloop_3
