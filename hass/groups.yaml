@@ -24,10 +24,10 @@
     view: no
     entities:
       - group.spotjes
-      - light.verlichting_woonkamer_schemerlampen_level
+      - light.level
       - switch.keuken
       - light.verlichting_speelkamer_level
-      - switch.verlichting_buiten_switch_2
+      - switch.qubino_zmnhbdx_flush_2_relays_switch
       - light.hal
       - group.overloop
   verwarming:
@@ -35,6 +35,7 @@
     view: no
     entities:
       - climate.woonkamer
+      - climate.speelkamer_speelkamer
       - climate.slaapkamer_slaapkamer
       - climate.babykamer_babykamer
   rolluiken:
@@ -52,7 +53,7 @@
   default_view:
     view: yes
     entities:
-      - sensor.sensor_woonkamer_luminance
+      - sensor.luminance
       - binary_sensor.achterdeur_dicht
       - binary_sensor.achterdeur_open
       - binary_sensor.voordeur_dicht
@@ -62,6 +63,7 @@
       - binary_sensor.buitensensor_sensor
       - device_tracker.android618bdafece7c66a8
       - device_tracker.samsunggalaxys7
+      - binary_sensor.smoke_sensor_158d00015b1821
       - group.mode
       - group.verlichting
       - group.verwarming
@@ -87,7 +89,7 @@
     entities:
       - history_graph.temperatuur
       - sensor.temperatuur_buiten_temperature
-      - sensor.sensor_woonkamer_temperature
+      - sensor.temperature
       - sensor.temperatuur_badkamer_temperature
       - sensor.temperatuur_slaapkamer_morris_temperature
   automations:

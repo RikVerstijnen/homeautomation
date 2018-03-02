@@ -13,12 +13,10 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
-# Show links to resources in log and frontend
-#introduction:
-
 logger:
-#  default: error
-#  logs:
+  default: error
+  logs:
+#    rfxtrx: debug
 #    homeassistant.components.rfxtrx: debug
     
 # Enables the frontend
@@ -28,44 +26,23 @@ frontend:
 config:
 
 http:
-  api_password: Rickyboy22
-  ssl_certificate: /etc/letsencrypt/live/riverhass.duckdns.org/fullchain.pem
-  ssl_key: /etc/letsencrypt/live/riverhass.duckdns.org/privkey.pem
+  api_password: !secret api_password
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
   base_url: riverhass.duckdns.org
   
-  # Secrets are defined in the file secrets.yaml
-  # api_password: !secret http_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: example.duckdns.org:8123
-
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
-  # include_used_components: true
 
-# Discover some devices automatically
 discovery:
 
-# Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
-# Enables support for tracking state changes over time
 history:
 
-# View all events in a logbook
 logbook:
-
-map:
-
-# Track the sun
-sun:
     
 rfxtrx:
-  device: /dev/ttyUSB-RFXTRX
+  device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1YU8THU-if00-port0
   debug: true
   
 sensor:
@@ -73,7 +50,7 @@ sensor:
   - platform: yr
 # Smart meter
   - platform: dsmr
-    port: /dev/ttyUSB-P1
+    port: /dev/serial/by-id/usb-FTDI_P1_Converter_Cable_P1YRCXZ8-if00-port0
     dsmr_version: 2.2
 # Solar
   - platform: pvoutput
@@ -92,7 +69,6 @@ sensor:
         unit_of_measurement: 'kWh'
 #RFXTRX
   - platform: rfxtrx
-    automatic_add: true
     devices:
       0a520701380e006b5b0379:
         name: Temperatuur buiten
@@ -111,7 +87,7 @@ tts:
   - platform: google
 
 group: !include groups.yaml
-automation: !include automations.yaml
+automation: !include_dir_merge_list automation
 script: !include scripts.yaml
 
 switch:
@@ -124,7 +100,7 @@ switch:
         command_on: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOn"
         command_off: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOff"
   - platform: rfxtrx
-    automatic_add: true
+    #automatic_add: true
     devices:
       0b11000800c71b6a01040f60:
         name: Deurbel
@@ -134,7 +110,7 @@ climate:
   - platform: generic_thermostat
     name: Woonkamer
     heater: switch.ketel
-    target_sensor: sensor.sensor_woonkamer_temperature
+    target_sensor: sensor.temperature
     target_temp: 19
     cold_tolerance: 0.1
     # Start when below 18,9
@@ -168,14 +144,14 @@ light:
     automatic_add: true
     
 zwave:
-  usb_path: /dev/ttyUSB-ZWAVE
+  usb_path: /dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0
   network_key: "0x4A, 0x4A, 0x64, 0xDD, 0x0E, 0xC4, 0xB3, 0xEC, 0x4C, 0x9F, 0x24, 0x8F, 0x2C, 0x4A, 0xC0, 0x04"
   
-mqtt:
-  broker: m20.cloudmqtt.com
-  port: 25895
-  username: cnxordxv
-  password: 0hVNHAToADl0
+# mqtt:
+  # broker: m20.cloudmqtt.com
+  # port: 25895
+  # username: cnxordxv
+  # password: 0hVNHAToADl0
   
 device_tracker:
   - platform: asuswrt
@@ -184,6 +160,9 @@ device_tracker:
     password: 3a0eaddde6
     interval_seconds: 10
     consider_home: 180
+  # - platform: mqtt_json
+    # devices:
+      # my_device: zanzito/Rik/location
     
 input_select:
   mode:
@@ -226,7 +205,6 @@ cover:
         
 binary_sensor:
   platform: rfxtrx
-  automatic_add: true
   devices:
     091300111078ae013960:
       name: Achterdeur open
@@ -250,11 +228,12 @@ history_graph:
   gr2:
     name: "Temperatuur"
     entities:
-      - sensor.sensor_woonkamer_temperature
+      - sensor.temperature
       - sensor.temperatuur_badkamer_temperature
       - sensor.temperatuur_slaapkamer_morris_temperature
       - climate.babykamer_babykamer
       - climate.slaapkamer_slaapkamer
+      - climate.speelkamer_speelkamer
       - sensor.temperatuur_buiten_temperature
       
 notify:
@@ -262,12 +241,12 @@ notify:
     platform: pushover
     api_key: ah27r7zkf4am71szaphaupk6cf49as
     user_key: uRwtniGoLPSQSAhNxaTXciDgC12hfn
-  - name: Rik
-    platform: zanzito
-    device-name: Rik
+  # - name: Rik
+    # platform: zanzito
+    # device-name: Rik
     
-alarm_control_panel: !include alarm.yaml
-panel_custom: !include panel_custom.yaml
+#alarm_control_panel: !include alarm.yaml
+#panel_custom: !include panel_custom.yaml
 
 zone:
   # This will override the default home zone
@@ -291,6 +270,4 @@ timer:
     duration: '00:01:00'
     
 recorder:
-  purge_interval: 2
-  purge_keep_days: 5
-  db_url: mysql://hassuser:Rickyboy22@127.0.0.1/hass_db
+  db_url: mysql://hass:Rickyboy22@core-mariadb/homeassistant

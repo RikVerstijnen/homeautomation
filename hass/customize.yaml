@@ -78,3 +78,7 @@ device_tracker.cnxordxv_sabine:
   friendly_name: Sabine
 switch.verlichting_buiten__switch_2:
   friendly_name: Verlichting buiten
+climate.speelkamer_speelkamer:
+  friendly_name: Speelkamer
+binary_sensor.smoke_sensor_158d00015b1821:
+  friendly_name: Rookdetector

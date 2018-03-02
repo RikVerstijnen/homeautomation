@@ -295,3 +295,39 @@ androidb7517983c8b8079b:
   picture:
   track: true
   vendor: unknown
+
+androidfd1a21e589f18d36:
+  hide_if_away: false
+  icon:
+  mac: AC:22:0B:03:8D:99
+  name: android-fd1a21e589f18d36
+  picture:
+  track: true
+  vendor: unknown
+
+iphonevanrob:
+  hide_if_away: false
+  icon:
+  mac: 6C:4D:73:CA:E3:6D
+  name: iPhone-van-Rob
+  picture:
+  track: true
+  vendor: Apple, Inc.
+
+707781607b94:
+  hide_if_away: false
+  icon:
+  mac: 70:77:81:60:7B:94
+  name: 707781607b94
+  picture:
+  track: true
+  vendor: unknown
+
+881fa1df0fed:
+  hide_if_away: false
+  icon:
+  mac: 88:1F:A1:DF:0F:ED
+  name: 881fa1df0fed
+  picture:
+  track: true
+  vendor: Apple, Inc.
