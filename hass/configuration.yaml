@@ -16,9 +16,9 @@ homeassistant:
 logger:
   default: error
   logs:
-#    rfxtrx: debug
-#    homeassistant.components.rfxtrx: debug
-    
+    homeassistant.components.maxcube: debug
+    homeassistant.components.rfxtrx: debug
+
 # Enables the frontend
 frontend:
 
@@ -30,7 +30,10 @@ http:
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   base_url: riverhass.duckdns.org
-  
+  trusted_networks:
+    - 127.0.0.1
+    - 84.27.97.93
+
 updater:
 
 discovery:
@@ -40,11 +43,10 @@ conversation:
 history:
 
 logbook:
-    
+
 rfxtrx:
   device: /dev/serial/by-id/usb-RFXCOM_RFXtrx433_A1YU8THU-if00-port0
-  debug: true
-  
+
 sensor:
 # Weather prediction
   - platform: yr
@@ -55,7 +57,7 @@ sensor:
 # Solar
   - platform: pvoutput
     system_id: 46986
-    api_key: 19bbac5a442e4c4f5a8d43c0a29507f71b9a3cd5
+    api_key: !secret pvoutput_api
     scan_interval: 120
   - platform: template
     sensors:
@@ -81,7 +83,37 @@ sensor:
     unit_of_measurement: days
     scan_interval: 10800
     command: "ssl-cert-check -b -c /etc/letsencrypt/live/riverhass.duckdns.org/cert.pem | awk '{ print $NF }'"
-    
+
+#Solaredge
+  - platform: jsonrest
+    resource: !secret solaredge_url
+    method: GET
+    name: SolarEdge inverter
+    scan_interval: 400
+
+  - platform: template
+    sensors:
+      grid_today:
+        friendly_name: "Solar Power Today"
+        value_template: '{{ (states.sensor.solaredge_inverter.attributes.overview.lastDayData.energy | float / 1000) | round(2) }}'
+        unit_of_measurement: 'kWh'
+      grid_now:
+        friendly_name: "Solar Power Now"
+        value_template: '{{ (states.sensor.solaredge_inverter.attributes.overview.currentPower.power | float / 1000) | round(2) }}'
+        unit_of_measurement: 'kW'
+
+#Add normal/low
+  - platform: template
+    sensors:
+      power_consumption_total:
+        friendly_name: "Power Consumption (total)"
+        value_template: '{{ (states.sensor.power_consumption_low.state | float) + (states.sensor.power_consumption_normal.state | float)}}'
+        unit_of_measurement: 'kWh'
+      power_production_total:
+        friendly_name: "Power Production (total)"
+        value_template: '{{ (states.sensor.power_production_low.state | float) + (states.sensor.power_production_normal.state | float)}}'
+        unit_of_measurement: 'kWh'
+
 # Text to speech
 tts:
   - platform: google
@@ -99,13 +131,22 @@ switch:
       keuken:
         command_on: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOn"
         command_off: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOff"
+      mindergas:
+        command_on: "python3 /config/mindergas.py"
+        command_off: "python3 /config/mindergas.py"
+      say_deurbel:
+        command_on: /usr/bin/curl -k "http://192.168.1.31:2323/?cmd=textToSpeech&text=De+deurbel+gaat&password=Rickyboy22"
+        friendly_name: De deurbel gaat
+      say_rook:
+        command_on: /usr/bin/curl -k "http://192.168.1.31:2323/?cmd=textToSpeech&text=Rook+gedetecteerd&password=Rickyboy22"
+        friendly_name: Rook gedetecteerd
   - platform: rfxtrx
     #automatic_add: true
     devices:
       0b11000800c71b6a01040f60:
         name: Deurbel
         fire_event: true
-        
+
 climate:
   - platform: generic_thermostat
     name: Woonkamer
@@ -116,7 +157,7 @@ climate:
     # Start when below 18,9
     hot_tolerance: 0.1
     # Stop when above 19,1
-    
+
 light:
   - platform: limitlessled
     bridges:
@@ -142,28 +183,19 @@ light:
           fade: off
   - platform: rfxtrx
     automatic_add: true
-    
+
 zwave:
   usb_path: /dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0
-  network_key: "0x4A, 0x4A, 0x64, 0xDD, 0x0E, 0xC4, 0xB3, 0xEC, 0x4C, 0x9F, 0x24, 0x8F, 0x2C, 0x4A, 0xC0, 0x04"
-  
-# mqtt:
-  # broker: m20.cloudmqtt.com
-  # port: 25895
-  # username: cnxordxv
-  # password: 0hVNHAToADl0
-  
+  network_key: !secret zwave_key
+
 device_tracker:
   - platform: asuswrt
     host: 192.168.1.1
     username: admin
-    password: 3a0eaddde6
+    ssh_key: /config/ssh/ssh_asus_private_key
     interval_seconds: 10
     consider_home: 180
-  # - platform: mqtt_json
-    # devices:
-      # my_device: zanzito/Rik/location
-    
+
 input_select:
   mode:
     name: Mode
@@ -182,19 +214,19 @@ input_select:
      - On
     initial: Auto
     icon: mdi:lightbulb-on-outline
-  
+
 maxcube:
    host: 192.168.1.209
-   
+
 xiaomi_aqara:
   discovery_retry: 5
   gateways:
-    - mac:
-      key: pq1opqxx5rpoqds9
-      
+    - mac: 28:6C:07:88:BB:1D
+      key: !secret xiaomi_key
+
 tradfri:
   host: 192.168.1.118
-  
+
 cover:
   - platform: rfxtrx
     devices:
@@ -202,9 +234,11 @@ cover:
         name: Rolluiken slaapkamer
       071a000001010102:
         name: Rolluiken slaapkamer Fedde
-        
+
 binary_sensor:
   platform: rfxtrx
+  automatic_add: True
+  debug: True
   devices:
     091300111078ae013960:
       name: Achterdeur open
@@ -214,10 +248,14 @@ binary_sensor:
       name: Voordeur open
     09130006eb36a7013b60:
       name: Voordeur dicht
+    0a5207b55f0e00bf290179:
+      name: Binnendeur open
+    0a5207ae640e00a72a0179:
+      name: Binnendeur dicht
 
 media_player:
   - platform: cast
-  
+
 history_graph:
   gr1:
     name: "Energie"
@@ -225,6 +263,8 @@ history_graph:
       - sensor.power_consumption
       - sensor.power_generation
       - sensor.hourly_gas_consumption
+      - sensor.grid_now
+      - sensor.grid_today
   gr2:
     name: "Temperatuur"
     entities:
@@ -235,18 +275,9 @@ history_graph:
       - climate.slaapkamer_slaapkamer
       - climate.speelkamer_speelkamer
       - sensor.temperatuur_buiten_temperature
-      
-notify:
-  - name: 'Pushover'
-    platform: pushover
-    api_key: ah27r7zkf4am71szaphaupk6cf49as
-    user_key: uRwtniGoLPSQSAhNxaTXciDgC12hfn
-  # - name: Rik
-    # platform: zanzito
-    # device-name: Rik
-    
-#alarm_control_panel: !include alarm.yaml
-#panel_custom: !include panel_custom.yaml
+
+alarm_control_panel: !include alarm.yaml
+panel_custom: !include panel_custom.yaml
 
 zone:
   # This will override the default home zone
@@ -255,12 +286,13 @@ zone:
     longitude: 5.13299
     radius: 50
     icon: mdi:account-multiple
-    
+
 remote:
   - platform: harmony
     name: Woonkamer
     host: 10.168.1.120
-    
+    activity: 'Naar muziek luisteren'
+
 timer:
   buiten:
     duration: '00:01:00'
@@ -268,6 +300,55 @@ timer:
     duration: '00:01:00'
   overloop:
     duration: '00:01:00'
-    
+
 recorder:
   db_url: mysql://hass:Rickyboy22@core-mariadb/homeassistant
+
+emoncms_history:
+  api_key: !secret emoncms_key
+  url: https://emoncms.org
+  inputnode: 1
+  whitelist:
+    - sensor.boiler_current
+    - sensor.boiler_energy
+    - sensor.boiler_power
+    - sensor.boiler_voltage
+    - sensor.diepvries__energy
+    - sensor.diepvries__power
+    - sensor.gas_consumption
+    - sensor.grid_now
+    - sensor.grid_today
+    - sensor.hourly_gas_consumption
+    - sensor.keukenboiler__energy
+    - sensor.keukenboiler__power
+    - sensor.keukenboiler__power_2
+    - sensor.luminance
+    - sensor.power_consumption
+    - sensor.power_consumption_low
+    - sensor.power_consumption_normal
+    - sensor.power_consumption_total
+    - sensor.power_generation
+    - sensor.power_production
+    - sensor.power_production_low
+    - sensor.power_production_normal
+    - sensor.power_production_total
+    - sensor.pvoutput
+    - sensor.relative_humidity
+    - sensor.temperature
+    - sensor.temperatuur_badkamer_temperature
+    - sensor.temperatuur_buiten_temperature
+    - sensor.temperatuur_slaapkamer_morris_temperature
+
+input_boolean:
+  morris1:
+    name: Slaapkamer Morris schakelaar 1
+  morris2:
+    name: Slaapkamer Morris schakelaar 2
+
+panel_iframe:
+  opwek:
+    title: 'Opwek'
+    url: 'https://emoncms.org/app/view?name=My%20Solar&readkey=8e3aab86de5cbd7455bfc27da051d0f7&embed=1'
+  verbruik:
+    title: 'Verbruik'
+    url: 'https://emoncms.org/app/view?name=My%20Electric&readkey=8e3aab86de5cbd7455bfc27da051d0f7&embed=1'

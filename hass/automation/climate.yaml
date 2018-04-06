@@ -1,0 +1,40 @@
+# - alias: "[Climate] Verwarming Fedde omhoog"
+#   trigger:
+#     - platform: time
+#       at: '17:00:00'
+#   action:
+#     - service: climate.set_temperature
+#       data:
+#         entity_id: climate.babykamer_babykamer
+#         temperature: 15
+
+- alias: "[Climate] Verwarming Fedde omlaag"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode
+      to: 'False'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.babykamer_babykamer
+        temperature: 5
+
+# - alias: "[Climate] Verwarming speelkamer omhoog"
+#   trigger:
+#     - platform: time
+#       at: '10:00:00'
+#   action:
+#     - service: climate.set_temperature
+#       data:
+#         entity_id: climate.speelkamer_speelkamer
+#         temperature: 18
+
+- alias: "[Climate] Verwarming speelkamer omlaag"
+  trigger:
+    - platform: time
+      at: '20:00:00'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.speelkamer_speelkamer
+        temperature: 5

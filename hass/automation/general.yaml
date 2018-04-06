@@ -1,0 +1,242 @@
+- alias: "[General] Mode on"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'True'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'Auto'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.woonkamer
+        operation_mode: 'heat'
+    - service: switch.turn_on
+      entity_id:
+       - switch.boiler_switch
+       - switch.keukenboiler__switch
+
+- alias: "[General] Mode auto - Home"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode
+    - platform: state
+      entity_id: device_tracker.telefoonrik
+    - platform: state
+      entity_id: device_tracker.telefoonsabine
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'Auto'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: device_tracker.telefoonrik
+        state: 'home'
+      - condition: state
+        entity_id: device_tracker.telefoonsabine
+        state: 'home'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'Auto'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.woonkamer
+        operation_mode: 'heat'
+    - service: switch.turn_on
+      entity_id:
+       - switch.boiler_switch
+       - switch.keukenboiler__switch
+
+- alias: "[General] Mode auto - Away"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode
+    - platform: state
+      entity_id: device_tracker.telefoonrik
+    - platform: state
+      entity_id: device_tracker.telefoonsabine
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'Auto'
+    - condition: state
+      entity_id: device_tracker.telefoonrik
+      state: 'not_home'
+    - condition: state
+      entity_id: device_tracker.telefoonsabine
+      state: 'not_home'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'False'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.woonkamer
+        operation_mode: 'off'
+    - service: light.turn_off
+      entity_id:
+       - light.verlichting_speelkamer_level
+    - service: switch.turn_on
+      entity_id:
+       - switch.boiler_switch
+       - switch.keukenboiler__switch
+
+- alias: "[General] Simulation - Random on"
+  trigger:
+    platform: time
+    at: '9:18:00'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'Sim'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'Auto'
+
+- alias: "[General] Simulation - Random off"
+  trigger:
+    platform: time
+    at: '23:08:00'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'Sim'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'False'
+
+- alias: "[General] Mode off"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'False'
+    - condition: state
+      entity_id: input_select.mode
+      state: 'Sim'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'False'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.woonkamer
+        operation_mode: 'off'
+    - service: remote.turn_off
+      entity_id:
+       - remote.harmony_hub
+    - service: switch.turn_off
+      entity_id:
+       - switch.boiler_switch
+       - switch.keukenboiler__switch
+
+- alias: "[General] Zwave heal"
+  trigger:
+    platform: time
+    at: '2:30:00'
+  action:
+    service: zwave.heal_network
+
+- alias: "[General] Mindergas upload"
+  trigger:
+    platform: time
+    at: '2:00:00'
+  action:
+    service: switch.turn_on
+    entity_id: switch.mindergas
+
+- alias: "[General] Deurbel"
+  trigger:
+    - platform: event
+      event_type: button_pressed
+      event_data: {'state': 'group on', 'entity_id': 'switch.deurbel'}
+  action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: 28:6C:07:88:BB:1D
+        ringtone_id: 10
+        ringtone_vol: 60
+    - service: switch.turn_on
+      entity_id: switch.say_deurbel
+
+- alias: "[General] Trigger alarm bij armed away"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.achterdeur_open
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.sensor
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.voordeur_open
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001656748
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001d9752b
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: alarm_control_panel.alarm
+      state: armed_away
+  action:
+    service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.alarm
+
+- alias: "[General] Hond blaft bij alarm"
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.alarm
+      to: 'triggered'
+  action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: 28:6C:07:88:BB:1D
+        ringtone_id: 8
+        ringtone_vol: 100
+    - service: script.zanzito_send_notification
+      data:
+        dest_id: 'Rik'
+        message: 'Alarm'
+
+- alias: "[General] Rook gedetecteerd"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.smoke_sensor_158d00015b1821
+      to: 'on'
+  action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: 28:6C:07:88:BB:1D
+        ringtone_id: 7
+        ringtone_vol: 100
+    - service: switch.turn_on
+      entity_id: switch.say_rook

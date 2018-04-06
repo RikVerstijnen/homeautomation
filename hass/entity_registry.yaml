@@ -1,0 +1,280 @@
+binary_sensor.sensor_woonkamer_sensor:
+  name:
+  platform: zwave
+  unique_id: 4-72057594110017536
+sensor.sensor_woonkamer_temperature:
+  name:
+  platform: zwave
+  unique_id: 4-72057594110033938
+sensor.sensor_woonkamer_luminance:
+  name:
+  platform: zwave
+  unique_id: 4-72057594110033970
+sensor.sensor_woonkamer_relative_humidity:
+  name:
+  platform: zwave
+  unique_id: 4-72057594110034002
+sensor.sensor_woonkamer_alarm_type:
+  name:
+  platform: zwave
+  unique_id: 4-72057594111082497
+sensor.sensor_woonkamer_alarm_level:
+  name:
+  platform: zwave
+  unique_id: 4-72057594111082513
+sensor.sensor_woonkamer_sourcenodeid:
+  name:
+  platform: zwave
+  unique_id: 4-72057594111082529
+sensor.sensor_woonkamer_burglar:
+  name:
+  platform: zwave
+  unique_id: 4-72057594111082657
+sensor.alarm_type:
+  name:
+  platform: zwave
+  unique_id: 5-72057594127859713
+sensor.alarm_level:
+  name:
+  platform: zwave
+  unique_id: 5-72057594127859729
+binary_sensor.sensor:
+  name:
+  platform: zwave
+  unique_id: 5-72057594126794752
+sensor.luminance:
+  name: Lichtsterkte
+  platform: zwave
+  unique_id: 5-72057594126811186
+sensor.temperature:
+  name:
+  platform: zwave
+  unique_id: 5-72057594126811154
+sensor.relative_humidity:
+  name:
+  platform: zwave
+  unique_id: 5-72057594126811218
+switch.switch:
+  name:
+  platform: zwave
+  unique_id: 6-72057594143391744
+sensor.unknown:
+  name:
+  platform: zwave
+  unique_id: 6-72057594143604738
+switch.qubino_zmnhbdx_flush_2_relays_switch:
+  name:
+  platform: zwave
+  unique_id: 6-144115188181319680
+sensor.qubino_zmnhbdx_flush_2_relays_unknown:
+  name:
+  platform: zwave
+  unique_id: 6-144115188181532674
+switch.qubino_zmnhbdx_flush_2_relays_switch_2:
+  name:
+  platform: zwave
+  unique_id: 6-216172782219247616
+sensor.qubino_zmnhbdx_flush_2_relays_unknown_2:
+  name:
+  platform: zwave
+  unique_id: 6-216172782219460610
+sensor.qubino_zmnhbdx_flush_2_relays_power:
+  name:
+  platform: zwave
+  unique_id: 6-72057594143604866
+sensor.qubino_zmnhbdx_flush_2_relays_power_2:
+  name:
+  platform: zwave
+  unique_id: 6-144115188181532802
+sensor.qubino_zmnhbdx_flush_2_relays_power_3:
+  name:
+  platform: zwave
+  unique_id: 6-216172782219460738
+sensor.qubino_zmnhbdx_flush_2_relays_previous_reading:
+  name:
+  platform: zwave
+  unique_id: 6-72057594143604754
+sensor.qubino_zmnhbdx_flush_2_relays_previous_reading_2:
+  name:
+  platform: zwave
+  unique_id: 6-144115188181532690
+light.level:
+  name:
+  platform: zwave
+  unique_id: 7-72057594160185345
+switch.switch_2:
+  name:
+  platform: zwave
+  unique_id: 7-72057594160168960
+sensor.unknown_2:
+  name:
+  platform: zwave
+  unique_id: 7-72057594160381954
+sensor.alarm_type_2:
+  name:
+  platform: zwave
+  unique_id: 7-72057594161414145
+sensor.alarm_level_2:
+  name:
+  platform: zwave
+  unique_id: 7-72057594161414161
+sensor.fibaro_system_fgwpef_wall_plug_power:
+  name:
+  platform: zwave
+  unique_id: 7-72057594160382082
+sensor.fibaro_system_fgwpef_wall_plug_exporting:
+  name:
+  platform: zwave
+  unique_id: 7-72057594160382464
+sensor.fibaro_system_fgwpef_wall_plug_sourcenodeid:
+  name:
+  platform: zwave
+  unique_id: 7-72057594161414177
+sensor.fibaro_system_fgwpef_wall_plug_power_management:
+  name:
+  platform: zwave
+  unique_id: 7-72057594161414321
+sensor.verlichting_buiten_previous_reading:
+  name:
+  platform: zwave
+  unique_id: 6-216172782219460626
+switch.diepvries__switch:
+  name:
+  platform: zwave
+  unique_id: 2-72057594076282880
+sensor.diepvries__energy:
+  name:
+  platform: zwave
+  unique_id: 2-72057594076495874
+sensor.diepvries__previous_reading:
+  name:
+  platform: zwave
+  unique_id: 2-72057594076495890
+sensor.diepvries__power:
+  name:
+  platform: zwave
+  unique_id: 2-72057594076496002
+sensor.diepvries__previous_reading_2:
+  name:
+  platform: zwave
+  unique_id: 2-72057594076496018
+switch.boiler_switch:
+  name:
+  platform: zwave
+  unique_id: 8-72057594176946176
+sensor.boiler_energy:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177159170
+sensor.boiler_previous_reading:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177159186
+sensor.boiler_power:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177159298
+sensor.boiler_voltage:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177159426
+sensor.boiler_current:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177159490
+switch.keukenboiler__switch:
+  name:
+  platform: zwave
+  unique_id: 9-72057594193723392
+sensor.keukenboiler__power:
+  name:
+  platform: zwave
+  unique_id: 9-72057594193920066
+sensor.keukenboiler__energy:
+  name:
+  platform: zwave
+  unique_id: 9-72057594193936386
+sensor.keukenboiler__power_2:
+  name:
+  platform: zwave
+  unique_id: 9-72057594193936514
+sensor.keukenboiler__exporting:
+  name:
+  platform: zwave
+  unique_id: 9-72057594193936896
+switch.verlichting_speelkamer__switch:
+  name:
+  platform: zwave
+  unique_id: 10-72057594210500608
+light.verlichting_speelkamer__level:
+  name:
+  platform: zwave
+  unique_id: 10-72057594210516993
+sensor.verlichting_speelkamer__energy:
+  name:
+  platform: zwave
+  unique_id: 10-72057594210713602
+sensor.verlichting_speelkamer__power:
+  name:
+  platform: zwave
+  unique_id: 10-72057594210713730
+sensor.verlichting_speelkamer__exporting:
+  name:
+  platform: zwave
+  unique_id: 10-72057594210714112
+sensor.verlichting_speelkamer__alarm_type:
+  name:
+  platform: zwave
+  unique_id: 10-72057594211745793
+sensor.verlichting_speelkamer__alarm_level:
+  name:
+  platform: zwave
+  unique_id: 10-72057594211745809
+sensor.verlichting_speelkamer__sourcenodeid:
+  name:
+  platform: zwave
+  unique_id: 10-72057594211745825
+sensor.verlichting_speelkamer__power_management:
+  name:
+  platform: zwave
+  unique_id: 10-72057594211745969
+binary_sensor.motion_sensor_158d0001656748:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001656748
+binary_sensor.smoke_sensor_158d00015b1821:
+  name:
+  platform: xiaomi_aqara
+  unique_id: alarm158d00015b1821
+binary_sensor.motion_sensor_158d0001d9752b:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001d9752b
+sensor.illumination_286c0788bb1d:
+  name:
+  platform: xiaomi_aqara
+  unique_id: illumination286c0788bb1d
+media_player.woonkamer:
+  name:
+  platform: cast
+  unique_id: 9db79da8-5ab3-a6bc-b693-9ad14e69dbed
+light.gateway_light_286c0788bb1d:
+  name:
+  platform: xiaomi_aqara
+  unique_id: rgb286c0788bb1d
+media_player.slaapkamer:
+  name:
+  platform: cast
+  unique_id: ef5d315d-aae0-ff94-8899-7bf00360e9f3
+sensor.alarm_type_3:
+  name:
+  platform: zwave
+  unique_id: 11-72057594228523009
+sensor.alarm_level_3:
+  name:
+  platform: zwave
+  unique_id: 11-72057594228523025
+switch.switch_3:
+  name:
+  platform: zwave
+  unique_id: 11-72057594227277824

@@ -82,3 +82,10 @@ climate.speelkamer_speelkamer:
   friendly_name: Speelkamer
 binary_sensor.smoke_sensor_158d00015b1821:
   friendly_name: Rookdetector
+sensor.energy_generation:
+  friendly_name: Vandaag teruggeleverd
+sensor.grid_now:
+  friendly_name: Opwek nu
+sensor.grid_today:
+  friendly_name: Vandaag opgewekt
+group.automations: {}

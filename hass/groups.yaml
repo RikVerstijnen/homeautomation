@@ -26,7 +26,7 @@
       - group.spotjes
       - light.level
       - switch.keuken
-      - light.verlichting_speelkamer_level
+      - light.verlichting_speelkamer__level
       - switch.qubino_zmnhbdx_flush_2_relays_switch
       - light.hal
       - group.overloop
@@ -44,12 +44,14 @@
     entities:
       - cover.rolluiken_slaapkamer
       - cover.rolluiken_slaapkamer_fedde
-  boiler:
-    name: Boiler
+  apparaten:
+    name: Apparaten
     view: no
     entities:
       - switch.boiler_switch
-      
+      - switch.keukenboiler__switch
+      - switch.ketel
+
   default_view:
     view: yes
     entities:
@@ -58,31 +60,39 @@
       - binary_sensor.achterdeur_open
       - binary_sensor.voordeur_dicht
       - binary_sensor.voordeur_open
+      - binary_sensor.binnendeur_dicht
+      - binary_sensor.binnendeur_open
       - binary_sensor.motion_sensor_158d0001656748
       - binary_sensor.motion_sensor_158d0001d9752b
       - binary_sensor.buitensensor_sensor
-      - device_tracker.android618bdafece7c66a8
-      - device_tracker.samsunggalaxys7
+      - device_tracker.telefoonrik
+      - device_tracker.telefoonsabine
       - binary_sensor.smoke_sensor_158d00015b1821
       - group.mode
       - group.verlichting
       - group.verwarming
       - group.rolluiken
-      - group.boiler
+      - group.apparaten
       - remote.harmony_hub
       - alarm_control_panel.house
-   
+
   energie:
     name: Energie
     view: yes
     entities:
       - history_graph.energie
       - sensor.hourly_gas_consumption
+      - sensor.aeotec_zw075_smart_switch_gen5_voltage
       - sensor.power_consumption
-      - sensor.power_generation
       - sensor.energy_generation
+      - sensor.grid_now
+      - sensor.grid_today
       - sensor.boiler_power
-      - sensor.boiler_voltage
+      - sensor.keukenboiler__power
+      - sensor.diepvries__power
+      - sensor.boiler_energy
+      - sensor.keukenboiler__energy
+      - sensor.diepvries__energy
   temperatuur:
     name: Temperatuur
     view: yes

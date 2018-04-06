@@ -1,126 +1,99 @@
 
-cnxordxv_rik:
+harmonyhub:
   hide_if_away: false
   icon:
-  mac:
-  name: Rik
+  mac: 00:04:20:F1:99:3C
+  name: HarmonyHub
   picture:
   track: false
-  vendor:
+  vendor: Slim Devices, Inc.
 
-cnxordxv_sabine:
+wifilamp:
   hide_if_away: false
   icon:
-  mac:
-  name: Sabine
-  picture:
-  track: false
-  vendor:
-
-cnxordxv_sabinr:
-  hide_if_away: false
-  icon:
-  mac:
-  name: cnxordxv
-  picture:
-  track: false
-  vendor:
-
-mhf_wifi_xxl_258c:
-  hide_if_away: false
-  icon:
-  mac: 02:22:6C:02:25:8C
-  name: MHF Wifi XXL 258C
+  mac: AC:CF:23:9E:36:64
+  name: WifiLamp
   picture:
   track: false
   vendor: unknown
 
-8018a7e469b8:
+migateway:
   hide_if_away: false
   icon:
-  mac: 80:18:A7:E4:69:B8
-  name: --
+  mac: 28:6C:07:88:BB:1D
+  name: MiGateway
   picture:
   track: false
-  vendor: Samsung Electronics Co.,Ltd
+  vendor: XIAOMI Electronics,CO.,LTD
 
-samsunggalaxys7:
+desktopkjp142j:
+  hide_if_away: false
+  icon:
+  mac: 08:D4:0C:42:F4:EB
+  name: DESKTOP-KJP142J
+  picture:
+  track: false
+  vendor: unknown
+
+b827eb4f030d:
+  hide_if_away: false
+  icon:
+  mac: B8:27:EB:4F:03:0D
+  name: b827eb4f030d
+  picture:
+  track: false
+  vendor: unknown
+
+001132303497:
+  hide_if_away: false
+  icon:
+  mac: 00:11:32:30:34:97
+  name: 001132303497
+  picture:
+  track: false
+  vendor: unknown
+
+707781607b94:
+  hide_if_away: false
+  icon:
+  mac: 70:77:81:60:7B:94
+  name: 707781607b94
+  picture:
+  track: false
+  vendor: unknown
+
+max:
+  hide_if_away: false
+  icon:
+  mac: 00:1A:22:03:61:95
+  name: Max
+  picture:
+  track: false
+  vendor: unknown
+
+telefoonsabine:
   hide_if_away: false
   icon:
   mac: 2C:0E:3D:90:35:E4
-  name: Sabine
+  name: sabine
   picture:
   track: true
   vendor: SAMSUNG ELECTRO-MECHANICS(THAILAND)
 
-gwdcefcab84075:
+telefoonrik:
   hide_if_away: false
   icon:
-  mac: DC:EF:CA:B8:40:75
-  name: GW-DCEFCAB84075
+  mac: 94:65:2D:7C:A9:F6
+  name: rik
   picture:
-  track: false
-  vendor: Murata Manufacturing Co., Ltd.
-
-70b3d53a5788:
-  hide_if_away: false
-  icon:
-  mac: 70:B3:D5:3A:57:88
-  name: --
-  picture:
-  track: false
-  vendor: IEEE Registration Authority
+  track: true
+  vendor: unknown
 
 verlichtingkeuken:
   hide_if_away: false
   icon:
   mac: 5C:CF:7F:83:30:57
   name: VerlichtingKeuken
-  picture:
-  track: false
-  vendor: Espressif Inc.
-
-keq0535936:
-  hide_if_away: false
-  icon:
-  mac: 00:1A:22:03:61:95
-  name: KEQ0535936
-  picture:
-  track: false
-  vendor: eQ-3 Entwicklung GmbH
-
-hppc:
-  hide_if_away: false
-  icon:
-  mac: 10:0B:A9:41:DD:30
-  name: HP-PC
-  picture:
-  track: false
-  vendor: Intel Corporate
-
-diskstation:
-  hide_if_away: false
-  icon:
-  mac: 00:11:32:30:34:97
-  name: DISKSTATION
-  picture:
-  track: false
-  vendor: Synology Incorporated
-
-lumigatewayv3_miio52246946:
-  hide_if_away: false
-  icon:
-  mac: 28:6C:07:88:BB:1D
-  name: lumi-gateway-v3 miio52246946
-  picture:
-  track: false
-  vendor: XIAOMI Electronics,CO.,LTD
-
-002369b5bb5b:
-  hide_if_away: false
-  icon:
-  mac: 00:23:69:B5:BB:5B
-  name: --
   picture:
   track: false
   vendor: unknown
@@ -132,25 +105,34 @@ chromecast:
   name: Chromecast
   picture:
   track: false
-  vendor: unknown
+  vendor: Google, Inc.
 
-00ce39b17298:
+mhf_wifi_xxl_30c4:
   hide_if_away: false
   icon:
-  mac: 00:CE:39:B1:72:98
-  name: --
+  mac: 02:22:6C:02:30:C4
+  name: MHF Wifi XXL 30C4
   picture:
   track: false
   vendor: unknown
 
-android80e99fb963293fef:
+android7edfa58c4cac68af:
   hide_if_away: false
   icon:
   mac: D8:50:E6:8C:33:6F
-  name: android-80e99fb963293fef
+  name: rik
   picture:
   track: false
   vendor: unknown
+
+hppc:
+  hide_if_away: false
+  icon:
+  mac: 10:0B:A9:41:DD:30
+  name: HP-PC
+  picture:
+  track: false
+  vendor: Intel Corporate
 
 target:
   hide_if_away: false
@@ -159,13 +141,67 @@ target:
   name: target
   picture:
   track: false
-  vendor: unknown
+  vendor: SolarEdge Technologies
 
-caa96e336839:
+8018a7e469b8:
   hide_if_away: false
   icon:
-  mac: CA:A9:6E:33:68:39
-  name: --
+  mac: 80:18:A7:E4:69:B8
+  name: 8018a7e469b8
+  picture:
+  track: false
+  vendor: Samsung Electronics Co.,Ltd
+
+chromecast_2:
+  hide_if_away: false
+  icon:
+  mac: 6C:AD:F8:E2:29:DD
+  name: Chromecast
+  picture:
+  track: false
+  vendor: AzureWave Technology Inc.
+
+tradfri:
+  hide_if_away: false
+  icon:
+  mac: DC:EF:CA:B8:40:75
+  name: Tradfri
+  picture:
+  track: false
+  vendor: Murata Manufacturing Co., Ltd.
+
+android38f35901c31e9943:
+  hide_if_away: false
+  icon:
+  mac: 58:48:22:92:FF:9F
+  name: android-38f35901c31e9943
+  picture:
+  track: false
+  vendor: Sony Mobile Communications AB
+
+relais:
+  hide_if_away: false
+  icon:
+  mac: 70:B3:D5:3A:57:88
+  name: Relais
+  picture:
+  track: false
+  vendor: IEEE Registration Authority
+
+rikverstijnen:
+  hide_if_away: false
+  icon:
+  mac: E4:A4:71:EF:91:6A
+  name: RIK-VERSTIJNEN
+  picture:
+  track: false
+  vendor: Intel Corporate
+
+android2cbcb62b629cdab1:
+  hide_if_away: false
+  icon:
+  mac: 18:21:95:8E:91:47
+  name: android-2cbcb62b629cdab1
   picture:
   track: false
   vendor: unknown
@@ -177,106 +213,7 @@ ipadvanrik:
   name: iPad-van-Rik
   picture:
   track: false
-  vendor: unknown
-
-accf239e3664:
-  hide_if_away: false
-  icon:
-  mac: AC:CF:23:9E:36:64
-  name: --
-  picture:
-  track: false
-  vendor: unknown
-
-hassbian:
-  hide_if_away: false
-  icon:
-  mac: B8:27:EB:4F:03:0D
-  name: hassbian
-  picture:
-  track: false
-  vendor: unknown
-
-android618bdafece7c66a8:
-  hide_if_away: false
-  icon:
-  mac: 94:65:2D:7C:A9:F6
-  name: Rik
-  picture:
-  track: true
-  vendor: OnePlus Technology (Shenzhen) Co., Ltd
-
-mhf_wifi_xxl_30c4:
-  hide_if_away: false
-  icon:
-  mac: 02:22:6C:02:30:C4
-  name: MHF Wifi XXL 30C4
-  picture:
-  track: true
-  vendor: unknown
-
-chromecast_2:
-  hide_if_away: false
-  icon:
-  mac: 6C:AD:F8:E2:29:DD
-  name: Chromecast
-  picture:
-  track: true
-  vendor: unknown
-
-android38f35901c31e9943:
-  hide_if_away: false
-  icon:
-  mac: 58:48:22:92:FF:9F
-  name: android-38f35901c31e9943
-  picture:
-  track: true
-  vendor: Sony Mobile Communications AB
-
-desktopkjp142j:
-  hide_if_away: false
-  icon:
-  mac: 06:E8:4A:79:17:D2
-  name: DESKTOP-KJP142J
-  picture:
-  track: true
-  vendor: unknown
-
-androiddbd4346b3cb3db2d:
-  hide_if_away: false
-  icon:
-  mac: 78:C3:E9:04:95:DA
-  name: android-dbd4346b3cb3db2d
-  picture:
-  track: true
-  vendor: Samsung Electronics Co.,Ltd
-
-android2cbcb62b629cdab1:
-  hide_if_away: false
-  icon:
-  mac: 18:21:95:8E:91:47
-  name: android-2cbcb62b629cdab1
-  picture:
-  track: true
-  vendor: Samsung Electronics Co.,Ltd
-
-harmonyhub:
-  hide_if_away: false
-  icon:
-  mac: 00:04:20:F1:99:3C
-  name: HarmonyHub
-  picture:
-  track: true
-  vendor: Slim Devices, Inc.
-
-desktopkjp142j_2:
-  hide_if_away: false
-  icon:
-  mac: 08:D4:0C:42:F4:EB
-  name: DESKTOP-KJP142J
-  picture:
-  track: true
-  vendor: Intel Corporate
+  vendor: Apple, Inc.
 
 androidb7517983c8b8079b:
   hide_if_away: false
@@ -284,25 +221,16 @@ androidb7517983c8b8079b:
   mac: 44:33:4C:89:73:6D
   name: android-b7517983c8b8079b
   picture:
-  track: true
+  track: false
   vendor: Shenzhen Bilian electronic CO.,LTD
 
-002369b5bb5c:
+mhf_wifi_xxl_258c:
   hide_if_away: false
   icon:
-  mac: 00:23:69:B5:BB:5C
-  name: 002369b5bb5c
+  mac: 02:22:6C:02:25:8C
+  name: MHF Wifi XXL 258C
   picture:
-  track: true
-  vendor: unknown
-
-androidfd1a21e589f18d36:
-  hide_if_away: false
-  icon:
-  mac: AC:22:0B:03:8D:99
-  name: android-fd1a21e589f18d36
-  picture:
-  track: true
+  track: false
   vendor: unknown
 
 iphonevanrob:
@@ -311,23 +239,23 @@ iphonevanrob:
   mac: 6C:4D:73:CA:E3:6D
   name: iPhone-van-Rob
   picture:
-  track: true
+  track: false
   vendor: Apple, Inc.
 
-707781607b94:
+androidd65ad78d830e5420:
   hide_if_away: false
   icon:
-  mac: 70:77:81:60:7B:94
-  name: 707781607b94
+  mac: 44:33:4C:88:F9:78
+  name: android-d65ad78d830e5420
   picture:
-  track: true
-  vendor: unknown
+  track: false
+  vendor: Shenzhen Bilian electronic CO.,LTD
 
-881fa1df0fed:
+b4a38268e285:
   hide_if_away: false
   icon:
-  mac: 88:1F:A1:DF:0F:ED
-  name: 881fa1df0fed
+  mac: B4:A3:82:68:E2:85
+  name: b4a38268e285
   picture:
   track: true
-  vendor: Apple, Inc.
+  vendor: Hangzhou Hikvision Digital Technology Co.,Ltd.

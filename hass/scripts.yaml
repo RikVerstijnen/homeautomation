@@ -8,3 +8,7 @@ zanzito_send_notification:
       qos: 1
       retain: 0
 
+mindergas:
+  alias: Upload to mindergas
+  sequence:
+    - service: shell_command.mindergas

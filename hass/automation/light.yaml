@@ -1,0 +1,296 @@
+- alias: "[Light] Auto lichtsterkte binnen"
+  trigger:
+    - platform: state
+      entity_id: sensor.luminance
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: and
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.luminance
+      below: 50
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'Auto'
+  action:
+    - service: light.turn_on
+      entity_id:
+       - light.level
+       - light.lamp_keuken
+       - light.lamp_achter
+       - light.lamp_tussen
+       - light.lamp_zithoek
+      data_template:
+        brightness: '{{ 150 - (states("sensor.luminance") | int) }}'
+
+- alias: "[Light] Lampen aan buiten"
+  trigger:
+    - platform: state
+      entity_id: sensor.luminance
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: and
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.luminance
+      below: 12
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'Auto'
+    - condition: state
+      entity_id: switch.qubino_zmnhbdx_flush_2_relays_switch
+      state: 'off'
+  action:
+    - service: switch.turn_on
+      entity_id:
+       - switch.qubino_zmnhbdx_flush_2_relays_switch
+
+- alias: "[Light] Lampen uit binnen"
+  trigger:
+    - platform: state
+      entity_id: sensor.luminance
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: or
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.luminance
+      above: 50
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'False'
+  action:
+    - service: light.turn_off
+      entity_id:
+       - light.level
+       - light.lamp_keuken
+       - light.lamp_achter
+       - light.lamp_tussen
+       - light.lamp_zithoek
+       - light.verlichting_speelkamer_level
+
+- alias: "[Light] Lampen uit buiten"
+  trigger:
+    - platform: state
+      entity_id: sensor.luminance
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: and
+    conditions:
+    - condition: or
+      conditions:
+      - condition: numeric_state
+        entity_id: sensor.luminance
+        above: 12
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'False'
+    - condition: state
+      entity_id: switch.qubino_zmnhbdx_flush_2_relays_switch
+      state: 'on'
+  action:
+    - service: switch.turn_off
+      entity_id:
+       - switch.qubino_zmnhbdx_flush_2_relays_switch
+
+- alias: "[Light] Lampen volledig aan binnen"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'True'
+  action:
+    - service: light.turn_on
+      entity_id:
+       - light.level
+       - light.lamp_keuken
+       - light.lamp_achter
+       - light.lamp_tussen
+       - light.lamp_zithoek
+      data:
+        brightness: 100
+
+- alias: "[Light] Keukenlamp aan"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'True'
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'Auto'
+  action:
+    - service: switch.turn_on
+      entity_id:
+       - switch.keuken
+
+- alias: "[Light] Keukenlamp uit"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'False'
+  action:
+    - service: switch.turn_off
+      entity_id:
+       - switch.keuken
+
+- alias: "[Light] Lamp hal aan"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.voordeur_open
+      to: 'on'
+    - platform: event
+      event_type: button_pressed
+      event_data: {'state': 'group on', 'entity_id': 'switch.deurbel'}
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001656748
+      to: 'on'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.luminance
+      below: 30
+  action:
+    - service: light.turn_on
+      entity_id: light.hal
+      data:
+        brightness: 80
+    - service: timer.start
+      entity_id: timer.hal
+
+- alias: "[Light] Lamp hal uit"
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data: {'entity_id': 'timer.hal'}
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001656748
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: timer.hal
+      state: 'idle'
+    - condition: state
+      entity_id: binary_sensor.motion_sensor_158d0001656748
+      state: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.hal
+
+- alias: "[Light] Lamp overloop aan - Avond"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001d9752b
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'True'
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'Auto'
+    - condition: numeric_state
+      entity_id: sensor.luminance
+      below: 30
+  action:
+    - service: light.turn_on
+      entity_id: light.overloop_1
+      data:
+        brightness: 50
+    - service: light.turn_on
+      entity_id: light.overloop_2
+      data:
+        brightness: 50
+    - service: light.turn_on
+      entity_id: light.overloop_3
+      data:
+        brightness: 50
+    - service: timer.start
+      entity_id: timer.overloop
+
+- alias: "[Light] Lamp overloop aan - Nacht"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001d9752b
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'False'
+    - condition: numeric_state
+      entity_id: sensor.luminance
+      below: 30
+  action:
+    - service: light.turn_on
+      entity_id: light.overloop_1
+      data:
+        brightness: 50
+    - service: timer.start
+      entity_id: timer.overloop
+
+- alias: "[Light] Lamp overloop uit"
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data: {'entity_id': 'timer.overloop'}
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001d9752b
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: timer.overloop
+      state: 'idle'
+    - condition: state
+      entity_id: binary_sensor.motion_sensor_158d0001d9752b
+      state: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: light.overloop_1
+    - service: light.turn_off
+      entity_id: light.overloop_2
+    - service: light.turn_off
+      entity_id: light.overloop_3
+
+- alias: "[Light] [Temp] Test Sonoff touch Aan"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.morris1
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id:
+       - switch.keuken
+
+- alias: "[Light] [Temp] Test Sonoff touch Uit"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.morris1
+      to: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id:
+       - switch.keuken
