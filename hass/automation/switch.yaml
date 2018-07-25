@@ -1,0 +1,14 @@
+- alias: "[Switch] 1 single"
+  trigger:
+    platform: event
+    event_type: zwave.scene_activated
+    event_data:
+      object_id: zwave.aeotec_zw130_wallmote_quad
+      scene_id: 1
+      scene_data: 0
+  action:
+    service: xiaomi_aqara.play_ringtone
+    data:
+      gw_mac: 28:6C:07:88:BB:1D
+      ringtone_id: 10
+      ringtone_vol: 10

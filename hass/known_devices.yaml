@@ -259,3 +259,43 @@ b4a38268e285:
   picture:
   track: true
   vendor: Hangzhou Hikvision Digital Technology Co.,Ltd.
+
+rickverstijnen:
+  hide_if_away: false
+  icon:
+  mac: E4:70:B8:80:85:09
+  name: Rick-Verstijnen
+  picture:
+  track: true
+
+707781607b92:
+  hide_if_away: false
+  icon:
+  mac: 70:77:81:60:7B:92
+  name: 707781607b92
+  picture:
+  track: true
+
+ipad:
+  hide_if_away: false
+  icon:
+  mac: 34:AB:37:09:AB:8F
+  name: iPad
+  picture:
+  track: true
+
+hppc_2:
+  hide_if_away: false
+  icon:
+  mac: E4:11:5B:F3:94:A2
+  name: HP-PC
+  picture:
+  track: true
+
+38786202725e:
+  hide_if_away: false
+  icon:
+  mac: 38:78:62:02:72:5E
+  name: 38786202725e
+  picture:
+  track: true

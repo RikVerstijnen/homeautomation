@@ -13,11 +13,14 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
+python_script:
+
 logger:
   default: error
   logs:
-    homeassistant.components.maxcube: debug
-    homeassistant.components.rfxtrx: debug
+    #homeassistant.components.maxcube: debug
+    #homeassistant.components.rfxtrx: debug
+    homeassistant.components.zwave: debug
 
 # Enables the frontend
 frontend:
@@ -64,11 +67,15 @@ sensor:
       power_generation:
         value_template: '{% if is_state_attr("sensor.pvoutput", "power_generation", "NaN") %}0{% else %}{{ states.sensor.pvoutput.attributes.power_generation }}{% endif %}'
         friendly_name: 'Opwek nu'
-        unit_of_measurement: 'Watt'
+        unit_of_measurement: 'W'
       energy_generation:
         value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float/1000) }}{% endif %}'
         friendly_name: 'Vandaag opgewekt'
         unit_of_measurement: 'kWh'
+      real_consumption:
+        value_template: '{{sensor.power_consumption + (sensor.power_generation - sensor.power_production)}}'
+        friendly_name: 'Verbruik werkelijk nu'
+        unit_of_measurement: 'W'
 #RFXTRX
   - platform: rfxtrx
     devices:
@@ -128,6 +135,11 @@ switch:
       ketel:
         command_on: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0101"
         command_off: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0100"
+        friendly_name: "Ketel"
+      sproeier_achter:
+        command_on: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0201"
+        command_off: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0200"
+        friendly_name: "Achter"
       keuken:
         command_on: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOn"
         command_off: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOff"
@@ -216,7 +228,8 @@ input_select:
     icon: mdi:lightbulb-on-outline
 
 maxcube:
-   host: 192.168.1.209
+  gateways:
+    - host: 192.168.1.209
 
 xiaomi_aqara:
   discovery_retry: 5
@@ -338,6 +351,19 @@ emoncms_history:
     - sensor.temperatuur_badkamer_temperature
     - sensor.temperatuur_buiten_temperature
     - sensor.temperatuur_slaapkamer_morris_temperature
+
+influxdb:
+  # host: a0d7b954_influxdb
+  host: 192.168.1.200
+  port: 8086
+  database: homeassistant
+  username: homeassistant
+  password: !secret influx_password
+  max_retries: 3
+  default_measurement: state
+  include:
+      domains:
+         - sensor
 
 input_boolean:
   morris1:
