@@ -1,280 +1,640 @@
 binary_sensor.sensor_woonkamer_sensor:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 4-72057594110017536
 sensor.sensor_woonkamer_temperature:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 4-72057594110033938
 sensor.sensor_woonkamer_luminance:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 4-72057594110033970
 sensor.sensor_woonkamer_relative_humidity:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 4-72057594110034002
 sensor.sensor_woonkamer_alarm_type:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 4-72057594111082497
 sensor.sensor_woonkamer_alarm_level:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 4-72057594111082513
 sensor.sensor_woonkamer_sourcenodeid:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 4-72057594111082529
 sensor.sensor_woonkamer_burglar:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 4-72057594111082657
 sensor.alarm_type:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 5-72057594127859713
 sensor.alarm_level:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 5-72057594127859729
 binary_sensor.sensor:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 5-72057594126794752
 sensor.luminance:
+  config_entry_id:
   name: Lichtsterkte
   platform: zwave
   unique_id: 5-72057594126811186
 sensor.temperature:
-  name:
+  config_entry_id:
+  name: 'Beneden '
   platform: zwave
   unique_id: 5-72057594126811154
 sensor.relative_humidity:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 5-72057594126811218
 switch.switch:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 6-72057594143391744
 sensor.unknown:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 6-72057594143604738
 switch.qubino_zmnhbdx_flush_2_relays_switch:
-  name:
+  config_entry_id:
+  name: Buitenlamp
   platform: zwave
   unique_id: 6-144115188181319680
 sensor.qubino_zmnhbdx_flush_2_relays_unknown:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 6-144115188181532674
 switch.qubino_zmnhbdx_flush_2_relays_switch_2:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 6-216172782219247616
 sensor.qubino_zmnhbdx_flush_2_relays_unknown_2:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 6-216172782219460610
 sensor.qubino_zmnhbdx_flush_2_relays_power:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 6-72057594143604866
 sensor.qubino_zmnhbdx_flush_2_relays_power_2:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 6-144115188181532802
 sensor.qubino_zmnhbdx_flush_2_relays_power_3:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 6-216172782219460738
 sensor.qubino_zmnhbdx_flush_2_relays_previous_reading:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 6-72057594143604754
 sensor.qubino_zmnhbdx_flush_2_relays_previous_reading_2:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 6-144115188181532690
 light.level:
-  name:
+  config_entry_id:
+  name: Schemerlampen
   platform: zwave
   unique_id: 7-72057594160185345
 switch.switch_2:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 7-72057594160168960
 sensor.unknown_2:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 7-72057594160381954
 sensor.alarm_type_2:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 7-72057594161414145
 sensor.alarm_level_2:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 7-72057594161414161
 sensor.fibaro_system_fgwpef_wall_plug_power:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 7-72057594160382082
 sensor.fibaro_system_fgwpef_wall_plug_exporting:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 7-72057594160382464
 sensor.fibaro_system_fgwpef_wall_plug_sourcenodeid:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 7-72057594161414177
 sensor.fibaro_system_fgwpef_wall_plug_power_management:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 7-72057594161414321
 sensor.verlichting_buiten_previous_reading:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 6-216172782219460626
 switch.diepvries__switch:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 2-72057594076282880
 sensor.diepvries__energy:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 2-72057594076495874
 sensor.diepvries__previous_reading:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 2-72057594076495890
 sensor.diepvries__power:
-  name:
+  config_entry_id:
+  name: Diepvries
   platform: zwave
   unique_id: 2-72057594076496002
 sensor.diepvries__previous_reading_2:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 2-72057594076496018
 switch.boiler_switch:
-  name:
+  config_entry_id:
+  name: Boiler
   platform: zwave
   unique_id: 8-72057594176946176
 sensor.boiler_energy:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 8-72057594177159170
 sensor.boiler_previous_reading:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 8-72057594177159186
 sensor.boiler_power:
-  name:
+  config_entry_id:
+  name: Boiler
   platform: zwave
   unique_id: 8-72057594177159298
 sensor.boiler_voltage:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 8-72057594177159426
 sensor.boiler_current:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 8-72057594177159490
 switch.keukenboiler__switch:
-  name:
+  config_entry_id:
+  name: Keukenboiler
   platform: zwave
   unique_id: 9-72057594193723392
 sensor.keukenboiler__power:
-  name:
+  config_entry_id:
+  name: Keukenboiler
   platform: zwave
   unique_id: 9-72057594193920066
 sensor.keukenboiler__energy:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 9-72057594193936386
 sensor.keukenboiler__power_2:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 9-72057594193936514
 sensor.keukenboiler__exporting:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 9-72057594193936896
 switch.verlichting_speelkamer__switch:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594210500608
 light.verlichting_speelkamer__level:
-  name:
+  config_entry_id:
+  name: Speelkamer
   platform: zwave
   unique_id: 10-72057594210516993
 sensor.verlichting_speelkamer__energy:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594210713602
 sensor.verlichting_speelkamer__power:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594210713730
 sensor.verlichting_speelkamer__exporting:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594210714112
 sensor.verlichting_speelkamer__alarm_type:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594211745793
 sensor.verlichting_speelkamer__alarm_level:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594211745809
 sensor.verlichting_speelkamer__sourcenodeid:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594211745825
 sensor.verlichting_speelkamer__power_management:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 10-72057594211745969
 binary_sensor.motion_sensor_158d0001656748:
+  config_entry_id:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001656748
 binary_sensor.smoke_sensor_158d00015b1821:
+  config_entry_id:
   name:
   platform: xiaomi_aqara
   unique_id: alarm158d00015b1821
 binary_sensor.motion_sensor_158d0001d9752b:
+  config_entry_id:
   name:
   platform: xiaomi_aqara
   unique_id: status158d0001d9752b
 sensor.illumination_286c0788bb1d:
+  config_entry_id:
   name:
   platform: xiaomi_aqara
   unique_id: illumination286c0788bb1d
 media_player.woonkamer:
+  config_entry_id:
   name:
   platform: cast
   unique_id: 9db79da8-5ab3-a6bc-b693-9ad14e69dbed
 light.gateway_light_286c0788bb1d:
+  config_entry_id:
   name:
   platform: xiaomi_aqara
   unique_id: rgb286c0788bb1d
 media_player.slaapkamer:
+  config_entry_id:
   name:
   platform: cast
   unique_id: ef5d315d-aae0-ff94-8899-7bf00360e9f3
 sensor.alarm_type_3:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 11-72057594228523009
 sensor.alarm_level_3:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 11-72057594228523025
 switch.switch_3:
+  config_entry_id:
   name:
   platform: zwave
   unique_id: 11-72057594227277824
+sensor.pressure_158d000227255b:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: pressure158d000227255b
+sensor.humidity_158d000227255b:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d000227255b
+sensor.temperature_158d000227255b:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d000227255b
+zwave.aeotec_dsa02203_zstick_s2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-1
+sensor.alarm_type_4:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 2-72057594077528065
+sensor.alarm_level_4:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 2-72057594077528081
+zwave.greenwave_powernode_1_port:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-2
+sensor.unknown_3:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-72057594227490818
+switch.greenwave_powernode_6_port_switch:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-144115188265205760
+sensor.greenwave_powernode_6_port_unknown:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-144115188265418754
+switch.greenwave_powernode_6_port_switch_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-216172782303133696
+sensor.greenwave_powernode_6_port_unknown_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-216172782303346690
+switch.greenwave_powernode_6_port_switch_3:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-288230376341061632
+sensor.greenwave_powernode_6_port_unknown_3:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-288230376341274626
+switch.greenwave_powernode_6_port_switch_4:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-360287970378989568
+sensor.greenwave_powernode_6_port_unknown_4:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-360287970379202562
+switch.greenwave_powernode_6_port_switch_5:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-432345564416917504
+sensor.greenwave_powernode_6_port_unknown_5:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-432345564417130498
+sensor.aeotec_zw074_multisensor_gen5_sourcenodeid:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 5-72057594127859745
+sensor.aeotec_zw074_multisensor_gen5_burglar:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 5-72057594127859873
+sensor.greenwave_powernode_6_port_power:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-72057594227490946
+sensor.greenwave_powernode_6_port_power_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-144115188265418882
+sensor.greenwave_powernode_6_port_power_3:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-216172782303346818
+sensor.greenwave_powernode_6_port_power_4:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-288230376341274754
+sensor.greenwave_powernode_6_port_power_5:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-360287970379202690
+sensor.greenwave_powernode_6_port_power_6:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-432345564417130626
+sensor.greenwave_powernode_6_port_previous_reading:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-72057594227490834
+sensor.greenwave_powernode_6_port_previous_reading_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-72057594227490962
+sensor.greenwave_powernode_6_port_previous_reading_3:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-144115188265418770
+sensor.greenwave_powernode_6_port_previous_reading_4:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-144115188265418898
+sensor.greenwave_powernode_6_port_previous_reading_5:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-216172782303346706
+sensor.greenwave_powernode_6_port_previous_reading_6:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-216172782303346834
+sensor.greenwave_powernode_6_port_previous_reading_7:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-288230376341274642
+sensor.greenwave_powernode_6_port_previous_reading_8:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-288230376341274770
+sensor.greenwave_powernode_6_port_previous_reading_9:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-360287970379202578
+sensor.greenwave_powernode_6_port_previous_reading_10:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-360287970379202706
+sensor.greenwave_powernode_6_port_previous_reading_11:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-432345564417130514
+sensor.greenwave_powernode_6_port_previous_reading_12:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 11-432345564417130642
+light.tradfri_group_2:
+  config_entry_id:
+  name:
+  platform: tradfri
+  unique_id: group-7e176d5204400020-131074
+light.tradfri_group:
+  config_entry_id:
+  name:
+  platform: tradfri
+  unique_id: group-7e176d5204400020-131073
+zwave.aeotec_zw074_multisensor_gen5:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-5
+zwave.qubino_zmnhbdx_flush_2_relays:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-6
+zwave.qubino_zmnhdd1_flush_dimmer:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-7
+zwave.aeotec_zw075_smart_switch_gen5:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-8
+zwave.fibaro_system_fgwpef_wall_plug:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-9
+zwave.qubino_zmnhdd1_flush_dimmer_2:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-10
+zwave.greenwave_powernode_6_port:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-11
+sensor.alarm_type_5:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300225
+sensor.alarm_level_5:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300241
+switch.switch_4:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244055040
+zwave.aeotec_zw130_wallmote_quad:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-12
+sensor.aeotec_zw130_wallmote_quad_sourcenodeid:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300257
+sensor.aeotec_zw130_wallmote_quad_power_management:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300401
+light.overloop_1:
+  config_entry_id:
+  name:
+  platform: tradfri
+  unique_id: light-7e176d5204400020-65537
+light.hal:
+  config_entry_id:
+  name:
+  platform: tradfri
+  unique_id: light-7e176d5204400020-65540
+light.overloop_3:
+  config_entry_id:
+  name:
+  platform: tradfri
+  unique_id: light-7e176d5204400020-65539
+light.overloop_2:
+  config_entry_id:
+  name:
+  platform: tradfri
+  unique_id: light-7e176d5204400020-65538
+media_player.chromecast4087:
+  config_entry_id:
+  name:
+  platform: cast
+  unique_id: 13ea17b9-001b-a183-8a90-59441b037ead

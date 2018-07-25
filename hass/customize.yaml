@@ -89,3 +89,5 @@ sensor.grid_now:
 sensor.grid_today:
   friendly_name: Vandaag opgewekt
 group.automations: {}
+binary_sensor.sensor:
+  friendly_name: Beweging beneden

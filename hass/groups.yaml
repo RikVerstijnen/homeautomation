@@ -51,6 +51,11 @@
       - switch.boiler_switch
       - switch.keukenboiler__switch
       - switch.ketel
+  tuinsproeiers:
+    name: Tuinsproeiers
+    view: no
+    entities:
+      - switch.sproeier_achter
 
   default_view:
     view: yes
@@ -62,6 +67,7 @@
       - binary_sensor.voordeur_open
       - binary_sensor.binnendeur_dicht
       - binary_sensor.binnendeur_open
+      - binary_sensor.sensor
       - binary_sensor.motion_sensor_158d0001656748
       - binary_sensor.motion_sensor_158d0001d9752b
       - binary_sensor.buitensensor_sensor
@@ -73,6 +79,7 @@
       - group.verwarming
       - group.rolluiken
       - group.apparaten
+      - group.tuinsproeiers
       - remote.harmony_hub
       - alarm_control_panel.house
 
@@ -84,6 +91,7 @@
       - sensor.hourly_gas_consumption
       - sensor.aeotec_zw075_smart_switch_gen5_voltage
       - sensor.power_consumption
+      - sensor.real_consumption
       - sensor.energy_generation
       - sensor.grid_now
       - sensor.grid_today

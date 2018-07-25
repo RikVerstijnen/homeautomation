@@ -118,6 +118,32 @@
       data:
         brightness: 100
 
+- alias: "[Light] Nachtverlichting beneden"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sensor
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'False'
+    - condition: numeric_state
+      entity_id: sensor.luminance
+      below: 30
+  action:
+    - service: light.turn_on
+      entity_id:
+       - light.lamp_keuken
+       - light.lamp_achter
+       - light.lamp_tussen
+       - light.lamp_zithoek
+      data:
+        effect: 'Night'
+
 - alias: "[Light] Keukenlamp aan"
   trigger:
     - platform: state
@@ -151,7 +177,7 @@
       entity_id:
        - switch.keuken
 
-- alias: "[Light] Lamp hal aan"
+- alias: "[Light] Lamp hal aan - Avond"
   trigger:
     - platform: state
       entity_id: binary_sensor.voordeur_open
@@ -163,6 +189,46 @@
       entity_id: binary_sensor.motion_sensor_158d0001656748
       to: 'on'
   condition:
+    condition: and
+    conditions:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'True'
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'Auto'
+    - condition: numeric_state
+      entity_id: sensor.luminance
+      below: 30
+  action:
+    - service: light.turn_on
+      entity_id: light.hal
+      data:
+        brightness: 80
+    - service: timer.start
+      entity_id: timer.hal
+
+- alias: "[Light] Lamp hal aan - Nacht"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.voordeur_open
+      to: 'on'
+    - platform: event
+      event_type: button_pressed
+      event_data: {'state': 'group on', 'entity_id': 'switch.deurbel'}
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001656748
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'False'
     - condition: numeric_state
       entity_id: sensor.luminance
       below: 30
