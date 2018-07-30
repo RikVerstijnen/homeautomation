@@ -91,3 +91,5 @@ sensor.grid_today:
 group.automations: {}
 binary_sensor.sensor:
   friendly_name: Beweging beneden
+sensor.temperature_158d000227255b:
+  friendly_name: Slaapkamer Fedde

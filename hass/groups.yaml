@@ -110,6 +110,7 @@
       - sensor.temperature
       - sensor.temperatuur_badkamer_temperature
       - sensor.temperatuur_slaapkamer_morris_temperature
+      - sensor.temperature_158d000227255b
   automations:
     name: Automations
     view: yes

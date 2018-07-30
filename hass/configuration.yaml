@@ -72,10 +72,11 @@ sensor:
         value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float/1000) }}{% endif %}'
         friendly_name: 'Vandaag opgewekt'
         unit_of_measurement: 'kWh'
-      real_consumption:
-        value_template: '{{sensor.power_consumption + (sensor.power_generation - sensor.power_production)}}'
-        friendly_name: 'Verbruik werkelijk nu'
-        unit_of_measurement: 'W'
+      # real_consumption:
+      #   value_template: '{{(states('sensor.power_consumption')|float * 1000)+((states('sensor.power_generation')|float)-(states('sensor.power_production')|float * 1000))}}'
+      #   friendly_name: 'Verbruik werkelijk nu'
+      #   unit_of_measurement: 'W'
+
 #RFXTRX
   - platform: rfxtrx
     devices:
@@ -277,18 +278,15 @@ history_graph:
       - sensor.power_generation
       - sensor.hourly_gas_consumption
       - sensor.grid_now
-      - sensor.grid_today
   gr2:
     name: "Temperatuur"
     entities:
       - sensor.temperature
       - sensor.temperatuur_badkamer_temperature
       - sensor.temperatuur_slaapkamer_morris_temperature
-      - climate.babykamer_babykamer
-      - climate.slaapkamer_slaapkamer
-      - climate.speelkamer_speelkamer
       - sensor.temperatuur_buiten_temperature
-
+      - sensor.temperature_158d000227255b
+      
 alarm_control_panel: !include alarm.yaml
 panel_custom: !include panel_custom.yaml
 
@@ -317,41 +315,6 @@ timer:
 recorder:
   db_url: mysql://hass:Rickyboy22@core-mariadb/homeassistant
 
-emoncms_history:
-  api_key: !secret emoncms_key
-  url: https://emoncms.org
-  inputnode: 1
-  whitelist:
-    - sensor.boiler_current
-    - sensor.boiler_energy
-    - sensor.boiler_power
-    - sensor.boiler_voltage
-    - sensor.diepvries__energy
-    - sensor.diepvries__power
-    - sensor.gas_consumption
-    - sensor.grid_now
-    - sensor.grid_today
-    - sensor.hourly_gas_consumption
-    - sensor.keukenboiler__energy
-    - sensor.keukenboiler__power
-    - sensor.keukenboiler__power_2
-    - sensor.luminance
-    - sensor.power_consumption
-    - sensor.power_consumption_low
-    - sensor.power_consumption_normal
-    - sensor.power_consumption_total
-    - sensor.power_generation
-    - sensor.power_production
-    - sensor.power_production_low
-    - sensor.power_production_normal
-    - sensor.power_production_total
-    - sensor.pvoutput
-    - sensor.relative_humidity
-    - sensor.temperature
-    - sensor.temperatuur_badkamer_temperature
-    - sensor.temperatuur_buiten_temperature
-    - sensor.temperatuur_slaapkamer_morris_temperature
-
 influxdb:
   # host: a0d7b954_influxdb
   host: 192.168.1.200
@@ -372,9 +335,11 @@ input_boolean:
     name: Slaapkamer Morris schakelaar 2
 
 panel_iframe:
-  opwek:
-    title: 'Opwek'
-    url: 'https://emoncms.org/app/view?name=My%20Solar&readkey=8e3aab86de5cbd7455bfc27da051d0f7&embed=1'
-  verbruik:
-    title: 'Verbruik'
-    url: 'https://emoncms.org/app/view?name=My%20Electric&readkey=8e3aab86de5cbd7455bfc27da051d0f7&embed=1'
+  climate:
+    title: 'Klimaat'
+    url: 'http://192.168.1.200:3000/d/lM7gpcigz/klimaat?orgId=1&from=1532901600000&to=1532984984925&theme=light'
+  energy:
+    title: 'Energie'
+    url: 'http://192.168.1.200:3000/d/ZoLZtcigk/energie?orgId=1&from=1532380240290&to=1532985040290&theme=light'
+
+#eyJrIjoiYmlRc01FRzg5N2ZESUNxNHF3R0JORmZabzBVUDE1cFciLCJuIjoiaGFzc19ncmFmYW5hIiwiaWQiOjF9
