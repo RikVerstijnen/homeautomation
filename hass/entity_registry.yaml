@@ -360,7 +360,7 @@ sensor.humidity_158d000227255b:
   unique_id: humidity158d000227255b
 sensor.temperature_158d000227255b:
   config_entry_id:
-  name:
+  name: Slaapkamer Fedde
   platform: xiaomi_aqara
   unique_id: temperature158d000227255b
 zwave.aeotec_dsa02203_zstick_s2:

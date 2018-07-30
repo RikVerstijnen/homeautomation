@@ -236,7 +236,7 @@
     - service: light.turn_on
       entity_id: light.hal
       data:
-        brightness: 80
+        brightness: 10
     - service: timer.start
       entity_id: timer.hal
 
