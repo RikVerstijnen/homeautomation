@@ -57,7 +57,8 @@ group.all_automations:
 group.all_covers:
   friendly_name: Rolluiken
 switch.keuken:
-  friendly_name: Verlichting keuken
+  friendly_name: Keuken
+  icon: mdi:lightbulb
 light.verlichting_woonkamer_schemerlampen_level:
   friendly_name: Verlichting woonkamer schemerlampen
 light.verlichting_speelkamer_level:
@@ -65,11 +66,11 @@ light.verlichting_speelkamer_level:
 sensor.sensor_woonkamer_temperature:
   friendly_name: Temperatuur woonkamer
 sensor.temperatuur_badkamer_temperature:
-  friendly_name: Temperatuur badkamer
+  friendly_name: Badkamer
 sensor.temperatuur_buiten_temperature:
-  friendly_name: Temperatuur buiten
+  friendly_name: Buiten
 sensor.temperatuur_slaapkamer_morris_temperature:
-  friendly_name: Temperatuur slaapkamer Morris
+  friendly_name: Morris
 climate.slaapkamer_slaapkamer:
   friendly_name: Slaapkamer
 climate.babykamer_babykamer:
@@ -92,4 +93,23 @@ group.automations: {}
 binary_sensor.sensor:
   friendly_name: Beweging beneden
 sensor.temperature_158d000227255b:
-  friendly_name: Slaapkamer Fedde
+  friendly_name: Fedde
+group.default_view:
+  friendly_name: Algemeen
+switch.sproeier_achter:
+  icon: mdi:water
+switch.boiler_switch:
+  icon: mdi:water-pump
+switch.keukenboiler__switch:
+  icon: mdi:water-pump
+switch.ketel:
+  icon: mdi:radiator
+switch.qubino_zmnhbdx_flush_2_relays_switch:
+  friendly_name: Buiten
+  icon: mdi:lightbulb
+light.hal:
+  icon: mdi:lightbulb
+group.spotjes:
+  icon: mdi:lightbulb
+group.overloop:
+  icon: mdi:lightbulb

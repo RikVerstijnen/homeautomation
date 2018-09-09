@@ -3,7 +3,7 @@
     platform: event
     event_type: zwave.scene_activated
     event_data:
-      object_id: zwave.aeotec_zw130_wallmote_quad
+      entity_id: zwave.aeotec_zw130_wallmote_quad
       scene_id: 1
       scene_data: 0
   action:

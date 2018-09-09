@@ -7,6 +7,7 @@
   spotjes:
     name: Spotjes
     view: no
+    icon: mdi:lightbulb
     entities:
       - light.lamp_keuken
       - light.lamp_achter
@@ -61,12 +62,11 @@
     view: yes
     entities:
       - sensor.luminance
-      - binary_sensor.achterdeur_dicht
-      - binary_sensor.achterdeur_open
-      - binary_sensor.voordeur_dicht
-      - binary_sensor.voordeur_open
-      - binary_sensor.binnendeur_dicht
-      - binary_sensor.binnendeur_open
+      - binary_sensor.door_front
+      - binary_sensor.door_inside
+      - binary_sensor.door_back
+      - binary_sensor.door_garage
+      - binary_sensor.door_shed
       - binary_sensor.sensor
       - binary_sensor.motion_sensor_158d0001656748
       - binary_sensor.motion_sensor_158d0001d9752b
@@ -81,7 +81,11 @@
       - group.apparaten
       - group.tuinsproeiers
       - remote.harmony_hub
+      - media_player.woonkamer
+      - media_player.chromecast4087
       - alarm_control_panel.house
+      - camera.woonkamer
+      - remote.harmony_hub_2
 
   energie:
     name: Energie
@@ -95,6 +99,7 @@
       - sensor.energy_generation
       - sensor.grid_now
       - sensor.grid_today
+      - sensor.total_usage
       - sensor.boiler_power
       - sensor.keukenboiler__power
       - sensor.diepvries__power

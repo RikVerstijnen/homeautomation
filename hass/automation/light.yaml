@@ -116,7 +116,7 @@
        - light.lamp_tussen
        - light.lamp_zithoek
       data:
-        brightness: 100
+        brightness: 255
 
 - alias: "[Light] Nachtverlichting beneden"
   trigger:

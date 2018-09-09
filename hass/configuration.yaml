@@ -18,9 +18,11 @@ python_script:
 logger:
   default: error
   logs:
-    #homeassistant.components.maxcube: debug
-    #homeassistant.components.rfxtrx: debug
-    homeassistant.components.zwave: debug
+    # homeassistant.components.camera: debug
+  #   #homeassistant.components.maxcube: debug
+    homeassistant.components.rfxtrx: debug
+
+  #   #homeassistant.components.zwave: debug
 
 # Enables the frontend
 frontend:
@@ -76,6 +78,33 @@ sensor:
       #   value_template: '{{(states('sensor.power_consumption')|float * 1000)+((states('sensor.power_generation')|float)-(states('sensor.power_production')|float * 1000))}}'
       #   friendly_name: 'Verbruik werkelijk nu'
       #   unit_of_measurement: 'W'
+  - platform: rest
+    name: foo
+    json_attributes:
+      - batteryLevel
+      - kioskMode
+      - screenBrightness
+      - motionDetectorState
+      - maintenanceMode
+      - appFreeMemory
+      - appUsedMemory
+      - totalFreeMemory
+      - totalUsedMemory
+      - hostname4
+      - ip4
+      - mac
+      - locationLatitude
+      - locationLongitude
+      - locationAltitude
+      - startUrl
+      - currentPage
+    resource: !secret foo_rest
+  - platform: template
+    sensors:
+      foo_battery_level:
+        friendly_name: "foo_battery_level"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.foo.attributes.batteryLevel }}"
 
 #RFXTRX
   - platform: rfxtrx
@@ -86,11 +115,6 @@ sensor:
         name: Temperatuur slaapkamer Morris
       0a5207005f0e00ba390179:
         name: Temperatuur badkamer
-  - platform: command_line
-    name: SSL cert expiry
-    unit_of_measurement: days
-    scan_interval: 10800
-    command: "ssl-cert-check -b -c /etc/letsencrypt/live/riverhass.duckdns.org/cert.pem | awk '{ print $NF }'"
 
 #Solaredge
   - platform: jsonrest
@@ -122,6 +146,16 @@ sensor:
         value_template: '{{ (states.sensor.power_production_low.state | float) + (states.sensor.power_production_normal.state | float)}}'
         unit_of_measurement: 'kWh'
 
+#Net usage
+      total_usage:
+        friendly_name: "Total usage"
+        value_template: '{{ (states.sensor.grid_now.state | float) - (states.sensor.power_production.state | float) + (states.sensor.power_consumption.state | float)}}'
+        unit_of_measurement: 'kW'
+      # total_consumption:
+      #   friendly_name: "Total usage"
+      #   value_template: '{{ (states.sensor.grid_today.state | float) - (states.sensor.energy_generation.state | float) + (states.???.state | float)}}'
+      #   unit_of_measurement: 'kWh'
+
 # Text to speech
 tts:
   - platform: google
@@ -136,14 +170,17 @@ switch:
       ketel:
         command_on: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0101"
         command_off: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0100"
+        # command_state: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0000"
         friendly_name: "Ketel"
       sproeier_achter:
         command_on: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0201"
         command_off: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0200"
+        # command_state: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0000"
         friendly_name: "Achter"
       keuken:
         command_on: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOn"
         command_off: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOff"
+        # command_state: "/usr/bin/curl -X GET http://192.168.1.205/status"
       mindergas:
         command_on: "python3 /config/mindergas.py"
         command_off: "python3 /config/mindergas.py"
@@ -153,8 +190,15 @@ switch:
       say_rook:
         command_on: /usr/bin/curl -k "http://192.168.1.31:2323/?cmd=textToSpeech&text=Rook+gedetecteerd&password=Rickyboy22"
         friendly_name: Rook gedetecteerd
+      foo_screen:
+        command_on: !secret foo_screen_on
+        command_off: !secret foo_screen_off
+        command_state: !secret foo_screen_state
+        value_template: '{{ value == "on" }}'
+        friendly_name: Foo Screen
   - platform: rfxtrx
     #automatic_add: true
+    debug: true
     devices:
       0b11000800c71b6a01040f60:
         name: Deurbel
@@ -250,25 +294,117 @@ cover:
         name: Rolluiken slaapkamer Fedde
 
 binary_sensor:
-  platform: rfxtrx
-  automatic_add: True
-  debug: True
-  devices:
-    091300111078ae013960:
-      name: Achterdeur open
-    091300131078a7013d60:
-      name: Achterdeur dicht
-    09130005eb36ae013960:
-      name: Voordeur open
-    09130006eb36a7013b60:
-      name: Voordeur dicht
-    0a5207b55f0e00bf290179:
-      name: Binnendeur open
-    0a5207ae640e00a72a0179:
-      name: Binnendeur dicht
-
-media_player:
-  - platform: cast
+  - platform: rfxtrx
+    automatic_add: True
+    debug: True
+    devices:
+      091300111078ae013960:
+        name: Achterdeur open
+        fire_event: true
+      091300131078a7013d60:
+        name: Achterdeur dicht
+        fire_event: true
+      09130005eb36ae013960:
+        name: Voordeur open
+        fire_event: true
+      09130006eb36a7013b60:
+        name: Voordeur dicht
+        fire_event: true
+      09130019473aae014250:
+        name: Binnendeur open
+        fire_event: true
+      09130015473aa7014050:
+        name: Binnendeur dicht
+        fire_event: true
+      091300396bf6ab014060:
+        name:  Garage open
+        fire_event: true
+      09130038ebf6ab013d60:
+        name:  Garage dicht
+        fire_event: true
+      09130046d070ae013d60:
+        name:  Berging open
+        fire_event: true
+      09130047d070a7014260:
+        name:  Berging dicht
+        fire_event: true
+  - platform: template
+    sensors:
+      door_inside:
+        device_class: door
+        friendly_name: "Binnendeur"
+        value_template: >-
+          {% if is_state('input_boolean.door_inside_state', 'on') %}
+            Open
+          {% else %}
+            Closed
+          {% endif %}
+        icon_template: >
+          {% if is_state('input_boolean.door_inside_state', 'on') %}
+            mdi:door-open
+          {% else %}
+            mdi:door-closed
+          {% endif %}
+      door_back:
+        device_class: door
+        friendly_name: "Achterdeur"
+        value_template: >-
+          {% if is_state('input_boolean.door_back_state', 'on') %}
+            Open
+          {% else %}
+            Closed
+          {% endif %}
+        icon_template: >
+          {% if is_state('input_boolean.door_back_state', 'on') %}
+            mdi:door-open
+          {% else %}
+            mdi:door-closed
+          {% endif %}
+      door_front:
+        device_class: door
+        friendly_name: "Voordeur"
+        value_template: >-
+          {% if is_state('input_boolean.door_front_state', 'on') %}
+            Open
+          {% else %}
+            Closed
+          {% endif %}
+        icon_template: >
+          {% if is_state('input_boolean.door_front_state', 'on') %}
+            mdi:door-open
+          {% else %}
+            mdi:door-closed
+          {% endif %}
+      door_garage:
+        device_class: door
+        friendly_name: "Garagedeur"
+        value_template: >-
+          {% if is_state('input_boolean.door_garage_state', 'on') %}
+            Open
+          {% else %}
+            Closed
+          {% endif %}
+        icon_template: >
+          {% if is_state('input_boolean.door_garage_state', 'on') %}
+            mdi:door-open
+          {% else %}
+            mdi:door-closed
+          {% endif %}
+      door_shed:
+        device_class: door
+        friendly_name: "Berging"
+        value_template: >-
+          {% if is_state('input_boolean.door_shed_state', 'on') %}
+            Open
+          {% else %}
+            Closed
+          {% endif %}
+        icon_template: >
+          {% if is_state('input_boolean.door_shed_state', 'on') %}
+            mdi:door-open
+          {% else %}
+            mdi:door-closed
+          {% endif %}
 
 history_graph:
   gr1:
@@ -278,6 +414,7 @@ history_graph:
       - sensor.power_generation
       - sensor.hourly_gas_consumption
       - sensor.grid_now
+      - sensor.total_usage
   gr2:
     name: "Temperatuur"
     entities:
@@ -286,9 +423,9 @@ history_graph:
       - sensor.temperatuur_slaapkamer_morris_temperature
       - sensor.temperatuur_buiten_temperature
       - sensor.temperature_158d000227255b
-      
-alarm_control_panel: !include alarm.yaml
-panel_custom: !include panel_custom.yaml
+
+# alarm_control_panel: !include alarm.yaml
+# panel_custom: !include panel_custom.yaml
 
 zone:
   # This will override the default home zone
@@ -333,13 +470,35 @@ input_boolean:
     name: Slaapkamer Morris schakelaar 1
   morris2:
     name: Slaapkamer Morris schakelaar 2
+  door_inside_state:
+  door_back_state:
+  door_front_state:
+  door_garage_state:
+  door_shed_state:
 
 panel_iframe:
   climate:
     title: 'Klimaat'
-    url: 'http://192.168.1.200:3000/d/lM7gpcigz/klimaat?orgId=1&from=1532901600000&to=1532984984925&theme=light'
+    url: 'https://snapshot.raintank.io/dashboard/snapshot/HXgM85coEALzem99a3M0RFd0euBK3fB7'
   energy:
     title: 'Energie'
-    url: 'http://192.168.1.200:3000/d/ZoLZtcigk/energie?orgId=1&from=1532380240290&to=1532985040290&theme=light'
+    url: 'https://snapshot.raintank.io/dashboard/snapshot/QblY4IPSWqTLNHmMQQEx9jAzonGCRjsc'
 
-#eyJrIjoiYmlRc01FRzg5N2ZESUNxNHF3R0JORmZabzBVUDE1cFciLCJuIjoiaGFzc19ncmFmYW5hIiwiaWQiOjF9
+camera:
+- platform: generic
+  still_image_url: http://192.168.1.64:80/Streaming/channels/2/picture
+  name: Woonkamer
+  username: !secret hik_user
+  password: !secret hik_pass
+  authentication: digest
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api
+    allowed_chat_ids:
+      - 401477431
+
+notify:
+  - name: Telegram
+    platform: telegram
+    chat_id: 401477431

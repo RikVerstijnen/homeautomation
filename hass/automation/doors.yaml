@@ -1,0 +1,99 @@
+- alias: "[Doors] Binnendeur open"
+  trigger:
+    - platform: event
+      event_type: button_pressed
+      event_data:
+        entity_id: binary_sensor.binnendeur_open
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.door_inside_state
+
+- alias: "[Doors] Binnendeur dicht"
+  trigger:
+    - platform: event
+      event_type: button_pressed
+      event_data:
+        entity_id: binary_sensor.binnendeur_dicht
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.door_inside_state
+
+- alias: "[Doors] Achterdeur open"
+  trigger:
+    - platform: event
+      event_type: button_pressed
+      event_data:
+        entity_id: binary_sensor.achterdeur_open
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.door_back_state
+
+- alias: "[Doors] Achterdeur dicht"
+  trigger:
+    - platform: event
+      event_type: button_pressed
+      event_data:
+        entity_id: binary_sensor.achterdeur_dicht
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.door_back_state
+
+- alias: "[Doors] Voordeur open"
+  trigger:
+    - platform: event
+      event_type: button_pressed
+      event_data:
+        entity_id: binary_sensor.voordeur_open
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.door_front_state
+
+- alias: "[Doors] Voordeur dicht"
+  trigger:
+    - platform: event
+      event_type: button_pressed
+      event_data:
+        entity_id: binary_sensor.voordeur_dicht
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.door_front_state
+
+- alias: "[Doors] Garagedeur open"
+  trigger:
+    - platform: event
+      event_type: button_pressed
+      event_data:
+        entity_id: binary_sensor.garage_open
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.door_garage_state
+
+- alias: "[Doors] Garagedeur dicht"
+  trigger:
+    - platform: event
+      event_type: button_pressed
+      event_data:
+        entity_id: binary_sensor.garage_dicht
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.door_garage_state
+
+- alias: "[Doors] Berging open"
+  trigger:
+    - platform: event
+      event_type: button_pressed
+      event_data:
+        entity_id: binary_sensor.berging_open
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.door_shed_state
+
+- alias: "[Doors] Berging dicht"
+  trigger:
+    - platform: event
+      event_type: button_pressed
+      event_data:
+        entity_id: binary_sensor.berging_dicht
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.door_shed_state

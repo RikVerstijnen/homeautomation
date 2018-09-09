@@ -299,3 +299,11 @@ hppc_2:
   name: 38786202725e
   picture:
   track: true
+
+androidfd1a21e589f18d36:
+  hide_if_away: false
+  icon:
+  mac: AC:22:0B:03:8D:99
+  name: android-fd1a21e589f18d36
+  picture:
+  track: true
