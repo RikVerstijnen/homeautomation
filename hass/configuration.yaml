@@ -38,6 +38,7 @@ http:
   trusted_networks:
     - 127.0.0.1
     - 84.27.97.93
+    - 192.168.1.1
 
 updater:
 
@@ -78,33 +79,33 @@ sensor:
       #   value_template: '{{(states('sensor.power_consumption')|float * 1000)+((states('sensor.power_generation')|float)-(states('sensor.power_production')|float * 1000))}}'
       #   friendly_name: 'Verbruik werkelijk nu'
       #   unit_of_measurement: 'W'
-  - platform: rest
-    name: foo
-    json_attributes:
-      - batteryLevel
-      - kioskMode
-      - screenBrightness
-      - motionDetectorState
-      - maintenanceMode
-      - appFreeMemory
-      - appUsedMemory
-      - totalFreeMemory
-      - totalUsedMemory
-      - hostname4
-      - ip4
-      - mac
-      - locationLatitude
-      - locationLongitude
-      - locationAltitude
-      - startUrl
-      - currentPage
-    resource: !secret foo_rest
-  - platform: template
-    sensors:
-      foo_battery_level:
-        friendly_name: "foo_battery_level"
-        unit_of_measurement: '%'
-        value_template: "{{ states.sensor.foo.attributes.batteryLevel }}"
+  # - platform: rest
+  #   name: foo
+  #   json_attributes:
+  #     - batteryLevel
+  #     - kioskMode
+  #     - screenBrightness
+  #     - motionDetectorState
+  #     - maintenanceMode
+  #     - appFreeMemory
+  #     - appUsedMemory
+  #     - totalFreeMemory
+  #     - totalUsedMemory
+  #     - hostname4
+  #     - ip4
+  #     - mac
+  #     - locationLatitude
+  #     - locationLongitude
+  #     - locationAltitude
+  #     - startUrl
+  #     - currentPage
+  #   resource: !secret foo_rest
+  # - platform: template
+  #   sensors:
+  #     foo_battery_level:
+  #       friendly_name: "foo_battery_level"
+  #       unit_of_measurement: '%'
+  #       value_template: "{{ states.sensor.foo.attributes.batteryLevel }}"
 
 #RFXTRX
   - platform: rfxtrx
@@ -170,32 +171,35 @@ switch:
       ketel:
         command_on: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0101"
         command_off: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0100"
-        # command_state: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0000"
+        # command_state: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/status.xml"
+        # value_template: '{{ value[20] == "0" }}'
         friendly_name: "Ketel"
       sproeier_achter:
         command_on: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0201"
         command_off: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0200"
-        # command_state: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0000"
+        # command_state: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/status.xml"
+        # value_template: '{{ value[38] == "0" }}'
         friendly_name: "Achter"
       keuken:
         command_on: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOn"
         command_off: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOff"
-        # command_state: "/usr/bin/curl -X GET http://192.168.1.205/status"
+        # command_state: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=status,GPIO,12"
+        # value_template: '{{ value_json.state == "0" }}'
       mindergas:
         command_on: "python3 /config/mindergas.py"
         command_off: "python3 /config/mindergas.py"
       say_deurbel:
-        command_on: /usr/bin/curl -k "http://192.168.1.31:2323/?cmd=textToSpeech&text=De+deurbel+gaat&password=Rickyboy22"
+        command_on: /usr/bin/curl -k "http://192.168.1.202:2323/?cmd=textToSpeech&text=De+deurbel+gaat&password=Rickyboy22"
         friendly_name: De deurbel gaat
       say_rook:
-        command_on: /usr/bin/curl -k "http://192.168.1.31:2323/?cmd=textToSpeech&text=Rook+gedetecteerd&password=Rickyboy22"
+        command_on: /usr/bin/curl -k "http://192.168.1.202:2323/?cmd=textToSpeech&text=Rook+gedetecteerd&password=Rickyboy22"
         friendly_name: Rook gedetecteerd
       foo_screen:
         command_on: !secret foo_screen_on
         command_off: !secret foo_screen_off
         command_state: !secret foo_screen_state
         value_template: '{{ value == "on" }}'
-        friendly_name: Foo Screen
+        friendly_name: Domotica tablet
   - platform: rfxtrx
     #automatic_add: true
     debug: true
@@ -316,10 +320,10 @@ binary_sensor:
       09130015473aa7014050:
         name: Binnendeur dicht
         fire_event: true
-      091300396bf6ab014060:
+      091300e46bf6ae013b60:
         name:  Garage open
         fire_event: true
-      09130038ebf6ab013d60:
+      091300e16bf6a7013d60:
         name:  Garage dicht
         fire_event: true
       09130046d070ae013d60:
@@ -334,11 +338,7 @@ binary_sensor:
         device_class: door
         friendly_name: "Binnendeur"
         value_template: >-
-          {% if is_state('input_boolean.door_inside_state', 'on') %}
-            Open
-          {% else %}
-            Closed
-          {% endif %}
+          {{ states.input_boolean.door_inside.state == 'on' }}
         icon_template: >
           {% if is_state('input_boolean.door_inside_state', 'on') %}
             mdi:door-open

@@ -96,6 +96,8 @@
       entity_id:
        - switch.boiler_switch
        - switch.keukenboiler__switch
+    - service: switch.turn_off
+      entity_id:
        - switch.foo_screen
     - service: remote.turn_off
       entity_id:
