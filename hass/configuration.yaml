@@ -118,11 +118,11 @@ sensor:
         name: Temperatuur badkamer
 
 #Solaredge
-  - platform: jsonrest
+  - platform: rest
     resource: !secret solaredge_url
     method: GET
     name: SolarEdge inverter
-    scan_interval: 400
+    scan_interval: 10
 
   - platform: template
     sensors:
@@ -152,10 +152,6 @@ sensor:
         friendly_name: "Total usage"
         value_template: '{{ (states.sensor.grid_now.state | float) - (states.sensor.power_production.state | float) + (states.sensor.power_consumption.state | float)}}'
         unit_of_measurement: 'kW'
-      # total_consumption:
-      #   friendly_name: "Total usage"
-      #   value_template: '{{ (states.sensor.grid_today.state | float) - (states.sensor.energy_generation.state | float) + (states.???.state | float)}}'
-      #   unit_of_measurement: 'kWh'
 
 # Text to speech
 tts:
@@ -200,6 +196,9 @@ switch:
         command_state: !secret foo_screen_state
         value_template: '{{ value == "on" }}'
         friendly_name: Domotica tablet
+      # syno_record:
+      #   command_on: GET /webapi/SurveillanceStation/extrecord.cgi?api=SYNO.SurveillanceStation.ExternalRecording&method=Record&version=1&cameraId=1&action=start
+
   - platform: rfxtrx
     #automatic_add: true
     debug: true
@@ -453,7 +452,6 @@ recorder:
   db_url: mysql://hass:Rickyboy22@core-mariadb/homeassistant
 
 influxdb:
-  # host: a0d7b954_influxdb
   host: 192.168.1.200
   port: 8086
   database: homeassistant
@@ -479,10 +477,12 @@ input_boolean:
 panel_iframe:
   climate:
     title: 'Klimaat'
-    url: 'https://snapshot.raintank.io/dashboard/snapshot/HXgM85coEALzem99a3M0RFd0euBK3fB7'
+    # url: 'https://snapshot.raintank.io/dashboard/snapshot/HXgM85coEALzem99a3M0RFd0euBK3fB7'
+    url: 'http://192.168.1.200:3000/d/lM7gpcigz/klimaat?orgId=1&from=1537653600000&to=1537727533141&theme=light'
   energy:
     title: 'Energie'
-    url: 'https://snapshot.raintank.io/dashboard/snapshot/QblY4IPSWqTLNHmMQQEx9jAzonGCRjsc'
+    # url: 'https://snapshot.raintank.io/dashboard/snapshot/QblY4IPSWqTLNHmMQQEx9jAzonGCRjsc'
+    url: 'http://192.168.1.200:3000/d/ZoLZtcigk/energie?orgId=1&from=1537122702898&to=1537727502898&theme=light'
 
 camera:
 - platform: generic

@@ -20,6 +20,15 @@
       - light.overloop_1
       - light.overloop_2
       - light.overloop_3
+  morris:
+    name: Verlichting Morris
+    view: no
+    entities:
+      - light.morris_1
+      - light.morris_2
+      - light.morris_3
+      - light.morris_schemer_groot
+      - light.morris_schemer_klein
   verlichting:
     name: Verlichting
     view: no
@@ -52,6 +61,7 @@
       - switch.boiler_switch
       - switch.keukenboiler__switch
       - switch.ketel
+      - switch.foo_screen
   tuinsproeiers:
     name: Tuinsproeiers
     view: no
@@ -76,6 +86,7 @@
       - binary_sensor.smoke_sensor_158d00015b1821
       - group.mode
       - group.verlichting
+      - group.morris
       - group.verwarming
       - group.rolluiken
       - group.apparaten

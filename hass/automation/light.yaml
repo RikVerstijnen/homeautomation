@@ -118,32 +118,6 @@
       data:
         brightness: 255
 
-- alias: "[Light] Nachtverlichting beneden"
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.sensor
-      to: 'on'
-  condition:
-    condition: and
-    conditions:
-    - condition: or
-      conditions:
-      - condition: state
-        entity_id: input_select.mode_light
-        state: 'False'
-    - condition: numeric_state
-      entity_id: sensor.luminance
-      below: 30
-  action:
-    - service: light.turn_on
-      entity_id:
-       - light.lamp_keuken
-       - light.lamp_achter
-       - light.lamp_tussen
-       - light.lamp_zithoek
-      data:
-        effect: 'Night'
-
 - alias: "[Light] Keukenlamp aan"
   trigger:
     - platform: state
@@ -207,6 +181,7 @@
       entity_id: light.hal
       data:
         brightness: 80
+        kelvin: 2700
     - service: timer.start
       entity_id: timer.hal
 
@@ -237,6 +212,7 @@
       entity_id: light.hal
       data:
         brightness: 10
+        kelvin: 2700
     - service: timer.start
       entity_id: timer.hal
 
@@ -283,14 +259,17 @@
       entity_id: light.overloop_1
       data:
         brightness: 50
+        kelvin: 2700
     - service: light.turn_on
       entity_id: light.overloop_2
       data:
         brightness: 50
+        kelvin: 2700
     - service: light.turn_on
       entity_id: light.overloop_3
       data:
         brightness: 50
+        kelvin: 2700
     - service: timer.start
       entity_id: timer.overloop
 
@@ -315,6 +294,7 @@
       entity_id: light.overloop_1
       data:
         brightness: 50
+        kelvin: 2200
     - service: timer.start
       entity_id: timer.overloop
 
@@ -341,22 +321,104 @@
     - service: light.turn_off
       entity_id: light.overloop_3
 
-- alias: "[Light] [Temp] Test Sonoff touch Aan"
+- alias: "[Light] Morris aan hoog"
   trigger:
-    - platform: state
-      entity_id: input_boolean.morris1
-      to: 'on'
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.aeotec_zw130_wallmote_quad
+        scene_id: 1
+        scene_data: 0
   action:
-    - service: switch.turn_on
+    - service: light.turn_on
       entity_id:
-       - switch.keuken
+        - light.morris_1
+        - light.morris_2
+        - light.morris_3
+      data:
+        brightness: 50
+        kelvin: 2700
+    - service: light.turn_on
+      entity_id:
+        - light.morris_schemer_groot
+      data:
+        brightness: 50
+        kelvin: 2700
+    - service: light.turn_on
+      entity_id:
+        - light.morris_schemer_klein
+      data:
+        brightness: 50
+        kelvin: 2700
 
-- alias: "[Light] [Temp] Test Sonoff touch Uit"
+- alias: "[Light] Morris uit hoog"
   trigger:
-    - platform: state
-      entity_id: input_boolean.morris1
-      to: 'off'
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.aeotec_zw130_wallmote_quad
+        scene_id: 3
+        scene_data: 0
   action:
-    - service: switch.turn_off
+    - service: light.turn_off
       entity_id:
-       - switch.keuken
+        - light.morris_1
+        - light.morris_2
+        - light.morris_3
+        - light.morris_schemer_groot
+        - light.morris_schemer_klein
+
+- alias: "[Light] Morris aan laag"
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.aeotec_zw130_wallmote_quad
+        scene_id: 2
+        scene_data: 0
+  action:
+    - service: light.turn_on
+      entity_id:
+        - light.morris_1
+        - light.morris_2
+        - light.morris_3
+      data:
+        brightness: 1
+        kelvin: 2200
+    - service: light.turn_on
+      entity_id:
+        - light.morris_schemer_klein
+      data:
+        brightness: 1
+        kelvin: 2200
+
+- alias: "[Light] Morris uit laag"
+  trigger:
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.aeotec_zw130_wallmote_quad
+        scene_id: 4
+        scene_data: 0
+  action:
+    - service: light.turn_off
+      entity_id:
+        - light.morris_1
+        - light.morris_2
+        - light.morris_3
+        - light.morris_schemer_groot
+        - light.morris_schemer_klein
+
+# Action	scene_id	scene_data
+# Button one single tap	1	0
+# Button one hold	1	2
+# Button one release	1	1
+# Button two single tap	2	0
+# Button two hold	2	2
+# Button two release	2	1
+# Button three single tap	3	0
+# Button three hold	3	2
+# Button three release	3	1
+# Button four single tap	4	0
+# Button four hold	4	2
+# Button four release	4	1

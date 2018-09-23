@@ -197,7 +197,7 @@
         ringtone_vol: 60
     - service: switch.turn_on
       entity_id: switch.say_deurbel
-    - service: notify.Telgram
+    - service: notify.Telegram
       data:
         title: 'Deurbel'
         message: "De deurbel gaat"
