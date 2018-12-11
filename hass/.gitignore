@@ -2,3 +2,5 @@
 *.txt
 secrets.yaml
 *.db
+*/.storage/*
+*/.deps/*
