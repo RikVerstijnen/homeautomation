@@ -4,3 +4,4 @@ secrets.yaml
 *.db
 */.storage/*
 */.deps/*
+*/deps/*
