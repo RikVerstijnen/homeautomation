@@ -7,12 +7,49 @@
     conditions:
     - condition: state
       entity_id: input_select.mode
-      state: 'True'
+      state: 'Aan'
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: '{{ states.remote.harmony_hub_2.attributes["current_activity"] == "PowerOff" }}'
+      - condition: template
+        value_template: '{{ states.remote.harmony_hub_2.attributes["current_activity"] == "Naar muziek luisteren" }}'
   action:
     - service: input_select.select_option
       data:
         entity_id: input_select.mode_light
         option: 'Auto'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.woonkamer
+        operation_mode: 'heat'
+    - service: switch.turn_on
+      entity_id:
+       - switch.boiler_switch
+       - switch.keukenboiler__switch
+       - switch.foo_screen
+
+- alias: "[General] Mode on - TV"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'Aan'
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: '{{ states.remote.harmony_hub_2.attributes["current_activity"] == "TV kijken" }}'
+      - condition: template
+        value_template: '{{ states.remote.harmony_hub_2.attributes["current_activity"] == "Chromecast" }}'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'TV'
     - service: climate.set_operation_mode
       data:
         entity_id: climate.woonkamer
@@ -45,6 +82,55 @@
       - condition: state
         entity_id: device_tracker.telefoonsabine
         state: 'home'
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: '{{ states.remote.harmony_hub_2.attributes["current_activity"] == "PowerOff" }}'
+      - condition: template
+        value_template: '{{ states.remote.harmony_hub_2.attributes["current_activity"] == "Naar muziek luisteren" }}'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'Auto'
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.woonkamer
+        operation_mode: 'heat'
+    - service: switch.turn_on
+      entity_id:
+       - switch.boiler_switch
+       - switch.keukenboiler__switch
+       - switch.foo_screen
+
+- alias: "[General] Mode auto - Home - TV"
+  trigger:
+    - platform: state
+      entity_id: input_select.mode
+    - platform: state
+      entity_id: device_tracker.telefoonrik
+    - platform: state
+      entity_id: device_tracker.telefoonsabine
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_select.mode
+      state: 'Auto'
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: device_tracker.telefoonrik
+        state: 'home'
+      - condition: state
+        entity_id: device_tracker.telefoonsabine
+        state: 'home'
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: '{{ states.remote.harmony_hub_2.attributes["current_activity"] == "TV kijken" }}'
+      - condition: template
+        value_template: '{{ states.remote.harmony_hub_2.attributes["current_activity"] == "Chromecast" }}'
   action:
     - service: input_select.select_option
       data:
@@ -84,7 +170,7 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.mode_light
-        option: 'False'
+        option: 'Uit'
     - service: climate.set_operation_mode
       data:
         entity_id: climate.woonkamer
@@ -133,7 +219,7 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.mode_light
-        option: 'False'
+        option: 'Uit'
 
 - alias: "[General] Mode off"
   trigger:
@@ -144,7 +230,7 @@
     conditions:
     - condition: state
       entity_id: input_select.mode
-      state: 'False'
+      state: 'Uit'
     - condition: state
       entity_id: input_select.mode
       state: 'Sim'
@@ -152,7 +238,7 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.mode_light
-        option: 'False'
+        option: 'Uit'
     - service: climate.set_operation_mode
       data:
         entity_id: climate.woonkamer
@@ -265,3 +351,48 @@
   - service: hassio.addon_start
     data:
       addon: c80014cb_ftpbackup
+
+- alias: "[General] Switch to TV"
+  trigger:
+    - platform: state
+      entity_id: remote.harmony_hub_2
+  condition:
+    condition: or
+    conditions:
+    - condition: template
+      value_template: '{{ states.remote.harmony_hub_2.attributes["current_activity"] == "TV kijken" }}'
+    - condition: template
+      value_template: '{{ states.remote.harmony_hub_2.attributes["current_activity"] == "Chromecast" }}'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'TV'
+
+- alias: "[General] Switch to Auto"
+  trigger:
+    - platform: state
+      entity_id: remote.harmony_hub_2
+  condition:
+    condition: or
+    conditions:
+    - condition: template
+      value_template: '{{ states.remote.harmony_hub_2.attributes["current_activity"] == "PowerOff" }}'
+    - condition: template
+      value_template: '{{ states.remote.harmony_hub_2.attributes["current_activity"] == "Naar muziek luisteren" }}'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.mode_light
+        option: 'Auto'
+
+- alias: "[General] Reset tablet"
+  trigger:
+    platform: time
+    at: '6:00:00'
+  action:
+    - service: rest_command.reset_tab2
+    - service: rest_command.reset_tab3
+    - service: rest_command.reset_tab4
+    - service: rest_command.reset_tab5
+    - service: rest_command.reset_tab1

@@ -1,0 +1,404 @@
+{
+    "data": {
+        "credentials": [
+            {
+                "auth_provider_id": null,
+                "auth_provider_type": "homeassistant",
+                "data": {
+                    "username": "rik"
+                },
+                "id": "1a6074c9fa1645e6a663e218ccc29b2f",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "auth_provider_id": null,
+                "auth_provider_type": "trusted_networks",
+                "data": {
+                    "user_id": "e8dad75116284308af0fe7d2dd6808af"
+                },
+                "id": "8e0fb87ddf1f4bfb8c0d85b6b0dd3c61",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            }
+        ],
+        "groups": [
+            {
+                "id": "system-admin",
+                "name": "Administrators"
+            },
+            {
+                "id": "system-read-only",
+                "name": "Read Only"
+            }
+        ],
+        "refresh_tokens": [
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": null,
+                "client_name": null,
+                "created_at": "2018-08-19T06:29:34.568406+00:00",
+                "id": "06754781b08e46f8bdb24c2b9d61e34f",
+                "jwt_key": "fe2af75374aed4d52d240a030bf0b32e32e9237d886392e80d56ddaa43db8ec6e0bc71dcce69405ab54a10c4ae45b7cf08ad3270ae70dae5aa8e83f7942a23ed",
+                "last_used_at": "2018-12-11T20:09:15.104155+00:00",
+                "last_used_ip": "172.30.32.2",
+                "token": "4f6c935387bac86ab9550c48a2a5c49a9bfd471a4853902f8b877cec49a233d23ff13596e25c19d7470c4bc2f21cba45cdc90081f70956555a7df024a75789ef",
+                "token_type": "system",
+                "user_id": "0f9fc677a4124dbfa2e43e61c27c4ebf"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-08-31T17:57:48.550014+00:00",
+                "id": "1a75ad06764e46adad9e0a0c9bd1e10e",
+                "jwt_key": "c593ac18bb03070f1fb2df5baf01981f11b122bd29251389f74fc54620e0046984be34d1975ace31474d20b613409a1c284a8caf11b833abf56408f916cbdce5",
+                "last_used_at": null,
+                "last_used_ip": null,
+                "token": "9efec1c87888becd3608c81c5d608524b43bc6010b8ed943bac4c8d0d93027e215df58e02a987b246a2b51564c85bbdcf90afd6be8140ac796e6ce376bf056b6",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-08-31T19:24:18.599662+00:00",
+                "id": "e53d92be82d14ed7a464c64f00b01435",
+                "jwt_key": "e27f0803ac41993d4465607e13acaaabd9187e337457552d9385ba4fa7f5087dd56a466c0e039e68135aa2ca88c542c4216da97579ed28f1173272ea43831ce3",
+                "last_used_at": null,
+                "last_used_ip": null,
+                "token": "16d3108c28161080e9a97cfc9413f1f9c70d413379fe0cd00e8ee6f8a69ddd9a99865aab88761507b03fdc0f210fb1f8f3ec9a8dca66df981d9cbeaad2bd4d93",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-09-01T16:08:17.604559+00:00",
+                "id": "0fb509955853469abb2048352d9484e4",
+                "jwt_key": "0a52b124ef2402f23ad46360758f44312393229379f340368e932b1d2d74af7379426772b6221369768cd86f3a38ac2573c0dd39e221a16a95930807a96bda61",
+                "last_used_at": null,
+                "last_used_ip": null,
+                "token": "907b3d7a88b7611416947c1693265421cf264afc370b346bef280c6c8ff2d7f94b474eb2650be4d55c11caacd403c3723585aa21dda7f3375b2385c333f0cf9c",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-09-01T18:13:56.236512+00:00",
+                "id": "0d2b1791e97b4c0aacdfa65cbff555ea",
+                "jwt_key": "8a5f6660afe8bf370c8730cc34ba6cbb778bf435bfa0624fcae7068f202df55de58d7e1e4f7b1e9397f1a9d71cb58d1131f2d5ebbdcbce15e12a6121178725fd",
+                "last_used_at": "2018-12-11T15:56:20.501113+00:00",
+                "last_used_ip": "188.206.98.134",
+                "token": "33b8f002e5ac774be55288cff99d8e4254540bc4757a5d939773cf66fb6f47b89d6fef266be226d1c62a912e5148e3543fc65a16cece2e5275539ca1e7fd161b",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-09-01T20:19:32.365897+00:00",
+                "id": "a6d96c8dbb1b4b6ba78c2f85329ceae1",
+                "jwt_key": "9b80609576fd86f166e2eb7deba98cc3a41954def709699870060e29c60146fe8f1e2cce46c952f093ede99dd504e82f6ea2498918e0470bf1fbdd2ada259887",
+                "last_used_at": "2018-12-11T20:14:59.240069+00:00",
+                "last_used_ip": "84.27.97.93",
+                "token": "893d4ebcc58102e38826b5d515cdeed1b044376f52fa0c195ea56d41cd7c4c89f1a0934945bc4d90c332654fcd54111e74217e493868db0f11324810e87f3ad6",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-09-01T20:50:54.585083+00:00",
+                "id": "c6ca0af814104a929aab8c96caf01f6e",
+                "jwt_key": "cd231bfc0226d82c3b78602b4b1b06310238e3804a8bd79844de22f195509d7739d84928cfa1a3958067e00dfae1c4a970645f1b98b411c3e6cd3f102777e213",
+                "last_used_at": null,
+                "last_used_ip": null,
+                "token": "076cc230bb0e2f38af9d840f0ef703921b05273bbd666ca27cc8dc02668ca5c1ba9444219ecbff50529302f374721f56849afab826593564614c7044cccb57f9",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-09-01T21:03:52.113408+00:00",
+                "id": "ba35d400205d45d58cb71bbe694b2d63",
+                "jwt_key": "5e1b238251744a71c156324a2e84020610d3d0e269975b944f15520a7b523f5cc4c3e2b242fbba872662e523a7d0ce9410698ea4306500f8e412ae434b3ef769",
+                "last_used_at": null,
+                "last_used_ip": null,
+                "token": "108de8b3fb1815adb01bda91b048e1375bf6ab25fd16c1a48c78c5864fbcd820090a8b13eac9b0e8dbfabe975f203ee67ff3719245cb2afb090055b00c32a503",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-09-04T20:50:59.505301+00:00",
+                "id": "e205d485db184e94b9679cc668fcab9e",
+                "jwt_key": "9f1a5351bfb899433c704c5860655c9d9ee16ea6f6cf9e1ac14093ba82a9ea99ef0a46b0a2eb1d54cb3e157847291de9ad6b71a160be4e9f003d85f7660b1395",
+                "last_used_at": "2018-12-10T07:20:18.478078+00:00",
+                "last_used_ip": "84.27.97.93",
+                "token": "cd9ddd0d44c70c949dfc36f1e007c64ca887efdfe54a7c180943eb4e2a8e47078d9edf71b57ed9e84e55d2ba4998d19c42b15cc2c49229654b2f760f7d8d8d78",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-09-17T17:42:07.823329+00:00",
+                "id": "ffe99fc8c69040d8976587d6aa47965f",
+                "jwt_key": "5d53a024b73aed6ef915f830b798143e0303caf0eeb88d2a11dfe8dcbbbfc6dadbb4db52e40fbc08b7ca3d704c1c2117b6869810cb79eb385ca98ecabd14bceb",
+                "last_used_at": null,
+                "last_used_ip": null,
+                "token": "cf5cb792b09ff6984cab397e41d5be3d1e2c11bdf7d05d49538f12a02456615c12e94cefad2e6fff92787d117019ce3d05a9fd54292be021f7976811fa00cb9b",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-09-21T12:51:37.822435+00:00",
+                "id": "0b4c28e0c5a14075988ce92525fff8d2",
+                "jwt_key": "ec0371184b974acda76b3f4856978f3979170d2004111d253c4effd1cecba8c2df0c4a474ddb6130339d7b197539cca51ac7eaaee64d8d67f78a458ca390addb",
+                "last_used_at": null,
+                "last_used_ip": null,
+                "token": "3250b6aa795547bf3ba432f079d45211b324b46807f0a3c5d536c1abde7a320424a428fc3cb624181b710996bfad04f1780beda3da404a92498d1d8692d5bb55",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-09-21T13:04:04.397742+00:00",
+                "id": "ce04125ed7314dbebf459fc687be1b92",
+                "jwt_key": "c16df6e51edf0ca53e8d167c0c396f3e36d067eaddc33af8de7bf3e9df4a1ac90dd11551ca3dbb1ba1d7283ffcafe11cf0a8062ac7d63beba699e361ec31ee59",
+                "last_used_at": null,
+                "last_used_ip": null,
+                "token": "2dee5cc63aba19e204ff01143429bb7f2ec2163fe78ee29f00d0327edca02269e32a2ad6b0137097242ac8b3ab237caa33f98d12d5fc5b03df530df5d139cabd",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-09-24T21:16:09.690258+00:00",
+                "id": "c4db3c65886446bc98003cc796eb8583",
+                "jwt_key": "910db1551e748ab24be49c7f7f3b304009792992ffc51fedd19ac1c640b51f9b43808491c596c008cda2c56671de8dd649efd4db977ba808d5b11416e2630b43",
+                "last_used_at": "2018-09-24T21:16:09.691101+00:00",
+                "last_used_ip": "84.27.97.93",
+                "token": "5fd98fea999cc47952942e07bdb179c67dd9c80ad9b70d5d47b5bd213b3569c7132cfad8e8a2bcf1de659468dc316e21d357d6097d28c1db0a99b739c484a745",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-10-05T13:43:49.074067+00:00",
+                "id": "5080ce8955664491821a5655af692314",
+                "jwt_key": "7a3e46373236fbcfe3d539f1781f585b529aca8b5a8a972d4d6e389a3f6d8c0f5c50e0089fbd702c8df0939229ac1b85ad588577f8a99ce125bf74618c9c1895",
+                "last_used_at": "2018-10-20T07:11:14.049286+00:00",
+                "last_used_ip": "84.27.97.93",
+                "token": "8744a85b6a3f37315ac4082e8c998d0414c002a074e3fed86833cf9594b5048c11b4f97edb0fe0383200725c3fe311450f99abd4eb7d1c9b6ff3420cb5650fe6",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-11-03T09:01:03.427780+00:00",
+                "id": "f0066419c0c942dab21083291de46065",
+                "jwt_key": "6306b2b093cea0aa582cb249d1af53b386af0b2169220846f63d4e323e3ae83b2bc0f86899ad2ee7166f12d56967ee75e1a89747aa02b7d62a243458aee51a0b",
+                "last_used_at": "2018-11-30T16:10:47.983654+00:00",
+                "last_used_ip": "84.27.97.93",
+                "token": "7a19d4bd32423105db9b7c70fe225c28e715d411658a3d61ec0e46c923e2138bb3b88661d8d9355138d9f18b5ef367a0a1ec6736c88ed7076e2280c144663cfc",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-12-01T22:38:00.716530+00:00",
+                "id": "a9b4523889e54ebda50c52fb1ca80833",
+                "jwt_key": "46aa872b604836f5198890999263f689c86f3c45b8d62833d473785d5619d6720099cf9f0c9aaea1fc073bdb5f5c1438b24b3ada5613493f52e125ddcf0ced28",
+                "last_used_at": "2018-12-01T22:38:00.717226+00:00",
+                "last_used_ip": "84.27.97.93",
+                "token": "d22c1a9488ab42256b132de997e7e6a8997ad03fad9c53c14fabcf36ee4b4929b78a0c88b1c3c3643625f181079ca8dba1e3c537ea74d368297dc1f146ef6c2c",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-12-02T12:20:33.018916+00:00",
+                "id": "aef05171d2394fd0aee96eb610872e03",
+                "jwt_key": "e83468d07ec3151ace5c3ce6dcc658b3a81c062c207489f586b8ef54e6a12d626cd8025464faed54c59dda844ad02ebc9d093c605229c061c89764ac9d136439",
+                "last_used_at": "2018-12-02T12:20:33.019652+00:00",
+                "last_used_ip": "84.27.97.93",
+                "token": "cac8d5b339c20a69ce188fc7ccaffa16bc591b65481ada71d0e6fb308f29e05410bb6e930d9ab9e929d82d3b0d5929d08e3cb232d32b7a07767ca3e03fb075bf",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-12-02T14:22:01.869459+00:00",
+                "id": "1017f00ca4f14f3d843174c716638c8a",
+                "jwt_key": "c0daf9c6811de274742caf0c403a2df2b83df82031b92ea6bf8d3eaaded00b7114fbc396a35e14a1f13af9fce2eef54ccc5bf5162550ea332f7dc0bc4aead541",
+                "last_used_at": "2018-12-02T14:22:01.877786+00:00",
+                "last_used_ip": "84.27.97.93",
+                "token": "5e72834f511a6498473db58ee8c5b1432a295c504099bf1728de44db743936dac747c5fa5e03277a429be88d4e8336adf8708d7ae10ff91d6155cba0e0976e8f",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://192.168.1.200:8123/",
+                "client_name": null,
+                "created_at": "2018-12-03T21:41:11.602017+00:00",
+                "id": "6e0f69aad2934d6a891e1b2dc6def290",
+                "jwt_key": "3f0299c47e005b1db4c7d4fa1f246a0706ddf15ff8aca1b68ffaadaa6a1b071dcd4fe9d65c001a8c0a3df2542ad2cbf0c6520172ebb3d7bbc19801c118e5b39d",
+                "last_used_at": "2018-12-03T21:41:11.606918+00:00",
+                "last_used_ip": "192.168.1.100",
+                "token": "93ca8ab41e5d0675e5288c829d4790e7561a06c41f41b33b471498279665fd8f513c8fa936499b31c0677a37570c32679bd7db9582b47b8bc6a0ed303e6cd649",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://192.168.1.200:8123/",
+                "client_name": null,
+                "created_at": "2018-12-03T21:52:25.957855+00:00",
+                "id": "a9da102518d14dd5aaeceb807f86f16d",
+                "jwt_key": "d3ec9b9e65da9d5c1582ef32716009bfadd1137aff0708ff94a4cc8518d87c3646a2eb2935ac42c2e5c862b1c511b0f5e7c3ed9e6164e398e9b29bcf3ef08ca6",
+                "last_used_at": "2018-12-03T21:52:25.958579+00:00",
+                "last_used_ip": "192.168.1.1",
+                "token": "2b0e58623e92bd495f9efda32892c4d40e2262ad5871821764c3111478ff4ea6237e04f4a9803129f1572e0bad53b146d686de03b853d60c9de3e1ee0815b617",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://192.168.1.200:8123/",
+                "client_name": null,
+                "created_at": "2018-12-03T21:58:32.824555+00:00",
+                "id": "ac178f4dcdd949f8bac86b8e9f3f66b4",
+                "jwt_key": "466e2b0aacdf3d176f5a7e8d602e3f63699ccab43a00f02b0fa068cc518806ecb9887a1e6516ce86cb004319285b7272146c9f7183b3172c48cc335cf71902f2",
+                "last_used_at": "2018-12-03T21:58:32.825323+00:00",
+                "last_used_ip": "192.168.1.1",
+                "token": "9cfec33f58d8b5fb59a5ff61cbf80cdb352830b79b19ade7d10fa60db13d7eee0d54cf57b2d4d711dcf512faec6e5d66cf335d26ee2c26008f571d9e1cd8f749",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://192.168.1.200:8123/",
+                "client_name": null,
+                "created_at": "2018-12-03T22:14:12.726741+00:00",
+                "id": "41db10054390435cb1af8028ccf24cb3",
+                "jwt_key": "f33c1b6cd0efca152874b1dd9acc4505348160225346c50d51654c24975ff46d0304c24531df085dd064d5bbb51240ffe4d65da8aa51b8244d48113084fa1f37",
+                "last_used_at": "2018-12-03T22:14:12.727401+00:00",
+                "last_used_ip": "192.168.1.4",
+                "token": "2f76030c71d352044d094004d8dd8d0c12063570f00631b4a6109ddeca4bfed432d4293ff8ef12f50882f9d58c476c29e719c230a4e366a989dd9715669ffd16",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-12-04T22:09:44.217759+00:00",
+                "id": "59109a3280f0420ead8e841e2682c799",
+                "jwt_key": "03492abc6df706ef35c6dacbf82be576a08153c9a443083283609aee33fdc01daf5f4aab1b01d6a9f6fdc96989d06c5f4c98d507f4881af1df133f5d0d436fc8",
+                "last_used_at": "2018-12-04T22:09:44.218630+00:00",
+                "last_used_ip": "84.27.97.93",
+                "token": "58bb485bdfe1c1712da535e927323a1ef5a7422534ae4a01ef0b11a512a01ce2d434b3c12c13aee2e93285220ffd82373fb34f9658e2aa0b22b31b58806f173b",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            },
+            {
+                "access_token_expiration": 1800.0,
+                "client_icon": null,
+                "client_id": "https://riverhass.duckdns.org/",
+                "client_name": null,
+                "created_at": "2018-12-10T22:11:37.577964+00:00",
+                "id": "aa6e73115dbf4b30a749dd7a846f68bf",
+                "jwt_key": "f07298dbb3fbe84e89302f5b10a892a3d3c09142444ae0bb63b33f72233834620ea23cb8cb8addff1e4b83c6f30b0f549892ddbb12843b9f0a830d2eb26a8119",
+                "last_used_at": "2018-12-10T22:11:37.578685+00:00",
+                "last_used_ip": "84.27.97.93",
+                "token": "40833aa16cbbeb7c6bad0d5a8f221d42389c92ae4e47e59585591ea579748d5384ff00d7dd5f48a4bb214f7b95a4caa3c22a1a6184235bfaca5a4d17ad8bad8e",
+                "token_type": "normal",
+                "user_id": "e8dad75116284308af0fe7d2dd6808af"
+            }
+        ],
+        "users": [
+            {
+                "group_ids": [],
+                "id": "35e7894f06444873b25868c0c0832b7e",
+                "is_active": true,
+                "is_owner": false,
+                "name": "Hass.io",
+                "system_generated": true
+            },
+            {
+                "group_ids": [
+                    "system-admin"
+                ],
+                "id": "0f9fc677a4124dbfa2e43e61c27c4ebf",
+                "is_active": true,
+                "is_owner": false,
+                "name": "Hass.io",
+                "system_generated": true
+            },
+            {
+                "group_ids": [
+                    "system-admin"
+                ],
+                "id": "e8dad75116284308af0fe7d2dd6808af",
+                "is_active": true,
+                "is_owner": true,
+                "name": "rik",
+                "system_generated": false
+            }
+        ]
+    },
+    "key": "auth",
+    "version": 1
+}

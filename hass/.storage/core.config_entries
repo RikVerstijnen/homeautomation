@@ -1,0 +1,44 @@
+{
+    "data": {
+        "entries": [
+            {
+                "connection_class": "unknown",
+                "data": {},
+                "domain": "cast",
+                "entry_id": "c621d82af218400e889b61a76bf6966a",
+                "source": "user",
+                "title": "Google Cast",
+                "version": 1
+            },
+            {
+                "connection_class": "local_push",
+                "data": {
+                    "network_key": "0x4A, 0x4A, 0x64, 0xDD, 0x0E, 0xC4, 0xB3, 0xEC, 0x4C, 0x9F, 0x24, 0x8F, 0x2C, 0x4A, 0xC0, 0x04",
+                    "usb_path": "/dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0"
+                },
+                "domain": "zwave",
+                "entry_id": "4b5bf50db92f44539c4c36a4709a770b",
+                "source": "import",
+                "title": "Z-Wave (import from configuration.yaml)",
+                "version": 1
+            },
+            {
+                "connection_class": "unknown",
+                "data": {
+                    "gateway_id": "7e176d5204400020",
+                    "host": "192.168.1.118",
+                    "identity": "63f14883d9724ec496ca8807ba5affef",
+                    "import_groups": false,
+                    "key": "p6kN0V3LNTV4ayaW"
+                },
+                "domain": "tradfri",
+                "entry_id": "b6c74f8dc65246fd8d6de9c16769a73d",
+                "source": "import",
+                "title": "192.168.1.118",
+                "version": 1
+            }
+        ]
+    },
+    "key": "core.config_entries",
+    "version": 1
+}

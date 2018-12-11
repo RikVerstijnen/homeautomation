@@ -1,0 +1,51 @@
+title: Thuis
+
+resources:
+  - url: /local/power-wheel-card.js?v=1
+    type: module
+
+views:
+    # View tab title.
+  - title: Algemeen
+    panel: false
+    # Makes the first card fill the view
+    cards:
+        # The markdown card will render markdown text.
+      - type: entities
+        # Title of the entities card
+        title: Verlichting
+        # The entities here will be shown in the same order as specified.
+        # Each entry is an entity ID or a map with extra options.
+        entities:
+          - group.spotjes
+          - light.level
+          - switch.keuken
+          - light.verlichting_speelkamer__level
+          - switch.qubino_zmnhbdx_flush_2_relays_switch
+          - light.hal
+          - group.overloop
+          - switch.zolder
+      - type: "custom:power-wheel-card"
+        title: Energie
+        solar_power_entity: sensor.solaredge_currentpower
+        grid_power_entity: sensor.net_grid_consumption
+    # View tab title.
+  - title: Energie
+    panel: true
+    # Makes the first card fill the view
+    cards:
+        # The markdown card will render markdown text.
+      - type: markdown
+        title: Lovelace
+        content: >
+          Welcome to your **Lovelace UI**.
+    # View tab title.
+  - title: Temperatuur
+    panel: true
+    # Makes the first card fill the view
+    cards:
+        # The markdown card will render markdown text.
+      - type: markdown
+        title: Lovelace
+        content: >
+          Welcome to your **Lovelace UI**.

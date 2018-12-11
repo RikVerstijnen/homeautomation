@@ -113,3 +113,6 @@ group.spotjes:
   icon: mdi:lightbulb
 group.overloop:
   icon: mdi:lightbulb
+switch.zolder:
+  friendly_name: Zolder
+  icon: mdi:lightbulb

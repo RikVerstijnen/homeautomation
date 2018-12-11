@@ -307,3 +307,35 @@ androidfd1a21e589f18d36:
   name: android-fd1a21e589f18d36
   picture:
   track: true
+
+iphone:
+  hide_if_away: false
+  icon:
+  mac: B0:70:2D:02:AC:C7
+  name: iPhone
+  picture:
+  track: true
+
+shelly18aad8c:
+  hide_if_away: false
+  icon:
+  mac: BC:DD:C2:8A:AD:8C
+  name: shelly1-8AAD8C
+  picture:
+  track: true
+
+android70caa462d7d39ab0:
+  hide_if_away: false
+  icon:
+  mac: 7C:F9:0E:35:08:B1
+  name: android-70caa462d7d39ab0
+  picture:
+  track: true
+
+rickverstijnen_2:
+  hide_if_away: false
+  icon:
+  mac: 8C:EC:4B:D9:79:B3
+  name: Rick-Verstijnen
+  picture:
+  track: true

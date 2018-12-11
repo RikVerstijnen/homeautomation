@@ -1,14 +1,14 @@
 - alias: "[Light] Auto lichtsterkte binnen"
   trigger:
     - platform: state
-      entity_id: sensor.luminance
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
     - platform: state
       entity_id: input_select.mode_light
   condition:
     condition: and
     conditions:
     - condition: numeric_state
-      entity_id: sensor.luminance
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
       below: 50
     - condition: state
       entity_id: input_select.mode_light
@@ -22,23 +22,61 @@
        - light.lamp_tussen
        - light.lamp_zithoek
       data_template:
-        brightness: '{{ 150 - (states("sensor.luminance") | int) }}'
+        brightness: '{{ 150 - (states("sensor.aeotec_zw074_multisensor_gen5_luminance") | int) }}'
 
-- alias: "[Light] Lampen aan buiten"
+- alias: "[Light] Auto lichtsterkte binnen - TV"
   trigger:
     - platform: state
-      entity_id: sensor.luminance
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
     - platform: state
       entity_id: input_select.mode_light
   condition:
     condition: and
     conditions:
     - condition: numeric_state
-      entity_id: sensor.luminance
-      below: 12
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      below: 50
     - condition: state
       entity_id: input_select.mode_light
-      state: 'Auto'
+      state: 'TV'
+  action:
+    - service: light.turn_on
+      entity_id:
+       - light.lamp_tussen
+       - light.lamp_zithoek
+      data_template:
+        brightness: '{{ 60 - (states("sensor.aeotec_zw074_multisensor_gen5_luminance") | int) }}'
+    - service: light.turn_on
+      entity_id:
+       - light.level
+       - light.lamp_keuken
+       - light.lamp_achter
+      data_template:
+        brightness: '{{ 100 - (states("sensor.aeotec_zw074_multisensor_gen5_luminance") | int) }}'
+
+- alias: "[Light] Lampen aan buiten"
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+    - platform: state
+      entity_id: input_select.mode_light
+  condition:
+    condition: and
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      below: 12
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'Vol'
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'Auto'
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'TV'
     - condition: state
       entity_id: switch.qubino_zmnhbdx_flush_2_relays_switch
       state: 'off'
@@ -50,18 +88,18 @@
 - alias: "[Light] Lampen uit binnen"
   trigger:
     - platform: state
-      entity_id: sensor.luminance
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
     - platform: state
       entity_id: input_select.mode_light
   condition:
     condition: or
     conditions:
     - condition: numeric_state
-      entity_id: sensor.luminance
-      above: 50
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
+      above: 30
     - condition: state
       entity_id: input_select.mode_light
-      state: 'False'
+      state: 'Uit'
   action:
     - service: light.turn_off
       entity_id:
@@ -75,7 +113,7 @@
 - alias: "[Light] Lampen uit buiten"
   trigger:
     - platform: state
-      entity_id: sensor.luminance
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
     - platform: state
       entity_id: input_select.mode_light
   condition:
@@ -84,11 +122,11 @@
     - condition: or
       conditions:
       - condition: numeric_state
-        entity_id: sensor.luminance
+        entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
         above: 12
       - condition: state
         entity_id: input_select.mode_light
-        state: 'False'
+        state: 'Uit'
     - condition: state
       entity_id: switch.qubino_zmnhbdx_flush_2_relays_switch
       state: 'on'
@@ -106,7 +144,7 @@
     conditions:
     - condition: state
       entity_id: input_select.mode_light
-      state: 'True'
+      state: 'Vol'
   action:
     - service: light.turn_on
       entity_id:
@@ -127,10 +165,13 @@
     conditions:
     - condition: state
       entity_id: input_select.mode_light
-      state: 'True'
+      state: 'Vol'
     - condition: state
       entity_id: input_select.mode_light
       state: 'Auto'
+    - condition: state
+      entity_id: input_select.mode_light
+      state: 'TV'
   action:
     - service: switch.turn_on
       entity_id:
@@ -145,7 +186,7 @@
     conditions:
     - condition: state
       entity_id: input_select.mode_light
-      state: 'False'
+      state: 'Uit'
   action:
     - service: switch.turn_off
       entity_id:
@@ -169,12 +210,15 @@
       conditions:
       - condition: state
         entity_id: input_select.mode_light
-        state: 'True'
+        state: 'Vol'
       - condition: state
         entity_id: input_select.mode_light
         state: 'Auto'
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'TV'
     - condition: numeric_state
-      entity_id: sensor.luminance
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
       below: 30
   action:
     - service: light.turn_on
@@ -203,9 +247,9 @@
       conditions:
       - condition: state
         entity_id: input_select.mode_light
-        state: 'False'
+        state: 'Uit'
     - condition: numeric_state
-      entity_id: sensor.luminance
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
       below: 30
   action:
     - service: light.turn_on
@@ -247,12 +291,15 @@
       conditions:
       - condition: state
         entity_id: input_select.mode_light
-        state: 'True'
+        state: 'Vol'
       - condition: state
         entity_id: input_select.mode_light
         state: 'Auto'
+      - condition: state
+        entity_id: input_select.mode_light
+        state: 'TV'
     - condition: numeric_state
-      entity_id: sensor.luminance
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
       below: 30
   action:
     - service: light.turn_on
@@ -285,9 +332,9 @@
       conditions:
       - condition: state
         entity_id: input_select.mode_light
-        state: 'False'
+        state: 'Uit'
     - condition: numeric_state
-      entity_id: sensor.luminance
+      entity_id: sensor.aeotec_zw074_multisensor_gen5_luminance
       below: 30
   action:
     - service: light.turn_on
@@ -321,12 +368,12 @@
     - service: light.turn_off
       entity_id: light.overloop_3
 
-- alias: "[Light] Morris aan hoog"
+- alias: "[Light] Morris aan Groot"
   trigger:
     - platform: event
       event_type: zwave.scene_activated
       event_data:
-        entity_id: zwave.aeotec_zw130_wallmote_quad
+        entity_id: zwave.aeotec_zw130_wallmote_quad_4
         scene_id: 1
         scene_data: 0
   action:
@@ -351,12 +398,12 @@
         brightness: 50
         kelvin: 2700
 
-- alias: "[Light] Morris uit hoog"
+- alias: "[Light] Morris uit Groot"
   trigger:
     - platform: event
       event_type: zwave.scene_activated
       event_data:
-        entity_id: zwave.aeotec_zw130_wallmote_quad
+        entity_id: zwave.aeotec_zw130_wallmote_quad_4
         scene_id: 3
         scene_data: 0
   action:
@@ -368,12 +415,12 @@
         - light.morris_schemer_groot
         - light.morris_schemer_klein
 
-- alias: "[Light] Morris aan laag"
+- alias: "[Light] Morris aan Klein"
   trigger:
     - platform: event
       event_type: zwave.scene_activated
       event_data:
-        entity_id: zwave.aeotec_zw130_wallmote_quad
+        entity_id: zwave.aeotec_zw130_wallmote_quad_4
         scene_id: 2
         scene_data: 0
   action:
@@ -392,12 +439,12 @@
         brightness: 1
         kelvin: 2200
 
-- alias: "[Light] Morris uit laag"
+- alias: "[Light] Morris uit Klein"
   trigger:
     - platform: event
       event_type: zwave.scene_activated
       event_data:
-        entity_id: zwave.aeotec_zw130_wallmote_quad
+        entity_id: zwave.aeotec_zw130_wallmote_quad_4
         scene_id: 4
         scene_data: 0
   action:

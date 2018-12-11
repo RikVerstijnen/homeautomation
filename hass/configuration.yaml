@@ -20,9 +20,9 @@ logger:
   logs:
     # homeassistant.components.camera: debug
   #   #homeassistant.components.maxcube: debug
-    homeassistant.components.rfxtrx: debug
+    # homeassistant.components.rfxtrx: debug
 
-  #   #homeassistant.components.zwave: debug
+    homeassistant.components.zwave: debug
 
 # Enables the frontend
 frontend:
@@ -31,14 +31,19 @@ frontend:
 config:
 
 http:
-  api_password: !secret api_password
+  #api_password: !secret api_password
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   base_url: riverhass.duckdns.org
+  # trusted_proxies:
+  #   - 127.0.0.1
+  #   - 84.27.97.93
+  #   - 192.168.1.1
   trusted_networks:
     - 127.0.0.1
     - 84.27.97.93
     - 192.168.1.1
+    - 192.168.1.202
 
 updater:
 
@@ -119,21 +124,34 @@ sensor:
 
 #Solaredge
   - platform: rest
+    name: solaredge_overview
+    scan_interval: 400
+    json_attributes:
+      - overview
+    value_template: '{{ value_json.states }}'
     resource: !secret solaredge_url
-    method: GET
-    name: SolarEdge inverter
-    scan_interval: 10
-
   - platform: template
     sensors:
-      grid_today:
-        friendly_name: "Solar Power Today"
-        value_template: '{{ (states.sensor.solaredge_inverter.attributes.overview.lastDayData.energy | float / 1000) | round(2) }}'
-        unit_of_measurement: 'kWh'
-      grid_now:
-        friendly_name: "Solar Power Now"
-        value_template: '{{ (states.sensor.solaredge_inverter.attributes.overview.currentPower.power | float / 1000) | round(2) }}'
+      solaredge_currentpower:
+        friendly_name: 'SolarEdge Current Power Production'
+        value_template: '{{ (states.sensor.solaredge_overview.attributes.overview.currentPower.power | float / 1000) | round(2) }}'
         unit_of_measurement: 'kW'
+      solaredge_lastdayenergy:
+        friendly_name: 'SolarEdge Last Day Energy Production'
+        value_template: '{{ (states.sensor.solaredge_overview.attributes.overview.lastDayData.energy | float / 1000) | round(2) }}'
+        unit_of_measurement: 'kWh'
+      solaredge_lastmonthenergy:
+        friendly_name: 'SolarEdge Last Month Energy Production'
+        value_template: '{{ (states.sensor.solaredge_overview.attributes.overview.lastMonthData.energy | float / 1000) | round(2) }}'
+        unit_of_measurement: 'kWh'
+      solaredge_lastyearenergy:
+        friendly_name: 'SolarEdge Last Year Energy Production'
+        value_template: '{{ (states.sensor.solaredge_overview.attributes.overview.lastYearData.energy | float / 1000000) | round(2) }}'
+        unit_of_measurement: 'MWh'
+      solaredge_lifetimeenergy:
+        friendly_name: 'SolarEdge Life Energy Production'
+        value_template: '{{ (states.sensor.solaredge_overview.attributes.overview.lifeTimeData.energy | float / 1000000) | round(2) }}'
+        unit_of_measurement: 'MWh'
 
 #Add normal/low
   - platform: template
@@ -148,9 +166,13 @@ sensor:
         unit_of_measurement: 'kWh'
 
 #Net usage
+      net_grid_consumption:
+        friendly_name: "Net grid consumption"
+        value_template: '{{ (states.sensor.power_consumption.state | float) - (states.sensor.power_production.state | float) }}'
+        unit_of_measurement: 'kW'
       total_usage:
         friendly_name: "Total usage"
-        value_template: '{{ (states.sensor.grid_now.state | float) - (states.sensor.power_production.state | float) + (states.sensor.power_consumption.state | float)}}'
+        value_template: '{{ (states.sensor.solaredge_currentpower.state | float) - (states.sensor.power_production.state | float) + (states.sensor.power_consumption.state | float)}}'
         unit_of_measurement: 'kW'
 
 # Text to speech
@@ -163,6 +185,7 @@ script: !include scripts.yaml
 
 switch:
   - platform: command_line
+    scan_interval: 2
     switches:
       ketel:
         command_on: "/usr/bin/curl -X GET http://user:Rickyboy22@192.168.1.199/FF0101"
@@ -196,8 +219,12 @@ switch:
         command_state: !secret foo_screen_state
         value_template: '{{ value == "on" }}'
         friendly_name: Domotica tablet
-      # syno_record:
-      #   command_on: GET /webapi/SurveillanceStation/extrecord.cgi?api=SYNO.SurveillanceStation.ExternalRecording&method=Record&version=1&cameraId=1&action=start
+  - platform: shelly
+    switches:
+      zolder:
+        host: 192.168.1.206
+        username: user
+        password: Rickyboy22
 
   - platform: rfxtrx
     #automatic_add: true
@@ -211,7 +238,7 @@ climate:
   - platform: generic_thermostat
     name: Woonkamer
     heater: switch.ketel
-    target_sensor: sensor.temperature
+    target_sensor: sensor.aeotec_zw074_multisensor_gen5_temperature
     target_temp: 19
     cold_tolerance: 0.1
     # Start when below 18,9
@@ -247,31 +274,32 @@ light:
 zwave:
   usb_path: /dev/serial/by-id/usb-Silicon_Labs_CP2102_USB_to_UART_Bridge_Controller_0001-if00-port0
   network_key: !secret zwave_key
+  debug: true
 
-device_tracker:
-  - platform: asuswrt
-    host: 192.168.1.1
-    username: admin
-    ssh_key: /config/ssh/ssh_asus_private_key
-    interval_seconds: 10
-    consider_home: 180
+asuswrt:
+  host: 192.168.1.1
+  username: admin
+  ssh_key: /config/ssh/ssh_asus_private_key
+  # interval_seconds: 10
+  # consider_home: 180
 
 input_select:
   mode:
     name: Mode
     options:
-     - Off
+     - Uit
      - Auto
-     - On
+     - Aan
      - Sim
     initial: Auto
     icon: mdi:power
   mode_light:
     name: Verlichting
     options:
-     - Off
+     - Uit
+     - TV
      - Auto
-     - On
+     - Vol
     initial: Auto
     icon: mdi:lightbulb-on-outline
 
@@ -417,7 +445,7 @@ history_graph:
   gr2:
     name: "Temperatuur"
     entities:
-      - sensor.temperature
+      - sensor.aeotec_zw074_multisensor_gen5_temperature
       - sensor.temperatuur_badkamer_temperature
       - sensor.temperatuur_slaapkamer_morris_temperature
       - sensor.temperatuur_buiten_temperature
@@ -449,6 +477,7 @@ timer:
     duration: '00:01:00'
 
 recorder:
+  purge_keep_days: 5
   db_url: mysql://hass:Rickyboy22@core-mariadb/homeassistant
 
 influxdb:
@@ -502,3 +531,15 @@ notify:
   - name: Telegram
     platform: telegram
     chat_id: 401477431
+
+rest_command:
+  reset_tab1:
+    url: http://192.168.1.202:2323/?cmd=loadStartURL&password=Rickyboy22
+  reset_tab2:
+    url: http://192.168.1.202:2323/?cmd=clearCache&password=Rickyboy22
+  reset_tab3:
+    url: http://192.168.1.202:2323/?cmd=clearWebstorage&password=Rickyboy22
+  reset_tab4:
+    url: http://192.168.1.202:2323/?cmd=clearCookies&password=Rickyboy22
+  reset_tab5:
+    url: http://192.168.1.202:2323/?cmd=restartApp&password=Rickyboy22

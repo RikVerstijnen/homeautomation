@@ -40,6 +40,7 @@
       - switch.qubino_zmnhbdx_flush_2_relays_switch
       - light.hal
       - group.overloop
+      - switch.zolder
   verwarming:
     name: Verwarming
     view: no
@@ -81,6 +82,7 @@
       - binary_sensor.motion_sensor_158d0001656748
       - binary_sensor.motion_sensor_158d0001d9752b
       - binary_sensor.buitensensor_sensor
+      - sensor.aeotec_zw074_multisensor_gen5_luminance
       - device_tracker.telefoonrik
       - device_tracker.telefoonsabine
       - binary_sensor.smoke_sensor_158d00015b1821
@@ -123,7 +125,7 @@
     entities:
       - history_graph.temperatuur
       - sensor.temperatuur_buiten_temperature
-      - sensor.temperature
+      - sensor.aeotec_zw074_multisensor_gen5_temperature
       - sensor.temperatuur_badkamer_temperature
       - sensor.temperatuur_slaapkamer_morris_temperature
       - sensor.temperature_158d000227255b

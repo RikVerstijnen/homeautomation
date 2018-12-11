@@ -1,0 +1,422 @@
+{
+    "data": {
+        "devices": [
+            {
+                "config_entries": [
+                    "c621d82af218400e889b61a76bf6966a"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "bf50d6ddfcbe4dafb94e22fd7f9b8372",
+                "identifiers": [
+                    [
+                        "cast",
+                        "9db79da85ab3a6bcb6939ad14e69dbed"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast",
+                "name": "Woonkamer 2",
+                "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "c621d82af218400e889b61a76bf6966a"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "40a73b35099545d38c4ad73c853b65d2",
+                "identifiers": [
+                    [
+                        "cast",
+                        "13ea17b9001ba1838a9059441b037ead"
+                    ]
+                ],
+                "manufacturer": "Google Inc.",
+                "model": "Chromecast",
+                "name": "Slaapkamer 3",
+                "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "b6c74f8dc65246fd8d6de9c16769a73d"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "9167a9a718e54fd4a1da67468bef20eb",
+                "identifiers": [
+                    [
+                        "tradfri",
+                        "7e176d5204400020"
+                    ]
+                ],
+                "manufacturer": "IKEA",
+                "model": "E1526",
+                "name": "Gateway",
+                "sw_version": "1.4.15"
+            },
+            {
+                "config_entries": [
+                    "b6c74f8dc65246fd8d6de9c16769a73d"
+                ],
+                "connections": [],
+                "hub_device_id": "9167a9a718e54fd4a1da67468bef20eb",
+                "id": "0dfa890478c44465b27b6b11bfd12844",
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65542
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb E14 WS opal 400lm",
+                "name": "Morris schemer klein",
+                "sw_version": "1.2.217"
+            },
+            {
+                "config_entries": [
+                    "b6c74f8dc65246fd8d6de9c16769a73d"
+                ],
+                "connections": [],
+                "hub_device_id": "9167a9a718e54fd4a1da67468bef20eb",
+                "id": "4b52ac502b4a425eae416d0c8097783e",
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65537
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb E14 WS opal 400lm",
+                "name": "Overloop 1",
+                "sw_version": "1.2.217"
+            },
+            {
+                "config_entries": [
+                    "b6c74f8dc65246fd8d6de9c16769a73d"
+                ],
+                "connections": [],
+                "hub_device_id": "9167a9a718e54fd4a1da67468bef20eb",
+                "id": "a1968197c2e948a2bf8317c82f898fd2",
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65545
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb GU10 WS 400lm",
+                "name": "Morris 3",
+                "sw_version": "1.2.217"
+            },
+            {
+                "config_entries": [
+                    "b6c74f8dc65246fd8d6de9c16769a73d"
+                ],
+                "connections": [],
+                "hub_device_id": "9167a9a718e54fd4a1da67468bef20eb",
+                "id": "d363a8232d54443699b9763c75b9022b",
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65539
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb E14 WS opal 400lm",
+                "name": "Overloop 3",
+                "sw_version": "1.2.217"
+            },
+            {
+                "config_entries": [
+                    "b6c74f8dc65246fd8d6de9c16769a73d"
+                ],
+                "connections": [],
+                "hub_device_id": "9167a9a718e54fd4a1da67468bef20eb",
+                "id": "6687025c6e62404396c79ef36a924478",
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65543
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb GU10 WS 400lm",
+                "name": "Morris 1",
+                "sw_version": "1.2.217"
+            },
+            {
+                "config_entries": [
+                    "b6c74f8dc65246fd8d6de9c16769a73d"
+                ],
+                "connections": [],
+                "hub_device_id": "9167a9a718e54fd4a1da67468bef20eb",
+                "id": "f907b3bf7b1d4c0383c72bf4ec77bd56",
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65540
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb E27 W opal 1000lm",
+                "name": "Hal",
+                "sw_version": "1.2.214"
+            },
+            {
+                "config_entries": [
+                    "b6c74f8dc65246fd8d6de9c16769a73d"
+                ],
+                "connections": [],
+                "hub_device_id": "9167a9a718e54fd4a1da67468bef20eb",
+                "id": "328c4ea0ddc241dc9b3dc9bf40898bc9",
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65541
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb E27 WS opal 980lm",
+                "name": "Morris schemer groot",
+                "sw_version": "1.2.217"
+            },
+            {
+                "config_entries": [
+                    "b6c74f8dc65246fd8d6de9c16769a73d"
+                ],
+                "connections": [],
+                "hub_device_id": "9167a9a718e54fd4a1da67468bef20eb",
+                "id": "ce0b6ad15f6d41a1a1eb947f4ddf7fdc",
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65544
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb GU10 WS 400lm",
+                "name": "Morris 2",
+                "sw_version": "1.2.217"
+            },
+            {
+                "config_entries": [
+                    "b6c74f8dc65246fd8d6de9c16769a73d"
+                ],
+                "connections": [],
+                "hub_device_id": "9167a9a718e54fd4a1da67468bef20eb",
+                "id": "8943f0fb63664280b185b4042ef60558",
+                "identifiers": [
+                    [
+                        "tradfri",
+                        65538
+                    ]
+                ],
+                "manufacturer": "IKEA of Sweden",
+                "model": "TRADFRI bulb E14 WS opal 400lm",
+                "name": "Overloop 2",
+                "sw_version": "1.2.217"
+            },
+            {
+                "config_entries": [
+                    "4b5bf50db92f44539c4c36a4709a770b"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "597e3c3042f1450f801f4dc11e6a5b51",
+                "identifiers": [
+                    [
+                        "zwave",
+                        2
+                    ]
+                ],
+                "manufacturer": "GreenWave",
+                "model": "PowerNode 1 port",
+                "name": "GreenWave PowerNode 1 port",
+                "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "4b5bf50db92f44539c4c36a4709a770b"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "2aff22b3731a4183ae741535c83073bd",
+                "identifiers": [
+                    [
+                        "zwave",
+                        6
+                    ]
+                ],
+                "manufacturer": "Qubino",
+                "model": "ZMNHBDx Flush 2 Relays",
+                "name": "Qubino ZMNHBDx Flush 2 Relays",
+                "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "4b5bf50db92f44539c4c36a4709a770b"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "fc4c52e3fce441f6b7adaafaba366537",
+                "identifiers": [
+                    [
+                        "zwave",
+                        7
+                    ]
+                ],
+                "manufacturer": "Qubino",
+                "model": "ZMNHDD1 Flush Dimmer",
+                "name": "Qubino ZMNHDD1 Flush Dimmer",
+                "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "4b5bf50db92f44539c4c36a4709a770b"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "aeff95ee6e67413ea780aef852b2e909",
+                "identifiers": [
+                    [
+                        "zwave",
+                        8
+                    ]
+                ],
+                "manufacturer": "Aeotec",
+                "model": "ZW075 Smart Switch Gen5",
+                "name": "Aeotec ZW075 Smart Switch Gen5",
+                "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "4b5bf50db92f44539c4c36a4709a770b"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "6a93aaf8e4244c2396556c69b2c5e28d",
+                "identifiers": [
+                    [
+                        "zwave",
+                        9
+                    ]
+                ],
+                "manufacturer": "FIBARO System",
+                "model": "FGWPE/F Wall Plug",
+                "name": "FIBARO System FGWPE/F Wall Plug",
+                "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "4b5bf50db92f44539c4c36a4709a770b"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "579b5a5854f74f3f80c8c9642641ebdd",
+                "identifiers": [
+                    [
+                        "zwave",
+                        10
+                    ]
+                ],
+                "manufacturer": "Qubino",
+                "model": "ZMNHDD1 Flush Dimmer",
+                "name": "Qubino ZMNHDD1 Flush Dimmer",
+                "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "4b5bf50db92f44539c4c36a4709a770b"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "9730b9aad11c40bdbbf2de1463b8b559",
+                "identifiers": [
+                    [
+                        "zwave",
+                        11
+                    ]
+                ],
+                "manufacturer": "GreenWave",
+                "model": "PowerNode 6 port",
+                "name": "GreenWave PowerNode 6 port",
+                "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "4b5bf50db92f44539c4c36a4709a770b"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "bb19aebbf51e4dc88708de30d48c325c",
+                "identifiers": [
+                    [
+                        "zwave",
+                        13
+                    ]
+                ],
+                "manufacturer": "Aeotec",
+                "model": "ZW074 MultiSensor Gen5",
+                "name": "Aeotec ZW074 MultiSensor Gen5",
+                "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "4b5bf50db92f44539c4c36a4709a770b"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "47497d3e0a90454f8c2f8d752682472c",
+                "identifiers": [
+                    [
+                        "zwave",
+                        14
+                    ]
+                ],
+                "manufacturer": "Aeotec",
+                "model": "ZW130 WallMote Quad",
+                "name": "Aeotec ZW130 WallMote Quad",
+                "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "4b5bf50db92f44539c4c36a4709a770b"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "7ef4b8a84c044d49b7938145d24aec36",
+                "identifiers": [
+                    [
+                        "zwave",
+                        15
+                    ]
+                ],
+                "manufacturer": "Aeotec",
+                "model": "ZW130 WallMote Quad",
+                "name": "Aeotec ZW130 WallMote Quad",
+                "sw_version": null
+            },
+            {
+                "config_entries": [
+                    "4b5bf50db92f44539c4c36a4709a770b"
+                ],
+                "connections": [],
+                "hub_device_id": null,
+                "id": "28344f9903bb42ee84a293a19c6770e2",
+                "identifiers": [
+                    [
+                        "zwave",
+                        16
+                    ]
+                ],
+                "manufacturer": "Aeotec",
+                "model": "ZW130 WallMote Quad",
+                "name": "Aeotec ZW130 WallMote Quad",
+                "sw_version": null
+            }
+        ]
+    },
+    "key": "core.device_registry",
+    "version": 1
+}
