@@ -267,8 +267,13 @@
     platform: time
     at: '2:00:00'
   action:
-    service: switch.turn_on
-    entity_id: switch.mindergas
+    - service: rest_command.post_mindergas
+    - service: logbook.log
+      data:
+        name: Gasverbruik
+        message: is verstuurd naar mindergas.nl
+        entity_id: sensor.gas_consumption
+        domain: sensor
 
 - alias: "[General] Deurbel"
   trigger:

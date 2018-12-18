@@ -1,6 +1,6 @@
 homeassistant:
   # Name of the location where Home Assistant is running
-  name: Home
+  name: Ons huis
   # Location required to calculate the time the sun rises and sets
   latitude: 51.68751
   longitude: 5.13299
@@ -12,6 +12,9 @@ homeassistant:
   time_zone: Europe/Amsterdam
   # Customization file
   customize: !include customize.yaml
+  auth_providers:
+  - type: homeassistant
+  - type: trusted_networks
 
 python_script:
 
@@ -19,10 +22,9 @@ logger:
   default: error
   logs:
     # homeassistant.components.camera: debug
-  #   #homeassistant.components.maxcube: debug
+    # homeassistant.components.maxcube: debug
     # homeassistant.components.rfxtrx: debug
-
-    homeassistant.components.zwave: debug
+    # homeassistant.components.zwave: debug
 
 # Enables the frontend
 frontend:
@@ -31,14 +33,9 @@ frontend:
 config:
 
 http:
-  #api_password: !secret api_password
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   base_url: riverhass.duckdns.org
-  # trusted_proxies:
-  #   - 127.0.0.1
-  #   - 84.27.97.93
-  #   - 192.168.1.1
   trusted_networks:
     - 127.0.0.1
     - 84.27.97.93
@@ -80,37 +77,6 @@ sensor:
         value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float/1000) }}{% endif %}'
         friendly_name: 'Vandaag opgewekt'
         unit_of_measurement: 'kWh'
-      # real_consumption:
-      #   value_template: '{{(states('sensor.power_consumption')|float * 1000)+((states('sensor.power_generation')|float)-(states('sensor.power_production')|float * 1000))}}'
-      #   friendly_name: 'Verbruik werkelijk nu'
-      #   unit_of_measurement: 'W'
-  # - platform: rest
-  #   name: foo
-  #   json_attributes:
-  #     - batteryLevel
-  #     - kioskMode
-  #     - screenBrightness
-  #     - motionDetectorState
-  #     - maintenanceMode
-  #     - appFreeMemory
-  #     - appUsedMemory
-  #     - totalFreeMemory
-  #     - totalUsedMemory
-  #     - hostname4
-  #     - ip4
-  #     - mac
-  #     - locationLatitude
-  #     - locationLongitude
-  #     - locationAltitude
-  #     - startUrl
-  #     - currentPage
-  #   resource: !secret foo_rest
-  # - platform: template
-  #   sensors:
-  #     foo_battery_level:
-  #       friendly_name: "foo_battery_level"
-  #       unit_of_measurement: '%'
-  #       value_template: "{{ states.sensor.foo.attributes.batteryLevel }}"
 
 #RFXTRX
   - platform: rfxtrx
@@ -204,9 +170,6 @@ switch:
         command_off: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=event,TurnOff"
         # command_state: "/usr/bin/curl -X GET http://192.168.1.205/control?cmd=status,GPIO,12"
         # value_template: '{{ value_json.state == "0" }}'
-      mindergas:
-        command_on: "python3 /config/mindergas.py"
-        command_off: "python3 /config/mindergas.py"
       say_deurbel:
         command_on: /usr/bin/curl -k "http://192.168.1.202:2323/?cmd=textToSpeech&text=De+deurbel+gaat&password=Rickyboy22"
         friendly_name: De deurbel gaat
@@ -219,12 +182,12 @@ switch:
         command_state: !secret foo_screen_state
         value_template: '{{ value == "on" }}'
         friendly_name: Domotica tablet
-  - platform: shelly
-    switches:
-      zolder:
-        host: 192.168.1.206
-        username: user
-        password: Rickyboy22
+  # - platform: shelly
+  #   switches:
+  #     zolder:
+  #       host: 192.168.1.206
+  #       username: user
+  #       password: Rickyboy22
 
   - platform: rfxtrx
     #automatic_add: true
@@ -280,8 +243,6 @@ asuswrt:
   host: 192.168.1.1
   username: admin
   ssh_key: /config/ssh/ssh_asus_private_key
-  # interval_seconds: 10
-  # consider_home: 180
 
 input_select:
   mode:
@@ -440,7 +401,7 @@ history_graph:
       - sensor.power_consumption
       - sensor.power_generation
       - sensor.hourly_gas_consumption
-      - sensor.grid_now
+      - sensor.sensor.solaredge_currentpower
       - sensor.total_usage
   gr2:
     name: "Temperatuur"
@@ -455,7 +416,6 @@ history_graph:
 # panel_custom: !include panel_custom.yaml
 
 zone:
-  # This will override the default home zone
   - name: Home
     latitude: 51.68751
     longitude: 5.13299
@@ -507,7 +467,7 @@ panel_iframe:
   climate:
     title: 'Klimaat'
     # url: 'https://snapshot.raintank.io/dashboard/snapshot/HXgM85coEALzem99a3M0RFd0euBK3fB7'
-    url: 'http://192.168.1.200:3000/d/lM7gpcigz/klimaat?orgId=1&from=1537653600000&to=1537727533141&theme=light'
+    url: 'Authorization: Bearer API_KEY' 'http://192.168.1.200:3000/d/lM7gpcigz/klimaat?orgId=1&from=1537653600000&to=1537727533141&theme=light'
   energy:
     title: 'Energie'
     # url: 'https://snapshot.raintank.io/dashboard/snapshot/QblY4IPSWqTLNHmMQQEx9jAzonGCRjsc'
@@ -543,3 +503,10 @@ rest_command:
     url: http://192.168.1.202:2323/?cmd=clearCookies&password=Rickyboy22
   reset_tab5:
     url: http://192.168.1.202:2323/?cmd=restartApp&password=Rickyboy22
+  post_mindergas:
+    url: https://www.mindergas.nl/api/gas_meter_readings
+    method: post
+    headers:
+      Content-Type: application/json
+      AUTH-TOKEN: !secret mindergas_token
+    payload: '{ "date": "{{(as_timestamp(now()) - (24*3600)) | timestamp_custom(''%Y-%m-%d'', True) }}", "reading" : "{{states.sensor.gas_consumption.state }}" }'
