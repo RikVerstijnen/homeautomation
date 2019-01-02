@@ -21,7 +21,7 @@
       - light.overloop_2
       - light.overloop_3
   morris:
-    name: Verlichting Morris
+    name: Slaapkamer Morris
     view: no
     entities:
       - light.morris_1
@@ -30,7 +30,7 @@
       - light.morris_schemer_groot
       - light.morris_schemer_klein
   verlichting:
-    name: Verlichting
+    name: Beneden
     view: no
     entities:
       - group.spotjes
@@ -41,6 +41,7 @@
       - light.hal
       - group.overloop
       - switch.zolder
+      - switch.kerstverlichting
   verwarming:
     name: Verwarming
     view: no
@@ -93,7 +94,6 @@
       - group.rolluiken
       - group.apparaten
       - group.tuinsproeiers
-      - remote.harmony_hub
       - media_player.woonkamer
       - media_player.chromecast4087
       - alarm_control_panel.house
@@ -110,8 +110,8 @@
       - sensor.power_consumption
       - sensor.real_consumption
       - sensor.energy_generation
-      - sensor.grid_now
-      - sensor.grid_today
+      - sensor.solaredge_currentpower
+      - sensor.solaredge_lastdayenergy
       - sensor.total_usage
       - sensor.boiler_power
       - sensor.keukenboiler__power

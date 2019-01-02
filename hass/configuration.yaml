@@ -18,9 +18,19 @@ homeassistant:
 
 python_script:
 
+custom_updater:
+  show_installable: false
+  hide_sensor: false
+  track:
+    - components
+    - cards
+    - python_scripts
+  card_urls:
+    - https://raw.githubusercontent.com/nervetattoo/simple-thermostat/allow-updates/tracker.json
+
 logger:
   default: error
-  logs:
+  # logs:
     # homeassistant.components.camera: debug
     # homeassistant.components.maxcube: debug
     # homeassistant.components.rfxtrx: debug
@@ -29,13 +39,16 @@ logger:
 # Enables the frontend
 frontend:
 
+lovelace:
+  mode: yaml
+
 # Enables configuration UI
 config:
 
 http:
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
-  base_url: riverhass.duckdns.org
+  base_url: https://192.168.1.200
   trusted_networks:
     - 127.0.0.1
     - 84.27.97.93
@@ -67,16 +80,16 @@ sensor:
     system_id: 46986
     api_key: !secret pvoutput_api
     scan_interval: 120
-  - platform: template
-    sensors:
-      power_generation:
-        value_template: '{% if is_state_attr("sensor.pvoutput", "power_generation", "NaN") %}0{% else %}{{ states.sensor.pvoutput.attributes.power_generation }}{% endif %}'
-        friendly_name: 'Opwek nu'
-        unit_of_measurement: 'W'
-      energy_generation:
-        value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float/1000) }}{% endif %}'
-        friendly_name: 'Vandaag opgewekt'
-        unit_of_measurement: 'kWh'
+  # - platform: template
+  #   sensors:
+  #     power_generation:
+  #       value_template: '{% if is_state_attr("sensor.pvoutput", "power_generation", "NaN") %}0{% else %}{{ states.sensor.pvoutput.attributes.power_generation }}{% endif %}'
+  #       friendly_name: 'Opwek nu'
+  #       unit_of_measurement: 'W'
+  #     energy_generation:
+  #       value_template: '{% if is_state_attr("sensor.pvoutput", "energy_generation", "NaN") %}0{% else %}{{ "%0.2f"|format(states.sensor.pvoutput.attributes.energy_generation|float/1000) }}{% endif %}'
+  #       friendly_name: 'Vandaag opgewekt'
+  #       unit_of_measurement: 'kWh'
 
 #RFXTRX
   - platform: rfxtrx
@@ -88,7 +101,6 @@ sensor:
       0a5207005f0e00ba390179:
         name: Temperatuur badkamer
 
-#Solaredge
   - platform: rest
     name: solaredge_overview
     scan_interval: 400
@@ -96,50 +108,105 @@ sensor:
       - overview
     value_template: '{{ value_json.states }}'
     resource: !secret solaredge_url
+
   - platform: template
     sensors:
       solaredge_currentpower:
-        friendly_name: 'SolarEdge Current Power Production'
+        friendly_name: 'Opwek nu'
         value_template: '{{ (states.sensor.solaredge_overview.attributes.overview.currentPower.power | float / 1000) | round(2) }}'
         unit_of_measurement: 'kW'
       solaredge_lastdayenergy:
-        friendly_name: 'SolarEdge Last Day Energy Production'
+        friendly_name: 'Opwek vandaag'
         value_template: '{{ (states.sensor.solaredge_overview.attributes.overview.lastDayData.energy | float / 1000) | round(2) }}'
         unit_of_measurement: 'kWh'
       solaredge_lastmonthenergy:
-        friendly_name: 'SolarEdge Last Month Energy Production'
+        friendly_name: 'Opwek maand'
         value_template: '{{ (states.sensor.solaredge_overview.attributes.overview.lastMonthData.energy | float / 1000) | round(2) }}'
         unit_of_measurement: 'kWh'
       solaredge_lastyearenergy:
-        friendly_name: 'SolarEdge Last Year Energy Production'
+        friendly_name: 'Opwek jaar'
         value_template: '{{ (states.sensor.solaredge_overview.attributes.overview.lastYearData.energy | float / 1000000) | round(2) }}'
         unit_of_measurement: 'MWh'
       solaredge_lifetimeenergy:
-        friendly_name: 'SolarEdge Life Energy Production'
+        friendly_name: 'Opwek totaal'
         value_template: '{{ (states.sensor.solaredge_overview.attributes.overview.lifeTimeData.energy | float / 1000000) | round(2) }}'
         unit_of_measurement: 'MWh'
-
-#Add normal/low
-  - platform: template
-    sensors:
       power_consumption_total:
-        friendly_name: "Power Consumption (total)"
+        friendly_name: "Verbruik"
         value_template: '{{ (states.sensor.power_consumption_low.state | float) + (states.sensor.power_consumption_normal.state | float)}}'
         unit_of_measurement: 'kWh'
       power_production_total:
-        friendly_name: "Power Production (total)"
+        friendly_name: "Teruglevering"
         value_template: '{{ (states.sensor.power_production_low.state | float) + (states.sensor.power_production_normal.state | float)}}'
         unit_of_measurement: 'kWh'
-
-#Net usage
       net_grid_consumption:
-        friendly_name: "Net grid consumption"
+        friendly_name: "Netto verbruik"
         value_template: '{{ (states.sensor.power_consumption.state | float) - (states.sensor.power_production.state | float) }}'
         unit_of_measurement: 'kW'
       total_usage:
-        friendly_name: "Total usage"
+        friendly_name: "Verbruik totaal"
         value_template: '{{ (states.sensor.solaredge_currentpower.state | float) - (states.sensor.power_production.state | float) + (states.sensor.power_consumption.state | float)}}'
         unit_of_measurement: 'kW'
+      hum_badkamer:
+        value_template: '{{ (states.sensor.temperatuur_badkamer_temperature.attributes.humidity | int) | round(2)  }}'
+        friendly_name: 'Badkamer'
+        unit_of_measurement: '%'
+        icon_template: mdi:water-percent
+      hum_buiten:
+        value_template: '{{ (states.sensor.temperatuur_buiten_temperature.attributes.humidity | int) | round(2)  }}'
+        friendly_name: 'Buiten'
+        unit_of_measurement: '%'
+        icon_template: mdi:water-percent
+      hum_morris:
+        value_template: '{{ (states.sensor.temperatuur_slaapkamer_morris_temperature.attributes.humidity | int) | round(2)  }}'
+        friendly_name: 'Morris'
+        unit_of_measurement: '%'
+        icon_template: mdi:water-percent
+      bat_hal:
+        value_template: '{{ (states.binary_sensor.motion_sensor_158d0001656748.attributes.battery_level) | round(2)  }}'
+        friendly_name: 'Bewegingssensor hal'
+        unit_of_measurement: '%'
+        icon_template: mdi:battery-outline
+      bat_overloop:
+        value_template: '{{ (states.binary_sensor.motion_sensor_158d0001d9752b.attributes.battery_level) | round(2)  }}'
+        friendly_name: 'Bewegingssensor overloop'
+        unit_of_measurement: '%'
+        icon_template: mdi:battery-outline
+      bat_rook:
+        value_template: '{{ (states.binary_sensor.smoke_sensor_158d00015b1821.attributes.battery_level) | round(2)  }}'
+        friendly_name: 'Rookmelder'
+        unit_of_measurement: '%'
+        icon_template: mdi:battery-outline
+      bat_fedde:
+        value_template: '{{ (states.sensor.humidity_158d000227255b.attributes.battery_level | int) | round(2)  }}'
+        friendly_name: 'Temperatuursensor Fedde'
+        unit_of_measurement: '%'
+        icon_template: mdi:battery-outline
+      bat_badkamer:
+        value_template: '{{ (states.sensor.temperatuur_badkamer_temperature.attributes.battery_level | int) | round(2)  }}'
+        friendly_name: 'Temperatuursensor Badkamer'
+        unit_of_measurement: '%'
+        icon_template: mdi:battery-outline
+      bat_buiten:
+        value_template: '{{ (states.sensor.temperatuur_buiten_temperature.attributes.battery_level | int) | round(2)  }}'
+        friendly_name: 'Temperatuursensor Buiten'
+        unit_of_measurement: '%'
+        icon_template: mdi:battery-outline
+      bat_morris:
+        value_template: '{{ (states.sensor.temperatuur_slaapkamer_morris_temperature.attributes.battery_level | int) | round(2)  }}'
+        friendly_name: 'Temperatuursensor Morris'
+        unit_of_measurement: '%'
+        icon_template: mdi:battery-outline
+      bat_woonkamer:
+        value_template: '{{ (states.zwave.aeotec_zw074_multisensor_gen5_2.battery_level | int) | round(2)  }}'
+        friendly_name: 'Temperatuursensor woonkamer'
+        unit_of_measurement: '%'
+        icon_template: mdi:battery-outline
+      bat_switch_morris:
+        value_template: '{{ (states.zwave.aeotec_zw130_wallmote_quad_4.battery_level | int) | round(2)  }}'
+        friendly_name: 'Wandschakelaar Morris'
+        unit_of_measurement: '%'
+        icon_template: mdi:battery-outline
 
 # Text to speech
 tts:
@@ -401,7 +468,7 @@ history_graph:
       - sensor.power_consumption
       - sensor.power_generation
       - sensor.hourly_gas_consumption
-      - sensor.sensor.solaredge_currentpower
+      - sensor.solaredge_currentpower
       - sensor.total_usage
   gr2:
     name: "Temperatuur"
@@ -467,11 +534,11 @@ panel_iframe:
   climate:
     title: 'Klimaat'
     # url: 'https://snapshot.raintank.io/dashboard/snapshot/HXgM85coEALzem99a3M0RFd0euBK3fB7'
-    url: 'Authorization: Bearer API_KEY' 'http://192.168.1.200:3000/d/lM7gpcigz/klimaat?orgId=1&from=1537653600000&to=1537727533141&theme=light'
+    url: 'https://192.168.1.200:3000/d/lM7gpcigz/klimaat?orgId=1&theme=light'
   energy:
     title: 'Energie'
     # url: 'https://snapshot.raintank.io/dashboard/snapshot/QblY4IPSWqTLNHmMQQEx9jAzonGCRjsc'
-    url: 'http://192.168.1.200:3000/d/ZoLZtcigk/energie?orgId=1&from=1537122702898&to=1537727502898&theme=light'
+    url: 'https://192.168.1.200:3000/d/ZoLZtcigk/energie?orgId=1&theme=light'
 
 camera:
 - platform: generic
@@ -493,16 +560,6 @@ notify:
     chat_id: 401477431
 
 rest_command:
-  reset_tab1:
-    url: http://192.168.1.202:2323/?cmd=loadStartURL&password=Rickyboy22
-  reset_tab2:
-    url: http://192.168.1.202:2323/?cmd=clearCache&password=Rickyboy22
-  reset_tab3:
-    url: http://192.168.1.202:2323/?cmd=clearWebstorage&password=Rickyboy22
-  reset_tab4:
-    url: http://192.168.1.202:2323/?cmd=clearCookies&password=Rickyboy22
-  reset_tab5:
-    url: http://192.168.1.202:2323/?cmd=restartApp&password=Rickyboy22
   post_mindergas:
     url: https://www.mindergas.nl/api/gas_meter_readings
     method: post
