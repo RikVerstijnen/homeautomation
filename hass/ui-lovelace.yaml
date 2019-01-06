@@ -5,9 +5,9 @@
 resources:
   - url: /local/tracker-card.js
     type: js
-  - url: /local/card-tools.js?v=0
+  - url: /local/card-tools.js?v=0a97d3
     type: js
-  - url: /local/fold-entity-row.js?v=0
+  - url: /local/fold-entity-row.js?v=f28e6e
     type: js
   - url: /local/power-wheel-card.js?v=1
     type: module
@@ -22,6 +22,10 @@ views:
         entity: input_select.mode
       - type: entity-button
         entity: input_select.mode_light
+      # - type: entities
+      #   show_header_toggle: false
+      #   entities:
+      #     - input_number.dim_offset
       - type: glance
         show_state: false
         entities:
@@ -124,6 +128,8 @@ views:
         title: Energie nu
         solar_power_entity: sensor.solaredge_currentpower
         grid_power_entity: sensor.net_grid_consumption
+        solar_energy_entity: sensor.solaredge_lastdayenergy
+        grid_energy_entity: sensor.net_grid_consumption_today
         power_decimals: 2
         color_icons: true
       - type: gauge

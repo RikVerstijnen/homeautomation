@@ -139,26 +139,40 @@ sensor:
         friendly_name: "Teruglevering"
         value_template: '{{ (states.sensor.power_production_low.state | float) + (states.sensor.power_production_normal.state | float)}}'
         unit_of_measurement: 'kWh'
+      power_consumption_today:
+        friendly_name: 'Verbruik vandaag'
+        unit_of_measurement: 'kWh'
+        value_template: >-
+          {{ (states("sensor.power_consumption_total") | float - states("input_number.power_consumption_total_midnight") | float) | round(3) }}
+      power_production_today:
+        friendly_name: 'Teruglevering vandaag'
+        unit_of_measurement: 'kWh'
+        value_template: >-
+          {{ (states("sensor.power_production_total") | float - states("input_number.power_production_total_midnight") | float) | round(3) }}
       net_grid_consumption:
         friendly_name: "Netto verbruik"
         value_template: '{{ (states.sensor.power_consumption.state | float) - (states.sensor.power_production.state | float) }}'
         unit_of_measurement: 'kW'
+      net_grid_consumption_today:
+        friendly_name: "Netto verbruik"
+        value_template: '{{ (states.sensor.power_consumption_today.state | float) - (states.sensor.power_production_today.state | float) }}'
+        unit_of_measurement: 'kWh'
       total_usage:
         friendly_name: "Verbruik totaal"
         value_template: '{{ (states.sensor.solaredge_currentpower.state | float) - (states.sensor.power_production.state | float) + (states.sensor.power_consumption.state | float)}}'
         unit_of_measurement: 'kW'
       hum_badkamer:
-        value_template: '{{ (states.sensor.temperatuur_badkamer_temperature.attributes.humidity | int) | round(2)  }}'
+        value_template: '{{ (states.sensor.temperatuur_badkamer_temperature.attributes.Humidity | int) | round(2)  }}'
         friendly_name: 'Badkamer'
         unit_of_measurement: '%'
         icon_template: mdi:water-percent
       hum_buiten:
-        value_template: '{{ (states.sensor.temperatuur_buiten_temperature.attributes.humidity | int) | round(2)  }}'
+        value_template: '{{ (states.sensor.temperatuur_buiten_temperature.attributes.Humidity | int) | round(2)  }}'
         friendly_name: 'Buiten'
         unit_of_measurement: '%'
         icon_template: mdi:water-percent
       hum_morris:
-        value_template: '{{ (states.sensor.temperatuur_slaapkamer_morris_temperature.attributes.humidity | int) | round(2)  }}'
+        value_template: '{{ (states.sensor.temperatuur_slaapkamer_morris_temperature.attributes.Humidity | int) | round(2)  }}'
         friendly_name: 'Morris'
         unit_of_measurement: '%'
         icon_template: mdi:water-percent
@@ -182,28 +196,28 @@ sensor:
         friendly_name: 'Temperatuursensor Fedde'
         unit_of_measurement: '%'
         icon_template: mdi:battery-outline
-      bat_badkamer:
-        value_template: '{{ (states.sensor.temperatuur_badkamer_temperature.attributes.battery_level | int) | round(2)  }}'
-        friendly_name: 'Temperatuursensor Badkamer'
-        unit_of_measurement: '%'
-        icon_template: mdi:battery-outline
-      bat_buiten:
-        value_template: '{{ (states.sensor.temperatuur_buiten_temperature.attributes.battery_level | int) | round(2)  }}'
-        friendly_name: 'Temperatuursensor Buiten'
-        unit_of_measurement: '%'
-        icon_template: mdi:battery-outline
-      bat_morris:
-        value_template: '{{ (states.sensor.temperatuur_slaapkamer_morris_temperature.attributes.battery_level | int) | round(2)  }}'
-        friendly_name: 'Temperatuursensor Morris'
-        unit_of_measurement: '%'
-        icon_template: mdi:battery-outline
+      # bat_badkamer:
+      #   value_template: {{ ('states.sensor.temperatuur_badkamer_temperature.attributes.Battery numeric' | int) | round(2)  }}
+      #   friendly_name: 'Temperatuursensor Badkamer'
+      #   unit_of_measurement: '%'
+      #   icon_template: mdi:battery-outline
+      # bat_buiten:
+      #   value_template: {{ ('states.sensor.temperatuur_buiten_temperature.attributes.Battery numeric' | int) | round(2)  }}
+      #   friendly_name: 'Temperatuursensor Buiten'
+      #   unit_of_measurement: '%'
+      #   icon_template: mdi:battery-outline
+      # bat_morris:
+      #   value_template: {{ ('states.sensor.temperatuur_slaapkamer_morris_temperature.attributes.Battery numeric' | int) | round(2)  }}
+      #   friendly_name: 'Temperatuursensor Morris'
+      #   unit_of_measurement: '%'
+      #   icon_template: mdi:battery-outline
       bat_woonkamer:
-        value_template: '{{ (states.zwave.aeotec_zw074_multisensor_gen5_2.battery_level | int) | round(2)  }}'
+        value_template: '{{ (states.zwave.aeotec_zw074_multisensor_gen5_2.attributes.battery_level | int) | round(2)  }}'
         friendly_name: 'Temperatuursensor woonkamer'
         unit_of_measurement: '%'
         icon_template: mdi:battery-outline
       bat_switch_morris:
-        value_template: '{{ (states.zwave.aeotec_zw130_wallmote_quad_4.battery_level | int) | round(2)  }}'
+        value_template: '{{ (states.zwave.aeotec_zw130_wallmote_quad_4.attributes.battery_level | int) | round(2)  }}'
         friendly_name: 'Wandschakelaar Morris'
         unit_of_measurement: '%'
         icon_template: mdi:battery-outline
@@ -330,6 +344,27 @@ input_select:
      - Vol
     initial: Auto
     icon: mdi:lightbulb-on-outline
+
+input_number:
+  dim_offset:
+    name: "Verlichting"
+    min: 0
+    max: 100
+    icon: mdi:lightbulb-on-outline
+  power_consumption_total_midnight:
+    name: "Verbruik 00:00"
+    min: 0
+    max: 999999
+    mode: box
+    unit_of_measurement: 'kWh'
+    icon: mdi:flash-circle
+  power_production_total_midnight:
+    name: "Teruglevering 00:00"
+    min: 0
+    max: 999999
+    mode: box
+    unit_of_measurement: 'kWh'
+    icon: mdi:flash-circle
 
 maxcube:
   gateways:
