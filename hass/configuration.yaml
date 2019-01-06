@@ -26,7 +26,9 @@ custom_updater:
     - cards
     - python_scripts
   card_urls:
-    - https://raw.githubusercontent.com/nervetattoo/simple-thermostat/allow-updates/tracker.json
+    - https://raw.githubusercontent.com/nervetattoo/simple-thermostat/master/tracker.json
+    - https://raw.githubusercontent.com/gurbyz/custom-cards-lovelace/master/custom_updater.json
+    - https://raw.githubusercontent.com/kuuji/button-card/master/tracker.json
 
 logger:
   default: error
@@ -339,18 +341,13 @@ input_select:
     name: Verlichting
     options:
      - Uit
-     - TV
      - Auto
+     - Hand
      - Vol
     initial: Auto
     icon: mdi:lightbulb-on-outline
 
 input_number:
-  dim_offset:
-    name: "Verlichting"
-    min: 0
-    max: 100
-    icon: mdi:lightbulb-on-outline
   power_consumption_total_midnight:
     name: "Verbruik 00:00"
     min: 0

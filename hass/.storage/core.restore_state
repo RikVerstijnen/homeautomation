@@ -1,0 +1,1492 @@
+{
+    "data": [
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "Teruglevering 00:00",
+                    "icon": "mdi:flash-circle",
+                    "initial": null,
+                    "max": 999999.0,
+                    "min": 0.0,
+                    "mode": "box",
+                    "step": 1.0,
+                    "unit_of_measurement": "kWh"
+                },
+                "context": {
+                    "id": "c1bf7de3aa7d4546b8bcc60f8f833805",
+                    "user_id": null
+                },
+                "entity_id": "input_number.power_production_total_midnight",
+                "last_changed": "2019-01-06T20:31:38.398517+00:00",
+                "last_updated": "2019-01-06T20:31:38.398517+00:00",
+                "state": "4227.973"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "Verbruik 00:00",
+                    "icon": "mdi:flash-circle",
+                    "initial": null,
+                    "max": 999999.0,
+                    "min": 0.0,
+                    "mode": "box",
+                    "step": 1.0,
+                    "unit_of_measurement": "kWh"
+                },
+                "context": {
+                    "id": "4b890f390cad4433891420acd69275d1",
+                    "user_id": null
+                },
+                "entity_id": "input_number.power_consumption_total_midnight",
+                "last_changed": "2019-01-06T20:31:38.401304+00:00",
+                "last_updated": "2019-01-06T20:31:38.401304+00:00",
+                "state": "28394.109"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "Mode",
+                    "icon": "mdi:power",
+                    "options": [
+                        "Uit",
+                        "Auto",
+                        "Aan",
+                        "Sim"
+                    ]
+                },
+                "context": {
+                    "id": "2e7bab144f874b4b8742163e86cd4216",
+                    "user_id": null
+                },
+                "entity_id": "input_select.mode",
+                "last_changed": "2019-01-06T20:31:38.403941+00:00",
+                "last_updated": "2019-01-06T20:31:38.403941+00:00",
+                "state": "Auto"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "Verlichting",
+                    "icon": "mdi:lightbulb-on-outline",
+                    "options": [
+                        "Uit",
+                        "Auto",
+                        "Hand",
+                        "Vol"
+                    ]
+                },
+                "context": {
+                    "id": "148f8fcdbd3747cda620182c024fc161",
+                    "user_id": null
+                },
+                "entity_id": "input_select.mode_light",
+                "last_changed": "2019-01-06T20:31:38.406437+00:00",
+                "last_updated": "2019-01-06T20:31:38.406437+00:00",
+                "state": "Auto"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "Slaapkamer Morris schakelaar 1"
+                },
+                "context": {
+                    "id": "a567d7c8379844bc986f6b96b595a1a8",
+                    "user_id": null
+                },
+                "entity_id": "input_boolean.morris1",
+                "last_changed": "2019-01-06T20:31:38.408967+00:00",
+                "last_updated": "2019-01-06T20:31:38.408967+00:00",
+                "state": "off"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {},
+                "context": {
+                    "id": "8dc33fbff4064d7a827e9fbbfb6fb656",
+                    "user_id": null
+                },
+                "entity_id": "input_boolean.door_garage_state",
+                "last_changed": "2019-01-06T20:31:38.413751+00:00",
+                "last_updated": "2019-01-06T20:31:38.413751+00:00",
+                "state": "off"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "Slaapkamer Morris schakelaar 2"
+                },
+                "context": {
+                    "id": "c851e9b90877409488c269eb7e4229ee",
+                    "user_id": null
+                },
+                "entity_id": "input_boolean.morris2",
+                "last_changed": "2019-01-06T20:31:38.416415+00:00",
+                "last_updated": "2019-01-06T20:31:38.416415+00:00",
+                "state": "off"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {},
+                "context": {
+                    "id": "7822db9007c9413aa3dff20d59701fe2",
+                    "user_id": null
+                },
+                "entity_id": "input_boolean.door_front_state",
+                "last_changed": "2019-01-06T20:31:38.418977+00:00",
+                "last_updated": "2019-01-06T20:31:38.418977+00:00",
+                "state": "off"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {},
+                "context": {
+                    "id": "da5d348eeeb54c45b34d341f77da6bda",
+                    "user_id": null
+                },
+                "entity_id": "input_boolean.door_back_state",
+                "last_changed": "2019-01-06T20:31:38.424328+00:00",
+                "last_updated": "2019-01-06T20:31:38.424328+00:00",
+                "state": "off"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {},
+                "context": {
+                    "id": "47e2614636d94f04ae61b4e3f425cf1e",
+                    "user_id": null
+                },
+                "entity_id": "input_boolean.door_shed_state",
+                "last_changed": "2019-01-06T20:31:38.426996+00:00",
+                "last_updated": "2019-01-06T20:31:38.426996+00:00",
+                "state": "off"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {},
+                "context": {
+                    "id": "5e9959c58c334e03860470109112307a",
+                    "user_id": null
+                },
+                "entity_id": "input_boolean.door_inside_state",
+                "last_changed": "2019-01-06T20:31:38.429525+00:00",
+                "last_updated": "2019-01-06T20:31:38.429525+00:00",
+                "state": "off"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Deurbel",
+                    "last_triggered": "2019-01-04T09:04:14.495179+00:00"
+                },
+                "context": {
+                    "id": "154b844e45fc405697161a23b278a013",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_deurbel",
+                "last_changed": "2019-01-06T20:33:51.212573+00:00",
+                "last_updated": "2019-01-06T20:33:51.212573+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Trigger alarm bij armed away",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "70406017d1214a8c88376fb68a9d5693",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_trigger_alarm_bij_armed_away",
+                "last_changed": "2019-01-06T20:33:51.261340+00:00",
+                "last_updated": "2019-01-06T20:33:51.261340+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Hond blaft bij alarm",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "94b405c26621491fba68fbe1d590077a",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_hond_blaft_bij_alarm",
+                "last_changed": "2019-01-06T20:33:51.285668+00:00",
+                "last_updated": "2019-01-06T20:33:51.285668+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Rook gedetecteerd",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "a0e832cc11f544e9b5fa674a3aa1cfb6",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_rook_gedetecteerd",
+                "last_changed": "2019-01-06T20:33:51.310391+00:00",
+                "last_updated": "2019-01-06T20:33:51.310391+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Daily Backup",
+                    "last_triggered": "2019-01-06T15:00:07.363276+00:00"
+                },
+                "context": {
+                    "id": "5e212bcc10964aa7a9f5d789eec4e546",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_daily_backup",
+                "last_changed": "2019-01-06T20:33:51.356376+00:00",
+                "last_updated": "2019-01-06T20:33:51.356376+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Set energy midnight",
+                    "last_triggered": "2019-01-05T23:00:00.266799+00:00"
+                },
+                "context": {
+                    "id": "ad57be63975c40de970f670bb46bf635",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_set_energy_midnight",
+                "last_changed": "2019-01-06T20:33:51.379077+00:00",
+                "last_updated": "2019-01-06T20:33:51.379077+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Alarm] Away Mode Armed",
+                    "id": "alarm_armed_away",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "e92a1888cc51461d815c2bb74cf5fcfc",
+                    "user_id": null
+                },
+                "entity_id": "automation.alarm_away_mode_armed",
+                "last_changed": "2019-01-06T20:33:51.417149+00:00",
+                "last_updated": "2019-01-06T20:33:51.417149+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Alarm] Home Mode Armed",
+                    "id": "alarm_armed_home",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "8460cc498f9d4a5a8c091b75f5e03d36",
+                    "user_id": null
+                },
+                "entity_id": "automation.alarm_home_mode_armed",
+                "last_changed": "2019-01-06T20:33:51.430408+00:00",
+                "last_updated": "2019-01-06T20:33:51.430408+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Alarm] Away Mode Arming",
+                    "id": "alarm_arming_away",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "1169090343764918b03957bf42353540",
+                    "user_id": null
+                },
+                "entity_id": "automation.alarm_away_mode_arming",
+                "last_changed": "2019-01-06T20:33:51.448353+00:00",
+                "last_updated": "2019-01-06T20:33:51.448353+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Alarm] Disarmed",
+                    "id": "alarm_disarmed",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "db9aa21a925447918ef85c0ddb1f7a9f",
+                    "user_id": null
+                },
+                "entity_id": "automation.alarm_disarmed",
+                "last_changed": "2019-01-06T20:33:51.482134+00:00",
+                "last_updated": "2019-01-06T20:33:51.482134+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Alarm] Triggered",
+                    "id": "alarm_triggered",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "5794c9c431ef446b98b59e1d71ec30a2",
+                    "user_id": null
+                },
+                "entity_id": "automation.alarm_triggered",
+                "last_changed": "2019-01-06T20:33:51.500839+00:00",
+                "last_updated": "2019-01-06T20:33:51.500839+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Alarm] Warning",
+                    "id": "alarm_warning",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "71c91306b9264db5ad591270938dc5ef",
+                    "user_id": null
+                },
+                "entity_id": "automation.alarm_warning",
+                "last_changed": "2019-01-06T20:33:51.514752+00:00",
+                "last_updated": "2019-01-06T20:33:51.514752+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Doors] Binnendeur open",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "96ef686e8b6249bdaedbe75fef893e97",
+                    "user_id": null
+                },
+                "entity_id": "automation.doors_binnendeur_open",
+                "last_changed": "2019-01-06T20:33:51.524482+00:00",
+                "last_updated": "2019-01-06T20:33:51.524482+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Doors] Binnendeur dicht",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "bb0f85641d724fc2946aba8f26ba3db4",
+                    "user_id": null
+                },
+                "entity_id": "automation.doors_binnendeur_dicht",
+                "last_changed": "2019-01-06T20:33:51.535318+00:00",
+                "last_updated": "2019-01-06T20:33:51.535318+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Doors] Achterdeur open",
+                    "last_triggered": "2018-12-18T06:03:42.529885+00:00"
+                },
+                "context": {
+                    "id": "f34261e681324ce696ea40b1ae0fe892",
+                    "user_id": null
+                },
+                "entity_id": "automation.doors_achterdeur_open",
+                "last_changed": "2019-01-06T20:33:51.545998+00:00",
+                "last_updated": "2019-01-06T20:33:51.545998+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Doors] Achterdeur dicht",
+                    "last_triggered": "2018-12-18T06:03:46.192449+00:00"
+                },
+                "context": {
+                    "id": "47d072b223dc4de0abad8b431bb10d10",
+                    "user_id": null
+                },
+                "entity_id": "automation.doors_achterdeur_dicht",
+                "last_changed": "2019-01-06T20:33:51.556433+00:00",
+                "last_updated": "2019-01-06T20:33:51.556433+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Doors] Voordeur open",
+                    "last_triggered": "2019-01-02T10:33:56.790757+00:00"
+                },
+                "context": {
+                    "id": "239f201669cf4144949ea473af25a1dc",
+                    "user_id": null
+                },
+                "entity_id": "automation.doors_voordeur_open",
+                "last_changed": "2019-01-06T20:33:51.567519+00:00",
+                "last_updated": "2019-01-06T20:33:51.567519+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Doors] Voordeur dicht",
+                    "last_triggered": "2019-01-01T15:36:19.947145+00:00"
+                },
+                "context": {
+                    "id": "21284582f2114bed87918ca084c98833",
+                    "user_id": null
+                },
+                "entity_id": "automation.doors_voordeur_dicht",
+                "last_changed": "2019-01-06T20:33:51.578203+00:00",
+                "last_updated": "2019-01-06T20:33:51.578203+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Doors] Garagedeur open",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "ebdb5c1b14cd4bcb8f9ada223ca4b3bb",
+                    "user_id": null
+                },
+                "entity_id": "automation.doors_garagedeur_open",
+                "last_changed": "2019-01-06T20:33:51.598748+00:00",
+                "last_updated": "2019-01-06T20:33:51.598748+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Doors] Garagedeur dicht",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "13a64e5722c34254a3e32e62cccbba83",
+                    "user_id": null
+                },
+                "entity_id": "automation.doors_garagedeur_dicht",
+                "last_changed": "2019-01-06T20:33:51.625144+00:00",
+                "last_updated": "2019-01-06T20:33:51.625144+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Doors] Berging open",
+                    "last_triggered": "2019-01-04T16:53:40.753103+00:00"
+                },
+                "context": {
+                    "id": "a69c3feaab2a4076921fb4c0c449fe97",
+                    "user_id": null
+                },
+                "entity_id": "automation.doors_berging_open",
+                "last_changed": "2019-01-06T20:33:51.642670+00:00",
+                "last_updated": "2019-01-06T20:33:51.642670+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Doors] Berging dicht",
+                    "last_triggered": "2019-01-04T16:54:00.626639+00:00"
+                },
+                "context": {
+                    "id": "3d538357d29e4caab9ff8ba2f14cbbb6",
+                    "user_id": null
+                },
+                "entity_id": "automation.doors_berging_dicht",
+                "last_changed": "2019-01-06T20:33:51.656965+00:00",
+                "last_updated": "2019-01-06T20:33:51.656965+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Auto lichtsterkte binnen",
+                    "last_triggered": "2019-01-06T20:42:47.932125+00:00"
+                },
+                "context": {
+                    "id": "647e510c0f594f66b675bc935baeb97f",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_auto_lichtsterkte_binnen",
+                "last_changed": "2019-01-06T20:33:51.684620+00:00",
+                "last_updated": "2019-01-06T20:42:47.932964+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Lampen aan buiten",
+                    "last_triggered": "2019-01-06T15:55:54.263588+00:00"
+                },
+                "context": {
+                    "id": "6c934a7c63db4636ad4e3cb42d214c72",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_lampen_aan_buiten",
+                "last_changed": "2019-01-06T20:33:51.695753+00:00",
+                "last_updated": "2019-01-06T20:33:51.695753+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Lampen uit binnen",
+                    "last_triggered": "2019-01-06T15:43:40.710756+00:00"
+                },
+                "context": {
+                    "id": "c01ca7f658ea407084f9d20276c0313e",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_lampen_uit_binnen",
+                "last_changed": "2019-01-06T20:33:51.706922+00:00",
+                "last_updated": "2019-01-06T20:33:51.706922+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Lampen uit buiten",
+                    "last_triggered": "2019-01-06T15:43:40.473171+00:00"
+                },
+                "context": {
+                    "id": "7197cc6599e448c7b661cc44aa4a2189",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_lampen_uit_buiten",
+                "last_changed": "2019-01-06T20:33:51.725971+00:00",
+                "last_updated": "2019-01-06T20:33:51.725971+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Lampen volledig aan binnen",
+                    "last_triggered": "2018-12-20T20:02:38.321298+00:00"
+                },
+                "context": {
+                    "id": "5bc075a7bdb247e0956af53583a618ec",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_lampen_volledig_aan_binnen",
+                "last_changed": "2019-01-06T20:33:51.740453+00:00",
+                "last_updated": "2019-01-06T20:33:51.740453+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Keukenlamp aan",
+                    "last_triggered": "2019-01-06T18:23:27.374208+00:00"
+                },
+                "context": {
+                    "id": "34f2df8a6cce45f5a7910bb88073c4cc",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_keukenlamp_aan",
+                "last_changed": "2019-01-06T20:33:51.749711+00:00",
+                "last_updated": "2019-01-06T20:33:51.749711+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Keukenlamp uit",
+                    "last_triggered": "2019-01-06T15:43:40.601398+00:00"
+                },
+                "context": {
+                    "id": "60b06069a3d1483fa09117bd4f0050a3",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_keukenlamp_uit",
+                "last_changed": "2019-01-06T20:33:51.759792+00:00",
+                "last_updated": "2019-01-06T20:33:51.759792+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Lamp hal aan - Avond",
+                    "last_triggered": "2019-01-06T16:37:24.888174+00:00"
+                },
+                "context": {
+                    "id": "9df68a0bbd7b45718c7d0511ccc431fe",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_lamp_hal_aan__avond",
+                "last_changed": "2019-01-06T20:33:51.772681+00:00",
+                "last_updated": "2019-01-06T20:33:51.772681+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Lamp hal aan - Nacht",
+                    "last_triggered": "2019-01-06T05:59:43.956447+00:00"
+                },
+                "context": {
+                    "id": "50762e663ae74cc78f473bdcd304839c",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_lamp_hal_aan__nacht",
+                "last_changed": "2019-01-06T20:33:51.786793+00:00",
+                "last_updated": "2019-01-06T20:33:51.786793+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Lamp hal uit",
+                    "last_triggered": "2019-01-06T16:37:20.803001+00:00"
+                },
+                "context": {
+                    "id": "33a373510ec8475e82821c9e40121479",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_lamp_hal_uit",
+                "last_changed": "2019-01-06T20:33:51.803157+00:00",
+                "last_updated": "2019-01-06T20:33:51.803157+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Lamp overloop aan - Avond",
+                    "last_triggered": "2019-01-06T16:37:43.662448+00:00"
+                },
+                "context": {
+                    "id": "bbdc77fc088d448bbeecd73e38147d3c",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_lamp_overloop_aan__avond",
+                "last_changed": "2019-01-06T20:33:51.819801+00:00",
+                "last_updated": "2019-01-06T20:33:51.819801+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Lamp overloop aan - Nacht",
+                    "last_triggered": "2019-01-06T05:59:27.215966+00:00"
+                },
+                "context": {
+                    "id": "a7615699f891405b903917640995feea",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_lamp_overloop_aan__nacht",
+                "last_changed": "2019-01-06T20:33:51.832682+00:00",
+                "last_updated": "2019-01-06T20:33:51.832682+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Lamp overloop uit",
+                    "last_triggered": "2019-01-06T16:37:05.066215+00:00"
+                },
+                "context": {
+                    "id": "4e4d30459602465e9822de96b74adc98",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_lamp_overloop_uit",
+                "last_changed": "2019-01-06T20:33:51.844813+00:00",
+                "last_updated": "2019-01-06T20:33:51.844813+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Mode on",
+                    "last_triggered": "2019-01-05T06:42:34.807667+00:00"
+                },
+                "context": {
+                    "id": "dee243a3476d413db7509a3101fef5e7",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_mode_on",
+                "last_changed": "2019-01-06T20:33:51.855704+00:00",
+                "last_updated": "2019-01-06T20:33:51.855704+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Morris aan Groot",
+                    "last_triggered": "2019-01-06T18:19:33.876421+00:00"
+                },
+                "context": {
+                    "id": "e110874530ff42b78ac14b50e27fc14b",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_morris_aan_groot",
+                "last_changed": "2019-01-06T20:33:51.867609+00:00",
+                "last_updated": "2019-01-06T20:33:51.867609+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Mode auto - Home",
+                    "last_triggered": "2019-01-06T15:55:55.803149+00:00"
+                },
+                "context": {
+                    "id": "5ab916ca477844d99e314e1327e2ad63",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_mode_auto__home",
+                "last_changed": "2019-01-06T20:33:51.879502+00:00",
+                "last_updated": "2019-01-06T20:33:51.879502+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Morris uit Groot",
+                    "last_triggered": "2019-01-06T18:42:20.619766+00:00"
+                },
+                "context": {
+                    "id": "46062c19f71c4127a9ea0bd7413d00fa",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_morris_uit_groot",
+                "last_changed": "2019-01-06T20:33:51.893167+00:00",
+                "last_updated": "2019-01-06T20:33:51.893167+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Mode auto - Away",
+                    "last_triggered": "2019-01-06T15:43:41.928542+00:00"
+                },
+                "context": {
+                    "id": "a69c165dc30841a38c754fe15628b0fc",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_mode_auto__away",
+                "last_changed": "2019-01-06T20:33:51.915656+00:00",
+                "last_updated": "2019-01-06T20:33:51.915656+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Morris aan Klein",
+                    "last_triggered": "2019-01-06T16:07:36.526500+00:00"
+                },
+                "context": {
+                    "id": "3437b35b9e1e42209b2a5783e9b4c87e",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_morris_aan_klein",
+                "last_changed": "2019-01-06T20:33:51.928368+00:00",
+                "last_updated": "2019-01-06T20:33:51.928368+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Simulation - Random on",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "e9b46f2ae0c642b4a25b5658596b0885",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_simulation__random_on",
+                "last_changed": "2019-01-06T20:33:51.942180+00:00",
+                "last_updated": "2019-01-06T20:33:51.942180+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Morris uit Klein",
+                    "last_triggered": "2019-01-06T16:07:36.786126+00:00"
+                },
+                "context": {
+                    "id": "94c28aadb7e24c1eae36bea1aff18aa6",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_morris_uit_klein",
+                "last_changed": "2019-01-06T20:33:51.953757+00:00",
+                "last_updated": "2019-01-06T20:33:51.953757+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Simulation - Random off",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "8c0415ecb24a4ac992ff5bba7009aef9",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_simulation__random_off",
+                "last_changed": "2019-01-06T20:33:51.966520+00:00",
+                "last_updated": "2019-01-06T20:33:51.966520+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Mode off",
+                    "last_triggered": "2019-01-05T22:30:24.299132+00:00"
+                },
+                "context": {
+                    "id": "a9f755a1a3224f54a82cd4ee0bbcc2c7",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_mode_off",
+                "last_changed": "2019-01-06T20:33:51.981805+00:00",
+                "last_updated": "2019-01-06T20:33:51.981805+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Zwave heal",
+                    "last_triggered": "2019-01-06T01:30:00.035830+00:00"
+                },
+                "context": {
+                    "id": "6d44fc9291d94cc08eb9a600cee6a3bb",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_zwave_heal",
+                "last_changed": "2019-01-06T20:33:51.996284+00:00",
+                "last_updated": "2019-01-06T20:33:51.996284+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Mindergas upload",
+                    "last_triggered": "2019-01-06T01:00:00.397851+00:00"
+                },
+                "context": {
+                    "id": "2a8ce1a08d4c4d0a803a855e3bacdadc",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_mindergas_upload",
+                "last_changed": "2019-01-06T20:33:52.010788+00:00",
+                "last_updated": "2019-01-06T20:33:52.010788+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "sabine",
+                    "gps_accuracy": 0,
+                    "latitude": 51.68751,
+                    "longitude": 5.13299,
+                    "scanner": "AsusWrtDeviceScanner",
+                    "source_type": "router"
+                },
+                "context": {
+                    "id": "bfb24cdecf904364b4dfa3c5a67aee21",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.telefoonsabine",
+                "last_changed": "2019-01-06T20:31:41.015171+00:00",
+                "last_updated": "2019-01-06T20:31:42.859616+00:00",
+                "state": "home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "rik",
+                    "gps_accuracy": 0,
+                    "latitude": 51.68751,
+                    "longitude": 5.13299,
+                    "scanner": "AsusWrtDeviceScanner",
+                    "source_type": "router"
+                },
+                "context": {
+                    "id": "1657dbbf61ae43fb811344f9650d1824",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.telefoonrik",
+                "last_changed": "2019-01-06T20:31:41.018661+00:00",
+                "last_updated": "2019-01-06T20:31:42.874296+00:00",
+                "state": "home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "b4a38268e285",
+                    "gps_accuracy": 0,
+                    "latitude": 51.68751,
+                    "longitude": 5.13299,
+                    "scanner": "AsusWrtDeviceScanner",
+                    "source_type": "router"
+                },
+                "context": {
+                    "id": "4eb174d72e4d4390bdc580d4faa276e0",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.b4a38268e285",
+                "last_changed": "2019-01-06T21:02:14.629707+00:00",
+                "last_updated": "2019-01-06T21:02:14.629707+00:00",
+                "state": "home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "Rick-Verstijnen",
+                    "gps_accuracy": 0,
+                    "latitude": 51.68751,
+                    "longitude": 5.13299,
+                    "scanner": "AsusWrtDeviceScanner",
+                    "source_type": "router"
+                },
+                "context": {
+                    "id": "81b88d70ccab49eaa09411257f17bfb8",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.rickverstijnen",
+                "last_changed": "2019-01-06T20:31:41.026947+00:00",
+                "last_updated": "2019-01-06T20:31:42.679798+00:00",
+                "state": "home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "707781607b92",
+                    "source_type": null
+                },
+                "context": {
+                    "id": "29506865eb854615a00599d74ae01566",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.707781607b92",
+                "last_changed": "2019-01-06T20:31:41.031015+00:00",
+                "last_updated": "2019-01-06T20:31:41.031015+00:00",
+                "state": "not_home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "iPad",
+                    "gps_accuracy": 0,
+                    "latitude": 51.68751,
+                    "longitude": 5.13299,
+                    "scanner": "AsusWrtDeviceScanner",
+                    "source_type": "router"
+                },
+                "context": {
+                    "id": "4c364e39054c4bfa8558471a3469f02a",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.ipad",
+                "last_changed": "2019-01-06T20:31:41.036770+00:00",
+                "last_updated": "2019-01-06T20:31:42.883399+00:00",
+                "state": "home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "HP-PC",
+                    "source_type": null
+                },
+                "context": {
+                    "id": "14b69d7c893b4f34908350f260a9d29f",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.hppc_2",
+                "last_changed": "2019-01-06T20:31:41.040274+00:00",
+                "last_updated": "2019-01-06T20:31:41.040274+00:00",
+                "state": "not_home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "38786202725e",
+                    "source_type": "router"
+                },
+                "context": {
+                    "id": "ecba9b5e510e4716b81537d98d447bee",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.38786202725e",
+                "last_changed": "2019-01-06T20:31:41.045254+00:00",
+                "last_updated": "2019-01-06T20:31:41.045254+00:00",
+                "state": "not_home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "android-fd1a21e589f18d36",
+                    "source_type": "router"
+                },
+                "context": {
+                    "id": "41224226214340a5a5e4bdae1eb94789",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.androidfd1a21e589f18d36",
+                "last_changed": "2019-01-06T20:31:41.048732+00:00",
+                "last_updated": "2019-01-06T20:31:41.048732+00:00",
+                "state": "not_home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "iPhone",
+                    "source_type": "router"
+                },
+                "context": {
+                    "id": "60d8c82900fa42838edbfc4eea5168d9",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.iphone",
+                "last_changed": "2019-01-06T20:31:41.053987+00:00",
+                "last_updated": "2019-01-06T20:31:41.053987+00:00",
+                "state": "not_home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "shelly1-8AAD8C",
+                    "source_type": null
+                },
+                "context": {
+                    "id": "2c28b5ecaf664237a556fe65fada5029",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.shelly18aad8c",
+                "last_changed": "2019-01-06T20:31:41.057509+00:00",
+                "last_updated": "2019-01-06T20:31:41.057509+00:00",
+                "state": "not_home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "android-70caa462d7d39ab0",
+                    "source_type": null
+                },
+                "context": {
+                    "id": "b2277d8173764013b9314c989a5f135d",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.android70caa462d7d39ab0",
+                "last_changed": "2019-01-06T20:31:41.062853+00:00",
+                "last_updated": "2019-01-06T20:31:41.062853+00:00",
+                "state": "not_home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "Rick-Verstijnen",
+                    "source_type": null
+                },
+                "context": {
+                    "id": "7b68d44550ce416593fc6a515cbd4338",
+                    "user_id": null
+                },
+                "entity_id": "device_tracker.rickverstijnen_2",
+                "last_changed": "2019-01-06T20:31:41.066359+00:00",
+                "last_updated": "2019-01-06T20:31:41.066359+00:00",
+                "state": "not_home"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "assumed_state": true,
+                    "brightness": 145,
+                    "effect_list": [
+                        "colorloop",
+                        "night",
+                        "white"
+                    ],
+                    "friendly_name": "Lamp keuken",
+                    "supported_features": 61
+                },
+                "context": {
+                    "id": "647e510c0f594f66b675bc935baeb97f",
+                    "user_id": null
+                },
+                "entity_id": "light.lamp_keuken",
+                "last_changed": "2019-01-06T20:31:41.071224+00:00",
+                "last_updated": "2019-01-06T20:42:47.755222+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "assumed_state": true,
+                    "brightness": 145,
+                    "effect_list": [
+                        "colorloop",
+                        "night",
+                        "white"
+                    ],
+                    "friendly_name": "Lamp achter",
+                    "supported_features": 61
+                },
+                "context": {
+                    "id": "647e510c0f594f66b675bc935baeb97f",
+                    "user_id": null
+                },
+                "entity_id": "light.lamp_achter",
+                "last_changed": "2019-01-06T20:31:41.075293+00:00",
+                "last_updated": "2019-01-06T20:42:47.777794+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "assumed_state": true,
+                    "brightness": 95,
+                    "effect_list": [
+                        "colorloop",
+                        "night",
+                        "white"
+                    ],
+                    "friendly_name": "Lamp zithoek",
+                    "supported_features": 61
+                },
+                "context": {
+                    "id": "647e510c0f594f66b675bc935baeb97f",
+                    "user_id": null
+                },
+                "entity_id": "light.lamp_zithoek",
+                "last_changed": "2019-01-06T20:31:41.080365+00:00",
+                "last_updated": "2019-01-06T20:42:47.804974+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "assumed_state": true,
+                    "brightness": 95,
+                    "effect_list": [
+                        "colorloop",
+                        "night",
+                        "white"
+                    ],
+                    "friendly_name": "Lamp tussen",
+                    "supported_features": 61
+                },
+                "context": {
+                    "id": "647e510c0f594f66b675bc935baeb97f",
+                    "user_id": null
+                },
+                "entity_id": "light.lamp_tussen",
+                "last_changed": "2019-01-06T20:31:41.084005+00:00",
+                "last_updated": "2019-01-06T20:42:47.839089+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T21:03:52.010795+00:00",
+            "state": {
+                "attributes": {
+                    "current_temperature": 19.5,
+                    "friendly_name": "Woonkamer",
+                    "max_temp": 35,
+                    "min_temp": 7,
+                    "operation_list": [
+                        "heat",
+                        "off"
+                    ],
+                    "operation_mode": "heat",
+                    "supported_features": 129,
+                    "temperature": 19.0
+                },
+                "context": {
+                    "id": "f732fc69096748dda4a1a9bf2d2cf14d",
+                    "user_id": null
+                },
+                "entity_id": "climate.woonkamer",
+                "last_changed": "2019-01-06T20:52:51.263911+00:00",
+                "last_updated": "2019-01-06T21:01:21.038410+00:00",
+                "state": "idle"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T19:21:14.643762+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "Verlichting",
+                    "icon": "mdi:lightbulb-on-outline",
+                    "initial": null,
+                    "max": 100.0,
+                    "min": 0.0,
+                    "mode": "slider",
+                    "step": 1.0
+                },
+                "context": {
+                    "id": "3a09126414664b838551ccfe02d6a539",
+                    "user_id": "e8dad75116284308af0fe7d2dd6808af"
+                },
+                "entity_id": "input_number.dim_offset",
+                "last_changed": "2019-01-05T19:44:54.437383+00:00",
+                "last_updated": "2019-01-05T19:44:54.437383+00:00",
+                "state": "55.0"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T20:13:47.425418+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Switch to TV",
+                    "last_triggered": "2019-01-06T19:26:40.186764+00:00"
+                },
+                "context": {
+                    "id": "65fb05e81aa7401ab24d6f3c0c3a6be0",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_switch_to_tv",
+                "last_changed": "2019-01-06T19:58:05.299139+00:00",
+                "last_updated": "2019-01-06T19:58:05.299139+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T20:13:48.822198+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Switch to Auto",
+                    "last_triggered": "2019-01-06T15:27:55.419412+00:00"
+                },
+                "context": {
+                    "id": "8a9afd24478b45deae164014a8ee23fa",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_switch_to_auto",
+                "last_changed": "2019-01-06T19:58:05.409162+00:00",
+                "last_updated": "2019-01-06T19:58:05.409162+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T19:56:26.887638+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[Light] Auto lichtsterkte binnen - TV",
+                    "last_triggered": "2019-01-06T19:12:47.840974+00:00"
+                },
+                "context": {
+                    "id": "a99b567f925b400cb4e26e420a94bc4c",
+                    "user_id": null
+                },
+                "entity_id": "automation.light_auto_lichtsterkte_binnen__tv",
+                "last_changed": "2019-01-06T19:26:01.163266+00:00",
+                "last_updated": "2019-01-06T19:26:01.163266+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T20:13:48.620314+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Mode on - TV",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "a686a19710f74312989312078827d78e",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_mode_on__tv",
+                "last_changed": "2019-01-06T19:58:05.643962+00:00",
+                "last_updated": "2019-01-06T19:58:05.643962+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-06T20:13:47.613616+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Mode auto - Home - TV",
+                    "last_triggered": "2019-01-06T16:07:20.157649+00:00"
+                },
+                "context": {
+                    "id": "6071ef0d148845de9f5cd8a80b522ebc",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_mode_auto__home__tv",
+                "last_changed": "2019-01-06T19:58:05.608397+00:00",
+                "last_updated": "2019-01-06T19:58:05.608397+00:00",
+                "state": "on"
+            }
+        },
+        {
+            "last_seen": "2019-01-01T14:40:02.783723+00:00",
+            "state": {
+                "attributes": {
+                    "friendly_name": "[General] Reset tablet",
+                    "last_triggered": null
+                },
+                "context": {
+                    "id": "016d9583d1194a7fa9ed6552b24f19b5",
+                    "user_id": null
+                },
+                "entity_id": "automation.general_reset_tablet",
+                "last_changed": "2018-12-22T09:19:26.769253+00:00",
+                "last_updated": "2018-12-22T09:19:26.769253+00:00",
+                "state": "on"
+            }
+        }
+    ],
+    "key": "core.restore_state",
+    "version": 1
+}

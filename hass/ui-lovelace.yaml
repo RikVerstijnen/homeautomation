@@ -9,23 +9,33 @@ resources:
     type: js
   - url: /local/fold-entity-row.js?v=f28e6e
     type: js
-  - url: /local/power-wheel-card.js?v=1
+  - url: /local/power-wheel-card.js?v=2
     type: module
   - url: /local/simple-thermostat/simple-thermostat.js?v=1
+    type: module
+  - url: /local/button-card.js
     type: module
 
 title: Home
 views:
   - title: Algemeen
     cards:
+      # - type: horizontal-stack
+      #   cards:
+      #     - type: "custom:button-card"
+      #       color_type: card
+      #       color: rgb(223, 255, 97)
+      #       icon: mdi:volume-plus
+      #       action: service
+      #       service:
+      #         domain: media_player
+      #         action: volume_up
+      #         data:
+      #           entity_id: media_player.livimg_room_speaker
       - type: entity-button
         entity: input_select.mode
       - type: entity-button
         entity: input_select.mode_light
-      # - type: entities
-      #   show_header_toggle: false
-      #   entities:
-      #     - input_number.dim_offset
       - type: glance
         show_state: false
         entities:
@@ -125,12 +135,13 @@ views:
           - entity: sensor.qubino_zmnhbdx_flush_2_relays_power
             secondary_info: last-changed
       - type: "custom:power-wheel-card"
-        title: Energie nu
+        title: Energiebalans
         solar_power_entity: sensor.solaredge_currentpower
         grid_power_entity: sensor.net_grid_consumption
         solar_energy_entity: sensor.solaredge_lastdayenergy
         grid_energy_entity: sensor.net_grid_consumption_today
         power_decimals: 2
+        energy_decimals: 0
         color_icons: true
       - type: gauge
         entity: sensor.solaredge_currentpower
@@ -164,8 +175,6 @@ views:
         hours_to_show: 24
         refresh_interval: 0
         entities:
-          - sensor.power_consumption
-          - sensor.power_generation
           - sensor.hourly_gas_consumption
           - sensor.solaredge_currentpower
           - sensor.total_usage

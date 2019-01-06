@@ -186,7 +186,7 @@
                 "device_id": "2aff22b3731a4183ae741535c83073bd",
                 "disabled_by": null,
                 "entity_id": "sensor.qubino_zmnhbdx_flush_2_relays_power",
-                "name": null,
+                "name": "Buitenlamp",
                 "platform": "zwave",
                 "unique_id": "6-72057594143604866"
             },
@@ -276,7 +276,7 @@
                 "device_id": "fc4c52e3fce441f6b7adaafaba366537",
                 "disabled_by": null,
                 "entity_id": "sensor.fibaro_system_fgwpef_wall_plug_power",
-                "name": null,
+                "name": "Schemerlampen",
                 "platform": "zwave",
                 "unique_id": "7-72057594160382082"
             },
@@ -320,15 +320,6 @@
                 "config_entry_id": "4b5bf50db92f44539c4c36a4709a770b",
                 "device_id": "597e3c3042f1450f801f4dc11e6a5b51",
                 "disabled_by": null,
-                "entity_id": "switch.diepvries__switch",
-                "name": null,
-                "platform": "zwave",
-                "unique_id": "2-72057594076282880"
-            },
-            {
-                "config_entry_id": "4b5bf50db92f44539c4c36a4709a770b",
-                "device_id": "597e3c3042f1450f801f4dc11e6a5b51",
-                "disabled_by": null,
                 "entity_id": "sensor.diepvries__energy",
                 "name": null,
                 "platform": "zwave",
@@ -342,15 +333,6 @@
                 "name": null,
                 "platform": "zwave",
                 "unique_id": "2-72057594076495890"
-            },
-            {
-                "config_entry_id": "4b5bf50db92f44539c4c36a4709a770b",
-                "device_id": "597e3c3042f1450f801f4dc11e6a5b51",
-                "disabled_by": null,
-                "entity_id": "sensor.diepvries__power",
-                "name": "Diepvries",
-                "platform": "zwave",
-                "unique_id": "2-72057594076496002"
             },
             {
                 "config_entry_id": "4b5bf50db92f44539c4c36a4709a770b",
@@ -492,7 +474,7 @@
                 "device_id": "579b5a5854f74f3f80c8c9642641ebdd",
                 "disabled_by": null,
                 "entity_id": "sensor.verlichting_speelkamer__power",
-                "name": null,
+                "name": "Speelkamer",
                 "platform": "zwave",
                 "unique_id": "10-72057594210713730"
             },
@@ -645,7 +627,7 @@
                 "device_id": null,
                 "disabled_by": null,
                 "entity_id": "sensor.humidity_158d000227255b",
-                "name": null,
+                "name": "Vochtigheid Fedde",
                 "platform": "xiaomi_aqara",
                 "unique_id": "humidity158d000227255b"
             },
@@ -1365,7 +1347,7 @@
                 "device_id": "bb19aebbf51e4dc88708de30d48c325c",
                 "disabled_by": null,
                 "entity_id": "sensor.aeotec_zw074_multisensor_gen5_temperature",
-                "name": null,
+                "name": "Woonkamer",
                 "platform": "zwave",
                 "unique_id": "13-72057594261028882"
             },
@@ -1374,7 +1356,7 @@
                 "device_id": "bb19aebbf51e4dc88708de30d48c325c",
                 "disabled_by": null,
                 "entity_id": "sensor.aeotec_zw074_multisensor_gen5_luminance",
-                "name": null,
+                "name": "Lichtsterkte",
                 "platform": "zwave",
                 "unique_id": "13-72057594261028914"
             },
@@ -1383,7 +1365,7 @@
                 "device_id": "bb19aebbf51e4dc88708de30d48c325c",
                 "disabled_by": null,
                 "entity_id": "sensor.aeotec_zw074_multisensor_gen5_relative_humidity",
-                "name": null,
+                "name": "Woonkamer",
                 "platform": "zwave",
                 "unique_id": "13-72057594261028946"
             },
@@ -1566,6 +1548,24 @@
                 "name": null,
                 "platform": "zwave",
                 "unique_id": "16-72057594311163904"
+            },
+            {
+                "config_entry_id": "4b5bf50db92f44539c4c36a4709a770b",
+                "device_id": "597e3c3042f1450f801f4dc11e6a5b51",
+                "disabled_by": null,
+                "entity_id": "sensor.kerstverlichting",
+                "name": "Kerstverlichting",
+                "platform": "zwave",
+                "unique_id": "2-72057594076496002"
+            },
+            {
+                "config_entry_id": "4b5bf50db92f44539c4c36a4709a770b",
+                "device_id": "597e3c3042f1450f801f4dc11e6a5b51",
+                "disabled_by": null,
+                "entity_id": "switch.kerstverlichting",
+                "name": "Kerstverlichting ",
+                "platform": "zwave",
+                "unique_id": "2-72057594076282880"
             }
         ]
     },

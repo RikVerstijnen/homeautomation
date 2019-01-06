@@ -1,0 +1,261 @@
+{
+    "data": {
+        "config": {
+            "title": "Ons huis",
+            "views": [
+                {
+                    "badges": [
+                        "binary_sensor.door_front",
+                        "binary_sensor.door_inside",
+                        "binary_sensor.door_back",
+                        "binary_sensor.door_garage",
+                        "binary_sensor.door_shed",
+                        "binary_sensor.motion_sensor_158d0001656748",
+                        "binary_sensor.motion_sensor_158d0001d9752b",
+                        "binary_sensor.smoke_sensor_158d00015b1821",
+                        "device_tracker.telefoonrik",
+                        "device_tracker.telefoonsabine",
+                        "sensor.aeotec_zw074_multisensor_gen5_luminance"
+                    ],
+                    "cards": [
+                        {
+                            "entities": [
+                                "input_select.mode",
+                                "input_select.mode_light"
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Mode",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "group.spotjes",
+                                "light.level",
+                                "switch.keuken",
+                                "light.verlichting_speelkamer__level",
+                                "switch.qubino_zmnhbdx_flush_2_relays_switch",
+                                "light.hal",
+                                "group.overloop",
+                                "switch.zolder",
+                                "switch.kerstverlichting"
+                            ],
+                            "title": "Beneden",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "light.lamp_keuken",
+                                "light.lamp_achter",
+                                "light.lamp_tussen",
+                                "light.lamp_zithoek"
+                            ],
+                            "title": "Spotjes",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "light.overloop_1",
+                                "light.overloop_2",
+                                "light.overloop_3"
+                            ],
+                            "title": "Overloop",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "light.morris_1",
+                                "light.morris_2",
+                                "light.morris_3",
+                                "light.morris_schemer_groot",
+                                "light.morris_schemer_klein"
+                            ],
+                            "title": "Slaapkamer Morris",
+                            "type": "entities"
+                        },
+                        {
+                            "entity": "climate.woonkamer",
+                            "type": "thermostat"
+                        },
+                        {
+                            "entity": "climate.speelkamer_speelkamer",
+                            "type": "thermostat"
+                        },
+                        {
+                            "entity": "climate.slaapkamer_slaapkamer",
+                            "type": "thermostat"
+                        },
+                        {
+                            "entity": "climate.babykamer_babykamer",
+                            "type": "thermostat"
+                        },
+                        {
+                            "entities": [
+                                "cover.rolluiken_slaapkamer",
+                                "cover.rolluiken_slaapkamer_fedde"
+                            ],
+                            "title": "Rolluiken",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "switch.boiler_switch",
+                                "switch.keukenboiler__switch",
+                                "switch.ketel",
+                                "switch.foo_screen"
+                            ],
+                            "title": "Apparaten",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "switch.sproeier_achter"
+                            ],
+                            "title": "Tuinsproeiers",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "camera.woonkamer"
+                            ],
+                            "title": "Camera",
+                            "type": "entities"
+                        },
+                        {
+                            "entity": "media_player.woonkamer",
+                            "type": "media-control"
+                        },
+                        {
+                            "entities": [
+                                "remote.harmony_hub_2"
+                            ],
+                            "title": "Extern",
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "default_view",
+                    "title": "Algemeen"
+                },
+                {
+                    "badges": [
+                        "sensor.hourly_gas_consumption",
+                        "sensor.power_consumption",
+                        "sensor.energy_generation",
+                        "sensor.solaredge_currentpower",
+                        "sensor.solaredge_lastdayenergy",
+                        "sensor.total_usage",
+                        "sensor.boiler_power",
+                        "sensor.keukenboiler__power",
+                        "sensor.boiler_energy",
+                        "sensor.keukenboiler__energy",
+                        "sensor.diepvries__energy"
+                    ],
+                    "cards": [
+                        {
+                            "entities": [
+                                "history_graph.energie"
+                            ],
+                            "title": "Geschiedenis",
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "energie",
+                    "title": "Energie"
+                },
+                {
+                    "badges": [
+                        "sensor.temperatuur_buiten_temperature",
+                        "sensor.aeotec_zw074_multisensor_gen5_temperature",
+                        "sensor.temperatuur_badkamer_temperature",
+                        "sensor.temperatuur_slaapkamer_morris_temperature",
+                        "sensor.temperature_158d000227255b"
+                    ],
+                    "cards": [
+                        {
+                            "entities": [
+                                "history_graph.temperatuur"
+                            ],
+                            "title": "Geschiedenis",
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "temperatuur",
+                    "title": "Temperatuur"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                "automation.alarm_away_mode_armed",
+                                "automation.alarm_away_mode_arming",
+                                "automation.alarm_disarmed",
+                                "automation.alarm_home_mode_armed",
+                                "automation.alarm_triggered",
+                                "automation.alarm_warning",
+                                "automation.doors_achterdeur_dicht",
+                                "automation.doors_achterdeur_open",
+                                "automation.doors_berging_dicht",
+                                "automation.doors_berging_open",
+                                "automation.doors_binnendeur_dicht",
+                                "automation.doors_binnendeur_open",
+                                "automation.doors_garagedeur_dicht",
+                                "automation.doors_garagedeur_open",
+                                "automation.doors_voordeur_dicht",
+                                "automation.doors_voordeur_open",
+                                "automation.general_daily_backup",
+                                "automation.general_deurbel",
+                                "automation.general_hond_blaft_bij_alarm",
+                                "automation.general_mindergas_upload",
+                                "automation.general_mode_auto__away",
+                                "automation.general_mode_auto__home",
+                                "automation.general_mode_auto__home__tv",
+                                "automation.general_mode_off",
+                                "automation.general_mode_on",
+                                "automation.general_mode_on__tv",
+                                "automation.general_rook_gedetecteerd",
+                                "automation.general_simulation__random_off",
+                                "automation.general_simulation__random_on",
+                                "automation.general_switch_to_auto",
+                                "automation.general_switch_to_tv",
+                                "automation.general_trigger_alarm_bij_armed_away",
+                                "automation.general_zwave_heal",
+                                "automation.light_auto_lichtsterkte_binnen",
+                                "automation.light_auto_lichtsterkte_binnen__tv",
+                                "automation.light_keukenlamp_aan",
+                                "automation.light_keukenlamp_uit",
+                                "automation.light_lamp_hal_aan__avond",
+                                "automation.light_lamp_hal_aan__nacht",
+                                "automation.light_lamp_hal_uit",
+                                "automation.light_lamp_overloop_aan__avond",
+                                "automation.light_lamp_overloop_aan__nacht",
+                                "automation.light_lamp_overloop_uit",
+                                "automation.light_lampen_aan_buiten",
+                                "automation.light_lampen_uit_binnen",
+                                "automation.light_lampen_uit_buiten",
+                                "automation.light_lampen_volledig_aan_binnen",
+                                "automation.light_morris_aan_groot",
+                                "automation.light_morris_aan_klein",
+                                "automation.light_morris_uit_groot",
+                                "automation.light_morris_uit_klein"
+                            ],
+                            "title": "all automations",
+                            "type": "entities"
+                        }
+                    ],
+                    "path": "automations",
+                    "title": "Automations"
+                },
+                {
+                    "badges": [
+                        "sensor.tradfri_remote_control"
+                    ],
+                    "cards": [],
+                    "path": "batterijen",
+                    "title": "Batterijen"
+                }
+            ]
+        }
+    },
+    "key": "lovelace",
+    "version": 1
+}
