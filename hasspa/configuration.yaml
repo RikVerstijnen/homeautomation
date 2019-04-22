@@ -22,17 +22,15 @@ frontend:
 # Enables configuration UI
 config:
 
-http:
-  # Secrets are defined in the file secrets.yaml
-  # api_password: !secret http_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: example.duckdns.org:8123
+#logger:
+#  default: debug
 
-# Checks for available updates
-# Note: This component will send some information about your system to
-# the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+http:
+  #api_password: 5076CK27
+  base_url: https://hasspa.duckdns.org:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
 updater:
   # Optional, allows Home Assistant developers to focus on popular components.
   # include_used_components: true
@@ -62,6 +60,10 @@ sensor:
 # Text to speech
 tts:
   - platform: google
+  
+recorder:
+  purge_keep_days: 5
+  db_url: mysql://hass:5076CK27@core-mariadb/homeassistant
 
 group: !include groups.yaml
 automation: !include automations.yaml
@@ -71,54 +73,75 @@ switch:
   - platform: rpi_pfio
     ports:
       0:
-        name: Relais 1
-      1:
-        name: Relais 2
-      2:
         name: Zonnescherm uit
-      3:
+      1:
         name: Zonnescherm in
+      2:
+        name: Relais 3
+      3:
+        name: Relais 4
       4:
         name: Relais 5
       5:
         name: Relais 6
-        
-zwave:
-  usb_path: /dev/ttyUSB-ZWAVE
   
 binary_sensor:
   - platform: rpi_pfio
     ports:
-      0:
-        name: Schakelaar 1
-      1:
-        name: Schakelaar 2
-      2:
-        name: Schakelaar 3
       3:
-        name: Schakelaar 4
+        name: Schakelaar_1
+        settle_time: 50
+      1:
+        name: Schakelaar_2
+        settle_time: 50
+      2:
+        name: Schakelaar_4
+        settle_time: 50
+      0:
+        name: Schakelaar_6
+        settle_time: 50
+      5:
+        name: Schakelaar_3
+        settle_time: 50
       4:
-        name: Schakelaar achter
+        name: Schakelaar_5
+        settle_time: 50
+
         
 cover:
   - platform: template
     covers:
       zonnescherm:
         friendly_name: "Zonnescherm"
+        optimistic: true
+        # value_template: >-
+          # {% if is_state('cover.bedroom', 'open') %}
+            # open
+          # {% elif is_state('cover.livingroom', 'open') %}
+            # open
+          # {% else %}
+            # closed
+          # {% endif %}
         open_cover:
           - service: switch.turn_off
             data:
               entity_id: switch.zonnescherm_in
-          - delay: 0:00:02
           - service: switch.turn_on
+            data:
+              entity_id: switch.zonnescherm_uit
+          - delay: 0:01:00
+          - service: switch.turn_off
             data:
               entity_id: switch.zonnescherm_uit
         close_cover:
           - service: switch.turn_off
             data:
               entity_id: switch.zonnescherm_uit
-          - delay: 0:00:02
           - service: switch.turn_on
+            data:
+              entity_id: switch.zonnescherm_in
+          - delay: 0:01:00
+          - service: switch.turn_off
             data:
               entity_id: switch.zonnescherm_in
         stop_cover:
@@ -128,3 +151,29 @@ cover:
           - service: switch.turn_off
             data:
               entity_id: switch.zonnescherm_uit
+              
+input_boolean:
+  verlichting_woonkamer:
+    name: Verlichting woonkamer
+    initial: off
+  koken:
+    name: Koken
+    initial: off
+  keukentafel:
+    name: Keukentafel
+    initial: off
+  kast:
+    name: Kast
+    initial: off
+  douchen:
+    name: Douchen
+    initial: off
+  toilet:
+    name: Toilet
+    initial: off
+  eettafel_hoog:
+    name: Eettafel hoog
+    initial: off
+  eettafel_laag:
+    name: Eettafel laag
+    initial: off

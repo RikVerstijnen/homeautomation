@@ -1,17 +1,69 @@
-  woonkamer:
-   name: Woonkamer
+  links:
+   name: Woonkamer links
    view: no
    entities:
      - light.links_1
      - light.links_2
      - light.links_3
+
+  achter:
+   name: Woonkamer achter
+   view: no
+   entities:
      - light.achter_1
      - light.achter_2
+     
+  rechts:
+   name: Woonkamer rechts
+   view: no
+   entities:
      - light.rechts_3
      - light.rechts_4
-     - light.dimmer_level_3
+
+  TV:
+   name: Woonkamer TV
+   view: no
+   entities:
+     - light.TV1
+     - light.TV2
+     
+  keuken:
+   name: Keuken
+   view: no
+   entities:
      - light.keuken_1
      - light.keuken_2
+
+  aanrecht:
+   name: Aanrecht
+   view: no
+   entities:
+     - light.aanrecht  
+     
+  keukentafel:
+   name: Keukentafel
+   view: no
+   entities:
+     - light.keukentafel
+          
+  eettafel:
+   name: Eettafel
+   view: no
+   entities:
+     - light.eettafel
+     
+  woonkamer:
+   name: Woonkamer
+   view: no
+   entities:
+     - group.links
+     - group.achter
+     - group.rechts
+     - group.TV
+     - light.schemerlampen
+     - light.kast
+     - group.keuken
+     - group.aanrecht
      - light.schilderij
      
   gang:
@@ -22,36 +74,83 @@
       - light.gang_2
       - light.gang_3
   
+  badkamer:
+    name: Badkamer
+    view: no
+    entities:
+      - switch.badkamer_spiegels
+      - switch.badkamer_douche
+
+  toilet:
+    name: Toilet
+    view: no
+    entities:
+      - light.toilet
+      
   zonwering:
     name: Zonwering
     view: no
     entities:
       - cover.zonnescherm
+
+  afzuiging:
+    name: Afzuiging
+    view: no
+    entities:
+      - switch.afzuiging_switch
   
   default_view:
    view: yes
    entities:
      - sensor.sensor_woonkamer_luminance
-     - sensor.sensor_woonkamer_temperature
-     - binary_sensor.sensor_woonkamer_sensor
-     - sensor.sensor_gang_luminance
-     - sensor.sensor_gang_temperature
-     - binary_sensor.sensor_gang_sensor
-     - sensor.sensor_toilet_luminance
-     - sensor.sensor_toilet_temperature
-     - binary_sensor.sensor_toilet_sensor
-     - binary_sensor.schakelaar_1
-     - binary_sensor.schakelaar_2
-     - binary_sensor.schakelaar_3
-     - binary_sensor.schakelaar_4
-     - binary_sensor.schakelaar_achter
      - group.woonkamer
      - group.gang
+     - group.toilet
+     - group.badkamer
+     - group.aanrecht
+     - group.keukentafel
+     - group.eettafel
      - group.zonwering
      - group.rolluiken
+     - group.afzuiging
 
   automations:
     name: Automations
     view: yes
     entities:
       - group.all_automations
+      
+  schakelaars:
+    name: Schakelaars
+    view: Yes
+    entities:
+      - binary_sensor.schakelaar_1
+      - binary_sensor.schakelaar_2
+      - binary_sensor.schakelaar_3
+      - binary_sensor.schakelaar_4
+      - binary_sensor.schakelaar_5
+      - binary_sensor.schakelaar_6
+      - binary_sensor.schakelaar_7
+      - binary_sensor.woonkamer
+      - binary_sensor.gang
+      - binary_sensor.toilet
+      - binary_sensor.slaapkamer
+      - switch.woonkamer_switch
+      - switch.badkamer_spiegels
+      - switch.badkamer_douche
+      - input_boolean.douchen
+      - input_boolean.kast
+      - input_boolean.keukentafel
+      - input_boolean.koken
+      - input_boolean.toilet
+      - input_boolean.verlichting_woonkamer
+      - input_boolean.eettafel_hoog
+      - input_boolean.eettafel_laag
+           
+  # covers:
+    # name: Rolluiken
+    # view: Yes
+    # entities:
+      # - switch.zonnescherm_in
+      # - switch.zonnescherm_uit
+      # - switch.relais_3

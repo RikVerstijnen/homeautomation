@@ -1,78 +1,503 @@
-- alias: "Woonkamer aan"
+- alias: "Schakelaar woonkamer"
   trigger:
     - platform: state
       entity_id: binary_sensor.schakelaar_1
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: switch.woonkamer_switch
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: switch.woonkamer_switch
       from: 'off'
+      to: 'on'
+  action:
+    - service: input_boolean.toggle
+      entity_id: input_boolean.verlichting_woonkamer
+
+- alias: "Schakelaar keukentafel"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.schakelaar_2
+      to: 'off'
+  action:
+    - service: input_boolean.toggle
+      entity_id: input_boolean.keukentafel      
+      
+- alias: "Schakelaar koken"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.schakelaar_3
+      to: 'off'
+  action:
+    - service: input_boolean.toggle
+      entity_id: input_boolean.koken
+
+- alias: "Schakelaar kast"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.schakelaar_6
+      to: 'off'
+  action:
+    - service: input_boolean.toggle
+      entity_id: input_boolean.kast
+
+- alias: "Schakelaar eettafel laag"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.schakelaar_4
+      to: 'off'
+  action:
+    - service: input_boolean.toggle
+      entity_id: input_boolean.eettafel_laag      
+      
+- alias: "Schakelaar eettafel hoog"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.schakelaar_5
+      to: 'off'
+  action:
+    - service: input_boolean.toggle
+      entity_id: input_boolean.eettafel_hoog
+      
+- alias: "Woonkamer aan - Licht"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.verlichting_woonkamer
       to: 'on'
     - platform: state
-      entity_id: binary_sensor.schakelaar_achter
-      from: 'off'
-      to: 'on'
+      entity_id: sensor.sensor_woonkamer_luminance
   condition:
     condition: and
     conditions:
+    - condition: numeric_state
+      entity_id: sensor.sensor_woonkamer_luminance
+      above: 20
     - condition: state
-      entity_id: group.woonkamer
-      state: 'off'
+      entity_id: input_boolean.verlichting_woonkamer
+      state: 'on'
+  action:
+    # - service: light.turn_off
+      # entity_id: group.woonkamer
+#ToDo: Zorgen dat extra lampen uit gaan zodra het weer lichter wordt dan 20 lux
+    - service: light.turn_on
+      data:
+        entity_id: light.links_1
+        brightness: 120
+        kelvin: 2500
+    - service: light.turn_on
+      data:
+        entity_id: light.links_2
+        brightness: 120
+        kelvin: 2500
+    - service: homeassistant.turn_on
+      data:
+        entity_id: group.rechts
+        brightness: 120
+        kelvin: 2500
+    - service: light.turn_on
+      data:
+        #Kast
+        entity_id: light.kast
+        brightness: 80
+    - service: light.turn_on
+      data:
+        #Aanrecht
+        entity_id: light.aanrecht
+        brightness: 20
+    - service: light.turn_on
+      data:
+        entity_id: light.schilderij
+        brightness: 120
+        kelvin: 2500
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.verlichting_woonkamer
+
+- alias: "Woonkamer aan - Donker"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.verlichting_woonkamer
+      to: 'on'
+    - platform: state
+      entity_id: sensor.sensor_woonkamer_luminance
+  condition:
+    condition: and
+    conditions:
+    - condition: numeric_state
+      entity_id: sensor.sensor_woonkamer_luminance
+      below: 21
+    - condition: state
+      entity_id: input_boolean.verlichting_woonkamer
+      state: 'on'
   action:
     - service: homeassistant.turn_on
-      entity_id: group.woonkamer
+      data:
+        entity_id: group.links
+        brightness: 120
+        kelvin: 2500
     - service: homeassistant.turn_on
-      entity_id: group.gang
+      data:
+        entity_id: group.achter
+        brightness: 120
+        kelvin: 2500
+    - service: homeassistant.turn_on
+      data:
+        entity_id: group.rechts
+        brightness: 120
+        kelvin: 2500
+    - service: homeassistant.turn_on
+      data:
+        entity_id: group.TV
+        brightness: 5
+        kelvin: 2200
+    - service: light.turn_on
+      data:
+        #Kast
+        entity_id: light.kast
+        brightness: 80
+    - service: light.turn_on
+      data:
+        #Aanrecht
+        entity_id: light.aanrecht
+        brightness: 20
+    - service: light.turn_on
+      data:
+        #Schemerlampen
+        entity_id: light.schemerlampen
+        brightness: 150
+    - service: light.turn_on
+      data:
+        entity_id: light.schilderij
+        brightness: 120
+        kelvin: 2500
       
-- alias: "Woonkamer uit"
+- alias: "Woonkamer uit - Verlichting"
   trigger:
     - platform: state
-      entity_id: binary_sensor.schakelaar_1
+      entity_id: input_boolean.verlichting_woonkamer
+      to: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: group.woonkamer
+    - service: light.turn_off
+      entity_id: group.keukentafel
+    - service: light.turn_off
+      entity_id: group.kast
+    - service: light.turn_off
+      entity_id: group.aanrecht
+    - service: light.turn_off
+      entity_id: group.eettafel
+      
+- alias: "Woonkamer uit - Afzuiging"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.verlichting_woonkamer
+      to: 'off'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.koken
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.douchen
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.toilet
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.afzuiging_switch
+ 
+- alias: "Koken aan"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.koken
+      to: 'on'
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.koken
+    - service: homeassistant.turn_on
+      data:
+        entity_id: group.keuken
+        brightness: 255
+    - service: switch.turn_on
+      entity_id: switch.afzuiging_switch
+      
+- alias: "Koken uit - Verlichting"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.koken
+      to: 'off'
+  action:
+    - service: homeassistant.turn_off
+      entity_id: group.keuken
+      
+- alias: "Koken uit - Afzuiging"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.koken
+      to: 'off'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.douchen
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.toilet
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.afzuiging_switch      
+      
+- alias: "Keukentafel aan"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.keukentafel
+      to: 'on'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.keukentafel
+        brightness: 255
+      
+- alias: "Keukentafel uit"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.keukentafel
+      to: 'off'
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.keukentafel
+
+- alias: "Eettafel aan hoog"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.eettafel_hoog
+      to: 'on'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.eettafel
+        brightness: 120
+        kelvin: 2500
+
+- alias: "Eettafel aan laag"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.eettafel_laag
+      to: 'on'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.eettafel
+        brightness: 10
+        kelvin: 2500
+        
+- alias: "Eettafel uit"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.eettafel_hoog
+      to: 'off'
+    - platform: state
+      entity_id: input_boolean.eettafel_laag
+      to: 'off'
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.eettafel_hoog
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.eettafel_laag
+    - service: light.turn_off
+      data:
+        entity_id: light.eettafel
+        
+- alias: "Afwezig aan"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.kast
+      to: 'on'
+  action:
+    - service: light.turn_on
+      data:
+        #kast
+        entity_id: light.kast
+        brightness: 80
+    - service: light.turn_on
+      data:
+        #aanrecht
+        entity_id: light.aanrecht
+        brightness: 10
+      
+- alias: "Afwezig uit"
+  trigger:
+    - platform: state
+      entity_id: input_boolean.kast
+      to: 'off'
+  action:
+    - service: light.turn_off
+      data:
+        #kast
+        entity_id: light.kast
+    - service: light.turn_off
+      data:
+        #aanrecht
+        entity_id: light.aanrecht
+        
+- alias: "Gang aan bij beweging"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.gang
       from: 'off'
       to: 'on'
     - platform: state
-      entity_id: binary_sensor.schakelaar_achter
+      entity_id: binary_sensor.slaapkamer
       from: 'off'
       to: 'on'
   condition:
     condition: and
     conditions:
     - condition: state
-      entity_id: group.woonkamer
+      entity_id: group.gang
+      state: 'off'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: group.gang
+        brightness: 100
+        kelvin: 2500
+      
+- alias: "Gang uit bij 10 min geen beweging"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.gang
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: binary_sensor.slaapkamer
+      from: 'on'
+      to: 'off'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: group.gang
+      state: 'on'
+    - condition: state
+      entity_id: binary_sensor.gang
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.slaapkamer
+      state: 'off'
+  action:
+    - service: light.turn_off
+      entity_id: group.gang
+
+- alias: "Afzuiging aan bij douchen"
+  trigger:
+    - platform: state
+      entity_id: switch.badkamer_douche
+      from: 'off'
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.afzuiging_switch
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.douchen
+
+- alias: "Klaar met douchen"
+  trigger:
+    - platform: state
+      entity_id: switch.badkamer_douche
+      from: 'on'
+      to: 'off'
+  action:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.douchen      
+      
+- alias: "Afzuiging uit bij klaar met douchen en niet koken"
+  trigger:
+    - platform: state
+      entity_id: switch.badkamer_douche
+      from: 'on'
+      to: 'off'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.koken
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.toilet
+      state: 'off'
+  action:
+  - service: switch.turn_off
+    entity_id: switch.afzuiging_switch
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.douchen
+
+- alias: "Toilet aan bij beweging"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.toilet
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.toilet
+      state: 'off'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.toilet
+        brightness: 60
+        kelvin: 2700
+    - service: switch.turn_on
+      entity_id: switch.afzuiging_switch
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.toilet
+
+- alias: "Toilet uit bij 10 min geen beweging - Light"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.toilet
+      from: 'on'
+      to: 'off'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.toilet
       state: 'on'
   action:
     - service: light.turn_off
-      entity_id: group.woonkamer
-    - service: light.turn_off
-      entity_id: group.gang
-      
-# - alias: "Gang aan bij beweging"
-  # trigger:
-    # - platform: state
-      # entity_id: binary_sensor.sensor_gang_sensor
-      # from: 'off'
-      # to: 'on'
-  # condition:
-    # condition: and
-    # conditions:
-    # - condition: state
-      # entity_id: group.gang
-      # state: 'off'
-  # action:
-    # - service: light.turn_on
-      # entity_id: group.gang
-      
-# - alias: "Gang uit bij 10 min geen beweging"
-  # trigger:
-    # - platform: state
-      # entity_id: binary_sensor.sensor_gang_sensor
-      # from: 'on'
-      # to: 'off'
-  # condition:
-    # condition: and
-    # conditions:
-    # - condition: state
-      # entity_id: group.gang
-      # state: 'on'
-  # action:
-    # - service: light.turn_off
-      # entity_id: group.gang
+      data:
+        entity_id: light.toilet
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.toilet
+
+- alias: "Toilet uit bij 10 min geen beweging - Afzuiging"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.toilet
+      from: 'on'
+      to: 'off'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.koken
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.douchen
+      state: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.afzuiging_switch      
       
 - alias: "Zwave heal"
   trigger:
