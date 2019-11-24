@@ -25,6 +25,8 @@ config:
 #logger:
 #  default: debug
 
+system_health:
+
 http:
   #api_password: 5076CK27
   base_url: https://hasspa.duckdns.org:8123
@@ -36,34 +38,20 @@ updater:
   # include_used_components: true
 
 # Discover some devices automatically
-discovery:
+# discovery:
 
-# Allows you to issue voice commands from the frontend in enabled browsers
-conversation:
+# # Allows you to issue voice commands from the frontend in enabled browsers
+# conversation:
 
 # Enables support for tracking state changes over time
 history:
 
 # View all events in a logbook
-logbook:
+# logbook:
 
-# Enables a map showing the location of tracked devices
-#map:
-
-# Track the sun
-sun:
-
-# Weather prediction
-sensor:
-  - platform: yr
-
-# Text to speech
-tts:
-  - platform: google
-  
-recorder:
-  purge_keep_days: 5
-  db_url: mysql://hass:5076CK27@core-mariadb/homeassistant
+# recorder:
+  # purge_keep_days: 5
+  # db_url: mysql://hass:5076CK27@core-mariadb/homeassistant
 
 group: !include groups.yaml
 automation: !include automations.yaml
@@ -177,3 +165,12 @@ input_boolean:
   eettafel_laag:
     name: Eettafel laag
     initial: off
+    
+rest_command:
+  google_backup:
+    url: 'http://localhost:8055/gb/doBackup'
+    timeout: '300'
+    
+timer:
+  toilet:
+    duration: '00:10:00'

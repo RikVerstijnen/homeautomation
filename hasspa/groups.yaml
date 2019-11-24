@@ -133,7 +133,7 @@
       - binary_sensor.schakelaar_7
       - binary_sensor.woonkamer
       - binary_sensor.gang
-      - binary_sensor.toilet
+      - binary_sensor.toilet_nw
       - binary_sensor.slaapkamer
       - switch.woonkamer_switch
       - switch.badkamer_spiegels
